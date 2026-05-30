@@ -3,14 +3,20 @@
 import styles from "./Swiper.module.css";
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
+import { Navigation } from "swiper/modules";
 
-import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 export default function SwiperComponent() {
   return (
-    <Swiper slidesPerView={5} spaceBetween={25} className="mySwiper">
+    <Swiper
+      navigation={true}
+    //   modules={[Navigation]}
+      slidesPerView={5}
+      spaceBetween={15}
+      className="mySwiper"
+    >
       <SwiperSlide>
         <div className={styles.card}>
           <div className={styles.slide_image_wrapper}>
