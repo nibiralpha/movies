@@ -1,0 +1,51 @@
+.menu_container {
+  align-items: center;
+  display: flex;
+  padding: 15px 40px;
+  background-color: #000;
+}
+
+.left,
+.right {
+  flex: 1;
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.middle .menus {
+  display: flex;
+  font-weight: 600;
+}
+
+.logo img {
+  width: 150px;
+}
+
+.menus .menu {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.menu_name {
+  color: #fff;
+}
+
+.menu :hover {
+    cursor: pointer;
+}
+
+.icon :hover{
+    cursor: pointer;
+}
+
+.logo :hover{
+    cursor: pointer;
+}
