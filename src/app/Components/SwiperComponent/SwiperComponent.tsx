@@ -10,54 +10,204 @@ import { Pagination } from "swiper/modules";
 
 export default function SwiperComponent() {
   return (
-    <Swiper slidesPerView={4} spaceBetween={25} className="mySwiper">
+    <Swiper slidesPerView={5} spaceBetween={25} className="mySwiper">
       <SwiperSlide>
-        <div className={styles.slideImageWrapper}>
-          <img
-            src="./the-crew-portrait.webp"
-            className={styles.slideImage}
-            alt="The Crew"
-          />
+        <div className={styles.card}>
+          <div className={styles.slide_image_wrapper}>
+            <img
+              src="./the-crew-portrait.webp"
+              className={styles.slide_image}
+              alt="The Crew"
+            />
+          </div>
+          <div className={styles.bottom_aria}>
+            <div className={styles.content}>
+              <div className={styles.start_icon}>
+                <img width="14px" src={"./star.svg"} />
+              </div>
+              <div className={styles.rating}>7.5</div>
+            </div>
+            <div className={styles.title}>The Crew</div>
+            <div className={styles.trailer_button}>
+              <img className={styles.play} src="./play-xxl.png" />
+              <div className={styles.trailer}>Trailer</div>
+            </div>
+          </div>
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
-        <div className={styles.slideImageWrapper}>
-          <img
-            src="./how-to-tame_a-dragon-portrait.webp"
-            className={styles.slideImage}
-            alt="How to Train Your Dragon"
-          />
+        <div className={styles.card}>
+          <div className={styles.slide_image_wrapper}>
+            <img
+              src="./how-to-tame_a-dragon-portrait.webp"
+              className={styles.slide_image}
+              alt="how-to-tame_a-dragon-portrait"
+            />
+          </div>
+          <div className={styles.bottom_aria}>
+            <div className={styles.content}>
+              <div className={styles.start_icon}>
+                <img width="14px" src={"./star.svg"} />
+              </div>
+              <div className={styles.rating}>7.5</div>
+            </div>
+            <div className={styles.title}>How To Train A Dragon</div>
+            <div className={styles.trailer_button}>
+              <img className={styles.play} src="./play-xxl.png" />
+              <div className={styles.trailer}>Trailer</div>
+            </div>
+          </div>
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
-        <div className={styles.slideImageWrapper}>
-          <img
-            src="./the-first-of-us-portrait-1.webp"
-            className={styles.slideImage}
-            alt="The First of Us"
-          />
+        <div className={styles.card}>
+          <div className={styles.slide_image_wrapper}>
+            <img
+              src="./migration-portrait-.webp"
+              className={styles.slide_image}
+              alt="The Crew"
+            />
+          </div>
+          <div className={styles.bottom_aria}>
+            <div className={styles.content}>
+              <div className={styles.start_icon}>
+                <img width="14px" src={"./star.svg"} />
+              </div>
+              <div className={styles.rating}>7.5</div>
+            </div>
+            <div className={styles.title}>Migration Portrait</div>
+            <div className={styles.trailer_button}>
+              <img className={styles.play} src="./play-xxl.png" />
+              <div className={styles.trailer}>Trailer</div>
+            </div>
+          </div>
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
-        <div className={styles.slideImageWrapper}>
-          <img
-            src="./migration-portrait-.webp"
-            className={styles.slideImage}
-            alt="Migration"
-          />
+        <div className={styles.card}>
+          <div className={styles.slide_image_wrapper}>
+            <img
+              src="./the-crew-portrait.webp"
+              className={styles.slide_image}
+              alt="The Crew"
+            />
+          </div>
+          <div className={styles.bottom_aria}>
+            <div className={styles.content}>
+              <div className={styles.start_icon}>
+                <img width="14px" src={"./star.svg"} />
+              </div>
+              <div className={styles.rating}>7.5</div>
+            </div>
+            <div className={styles.title}>The First Of Us</div>
+            <div className={styles.trailer_button}>
+              <img className={styles.play} src="./play-xxl.png" />
+              <div className={styles.trailer}>Trailer</div>
+            </div>
+          </div>
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
-        <div className={styles.slideImageWrapper}>
-          <img
-            src="./tianic.webp"
-            className={styles.slideImage}
-            alt="Titanic"
-          />
+        <div className={styles.card}>
+          <div className={styles.slide_image_wrapper}>
+            <img
+              src="./tianic.webp"
+              className={styles.slide_image}
+              alt="The Crew"
+            />
+          </div>
+          <div className={styles.bottom_aria}>
+            <div className={styles.content}>
+              <div className={styles.start_icon}>
+                <img width="14px" src={"./star.svg"} />
+              </div>
+              <div className={styles.rating}>7.5</div>
+            </div>
+            <div className={styles.title}>The Titanic</div>
+            <div className={styles.trailer_button}>
+              <img className={styles.play} src="./play-xxl.png" />
+              <div className={styles.trailer}>Trailer</div>
+            </div>
+          </div>
+        </div>
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <div className={styles.card}>
+          <div className={styles.slide_image_wrapper}>
+            <img
+              src="./the-crew-portrait.webp"
+              className={styles.slide_image}
+              alt="The Crew"
+            />
+          </div>
+          <div className={styles.bottom_aria}>
+            <div className={styles.content}>
+              <div className={styles.start_icon}>
+                <img width="14px" src={"./star.svg"} />
+              </div>
+              <div className={styles.rating}>7.5</div>
+            </div>
+            <div className={styles.title}>The First Of Us</div>
+            <div className={styles.trailer_button}>
+              <img className={styles.play} src="./play-xxl.png" />
+              <div className={styles.trailer}>Trailer</div>
+            </div>
+          </div>
+        </div>
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <div className={styles.card}>
+          <div className={styles.slide_image_wrapper}>
+            <img
+              src="./the-crew-portrait.webp"
+              className={styles.slide_image}
+              alt="The Crew"
+            />
+          </div>
+          <div className={styles.bottom_aria}>
+            <div className={styles.content}>
+              <div className={styles.start_icon}>
+                <img width="14px" src={"./star.svg"} />
+              </div>
+              <div className={styles.rating}>7.5</div>
+            </div>
+            <div className={styles.title}>The First Of Us</div>
+            <div className={styles.trailer_button}>
+              <img className={styles.play} src="./play-xxl.png" />
+              <div className={styles.trailer}>Trailer</div>
+            </div>
+          </div>
+        </div>
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <div className={styles.card}>
+          <div className={styles.slide_image_wrapper}>
+            <img
+              src="./the-crew-portrait.webp"
+              className={styles.slide_image}
+              alt="The Crew"
+            />
+          </div>
+          <div className={styles.bottom_aria}>
+            <div className={styles.content}>
+              <div className={styles.start_icon}>
+                <img width="14px" src={"./star.svg"} />
+              </div>
+              <div className={styles.rating}>7.5</div>
+            </div>
+            <div className={styles.title}>The First Of Us</div>
+            <div className={styles.trailer_button}>
+              <img className={styles.play} src="./play-xxl.png" />
+              <div className={styles.trailer}>Trailer</div>
+            </div>
+          </div>
         </div>
       </SwiperSlide>
     </Swiper>
