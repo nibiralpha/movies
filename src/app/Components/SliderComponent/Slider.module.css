@@ -17,7 +17,7 @@
     to right,
     rgba(0, 0, 0, 0.8) 0%,
     rgba(0, 0, 0, 0.5) 40%,
-    rgba(0, 0, 0, 0.0) 70%
+    rgba(0, 0, 0, 0) 70%
   );
 }
 
@@ -27,7 +27,6 @@
   /* height: 100vh; */
   z-index: 1;
   display: block;
-
 }
 
 .content {
@@ -56,6 +55,10 @@
   align-items: center;
   justify-content: center;
   width: 160px;
+}
+
+.button :hover {
+  cursor: pointer;
 }
 
 .icon {
