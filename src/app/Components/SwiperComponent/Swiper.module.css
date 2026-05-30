@@ -76,6 +76,9 @@
   /* margin-left: 10px; */
   display: flex;
   align-items: center;
+  background-color: #e50914;
+  justify-content: center;
+  padding: 10px 0;
 }
 
 .trailer_button :hover {

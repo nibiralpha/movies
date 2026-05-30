@@ -14,19 +14,19 @@ export default function Page() {
       <SliderComponent />
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Recommended</div>
-        <SwiperComponent />
+        <SwiperComponent slidesPerView={6} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Streming</div>
-        <SwiperComponent />
+        <SwiperComponent slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Celebrity</div>
-        <CelebrityComponent />
+        <CelebrityComponent slidesPerView={6} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Upcoming</div>
-        <SwiperComponent />
+        <SwiperComponent slidesPerView={6} spaceBetween={15} />
       </div>
     </div>
   );

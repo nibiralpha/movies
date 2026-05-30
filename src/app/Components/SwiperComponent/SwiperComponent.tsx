@@ -8,13 +8,21 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-export default function SwiperComponent() {
+interface SwiperComponentProps {
+  slidesPerView: number;
+  spaceBetween: number;
+}
+
+export default function SwiperComponent({
+  slidesPerView,
+  spaceBetween,
+}: SwiperComponentProps) {
   return (
     <Swiper
       navigation={true}
-    //   modules={[Navigation]}
-      slidesPerView={5}
-      spaceBetween={15}
+      //   modules={[Navigation]}
+      slidesPerView={slidesPerView}
+      spaceBetween={spaceBetween}
       className="mySwiper"
     >
       <SwiperSlide>
