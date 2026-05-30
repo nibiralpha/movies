@@ -1,8 +1,11 @@
 .menu_container {
   align-items: center;
   display: flex;
-  padding: 15px 40px;
-  background-color: #000;
+  padding: 15px 40px 15px 40px;
+  background-color: #000000ab;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }
 
 .left,
@@ -36,16 +39,17 @@
 
 .menu_name {
   color: #fff;
+  font-size: 16px;
 }
 
 .menu :hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.icon :hover{
-    cursor: pointer;
+.icon :hover {
+  cursor: pointer;
 }
 
-.logo :hover{
-    cursor: pointer;
+.logo :hover {
+  cursor: pointer;
 }
