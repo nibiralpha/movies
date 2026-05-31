@@ -40,7 +40,7 @@
 .title {
   font-size: 3em;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .footer {
@@ -70,4 +70,26 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* MOBILE */
+@media screen and (max-width: 430px) {
+  .slider_img {
+    height: 100vh;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  .content{
+    width: 100%;
+    top: 55%;
+  }
+
+  .title{
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
 }

@@ -26,6 +26,20 @@ export default function SwiperComponent({
       slidesPerView={slidesPerView}
       spaceBetween={spaceBetween}
       className="mySwiper"
+      breakpoints={{
+        0: {
+          slidesPerView: 1,
+        },
+        430: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: slidesPerView,
+        },
+      }}
     >
       <SwiperSlide>
         <div className={styles.card}>

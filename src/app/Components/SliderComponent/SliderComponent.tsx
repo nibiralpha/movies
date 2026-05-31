@@ -11,6 +11,7 @@ export default function SliderComponent() {
     autoplay: true,
     autoplaySpeed: 8000,
     pauseOnHover: false,
+    arrows: false
   };
   return (
     <>
