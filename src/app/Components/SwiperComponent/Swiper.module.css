@@ -41,7 +41,7 @@
 
 .title {
   margin-top: 10px;
-  /* margin-bottom: 8px; */
+  margin-bottom: 15px;
   color: #fff;
   font-size: 16px;
   /* position: absolute; */
@@ -70,10 +70,9 @@
 .rating {
   margin-left: 5px;
 }
-
+/* 
 .trailer_button {
   margin-top: 16px;
-  /* margin-left: 10px; */
   display: flex;
   align-items: center;
   background-color: #e50914;
@@ -83,7 +82,7 @@
 
 .trailer_button :hover {
   cursor: pointer;
-}
+} */
 
 .trailer {
   font-size: 14px;

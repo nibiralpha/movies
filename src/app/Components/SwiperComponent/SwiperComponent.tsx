@@ -7,6 +7,7 @@ import { Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import Button from "../Button/ButtonComponent";
 
 interface SwiperComponentProps {
   slidesPerView: number;
@@ -60,10 +61,11 @@ export default function SwiperComponent({
                 <div className={styles.rating}>7.5</div>
               </div>
               <div className={styles.title}>The Crew</div>
-              <div className={styles.trailer_button}>
+              {/* <div className={styles.trailer_button}>
                 <img className={styles.play} src="./play-xxl.png" />
                 <div className={styles.trailer}>Trailer</div>
-              </div>
+              </div> */}
+              <Button className="full_width" text="Trailer 1" icon={true} />
             </div>
           )}
         </div>
@@ -88,10 +90,7 @@ export default function SwiperComponent({
                 <div className={styles.rating}>7.5</div>
               </div>
               <div className={styles.title}>How To Train A Dragon</div>
-              <div className={styles.trailer_button}>
-                <img className={styles.play} src="./play-xxl.png" />
-                <div className={styles.trailer}>Trailer</div>
-              </div>
+              <Button className="full_width" text="Trailer" icon={true} />
             </div>
           )}
         </div>
@@ -116,10 +115,7 @@ export default function SwiperComponent({
                 <div className={styles.rating}>7.5</div>
               </div>
               <div className={styles.title}>Migration Portrait</div>
-              <div className={styles.trailer_button}>
-                <img className={styles.play} src="./play-xxl.png" />
-                <div className={styles.trailer}>Trailer</div>
-              </div>
+              <Button className="full_width" text="Trailer" icon={true} />
             </div>
           )}
         </div>
@@ -143,10 +139,7 @@ export default function SwiperComponent({
                 <div className={styles.rating}>7.5</div>
               </div>
               <div className={styles.title}>The First Of Us</div>
-              <div className={styles.trailer_button}>
-                <img className={styles.play} src="./play-xxl.png" />
-                <div className={styles.trailer}>Trailer</div>
-              </div>
+              <Button className="full_width" text="Trailer" icon={true} />
             </div>
           )}
         </div>
@@ -171,10 +164,7 @@ export default function SwiperComponent({
                 <div className={styles.rating}>7.5</div>
               </div>
               <div className={styles.title}>The Titanic</div>
-              <div className={styles.trailer_button}>
-                <img className={styles.play} src="./play-xxl.png" />
-                <div className={styles.trailer}>Trailer</div>
-              </div>
+              <Button className="full_width" text="Trailer" icon={true} />
             </div>
           )}
         </div>
@@ -198,10 +188,7 @@ export default function SwiperComponent({
                 <div className={styles.rating}>7.5</div>
               </div>
               <div className={styles.title}>The First Of Us</div>
-              <div className={styles.trailer_button}>
-                <img className={styles.play} src="./play-xxl.png" />
-                <div className={styles.trailer}>Trailer</div>
-              </div>
+              <Button className="full_width" text="Trailer" icon={true} />
             </div>
           )}
         </div>
@@ -225,10 +212,7 @@ export default function SwiperComponent({
                 <div className={styles.rating}>7.5</div>
               </div>
               <div className={styles.title}>The First Of Us</div>
-              <div className={styles.trailer_button}>
-                <img className={styles.play} src="./play-xxl.png" />
-                <div className={styles.trailer}>Trailer</div>
-              </div>
+              <Button className="full_width" text="Trailer" icon={true} />
             </div>
           )}
         </div>
@@ -252,10 +236,7 @@ export default function SwiperComponent({
                 <div className={styles.rating}>7.5</div>
               </div>
               <div className={styles.title}>The First Of Us</div>
-              <div className={styles.trailer_button}>
-                <img className={styles.play} src="./play-xxl.png" />
-                <div className={styles.trailer}>Trailer</div>
-              </div>
+              <Button className="full_width" text="Trailer" icon={true} />
             </div>
           )}
         </div>
