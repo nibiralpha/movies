@@ -10,6 +10,13 @@ body {
   overflow-x: hidden;
 }
 
-.container{
+.container {
   padding: 0 40px;
+}
+
+/* TAB */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    max-width: 1200px;
+  }
 }

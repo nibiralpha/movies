@@ -11,6 +11,6 @@
 /* MOBILE */
 @media screen and (max-width: 430px) {
   .title{
-   
+   text-align: center;
   }
 }
