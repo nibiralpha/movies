@@ -1,0 +1,43 @@
+.year_time {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #878787;
+  margin-left: 5px;
+}
+
+.dot {
+  background-color: #878787;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.movie_title {
+  font-size: 3em;
+  line-height: 1.2;
+}
+
+.rating_area {
+  display: flex;
+  align-items: center;
+}
+
+.rating {
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 430px) {
+  .movie_title {
+    font-size: 2em;
+  }
+}

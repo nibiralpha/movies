@@ -24,7 +24,7 @@ export default function MenuComponent() {
         <div className={styles.right}>
           <div className={styles.search}>
             <div className={styles.icon}>
-              <img src={"./search_icon.svg"} />
+              <img src={"/search_icon.svg"} />
             </div>
           </div>
         </div>
