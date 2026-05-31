@@ -2,6 +2,7 @@ import styles from "./Slider.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Button from "../Button/ButtonComponent";
 
 export default function SliderComponent() {
   const settings = {
@@ -11,7 +12,7 @@ export default function SliderComponent() {
     autoplay: true,
     autoplaySpeed: 8000,
     pauseOnHover: false,
-    arrows: false
+    arrows: false,
   };
   return (
     <>
@@ -30,12 +31,7 @@ export default function SliderComponent() {
               to victory—or doom.
             </div>
             <div className={styles.footer}>
-              <div className={styles.button}>
-                <div className={styles.icon}>
-                  <img src={"./play-xxl.png"} width={15} />
-                </div>
-                <div className={styles.text}>Play Now</div>
-              </div>
+              <Button text={"Play Now"} icon={true} />
             </div>
           </div>
         </div>
@@ -50,16 +46,11 @@ export default function SliderComponent() {
               ancient prophecy foretells an all-out war between the greatest
               heroes of all realms, champions from different eras and dimensions
               are summoned to fight for ultimate supremacy. Each warrior
-              possesses unique abilities, weapons, and a past that drives them
+              possesses unique abilities, weapons, and a past t hat drives them
               to victory—or doom.
             </div>
             <div className={styles.footer}>
-              <div className={styles.button}>
-                <div className={styles.icon}>
-                  <img src={"./play-xxl.png"} width={15} />
-                </div>
-                <div className={styles.text}>Play Now</div>
-              </div>
+              <Button text="Play Now" icon={true} />
             </div>
           </div>
         </div>
