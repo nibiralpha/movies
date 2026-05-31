@@ -11,11 +11,13 @@ import "swiper/css/navigation";
 interface SwiperComponentProps {
   slidesPerView: number;
   spaceBetween: number;
+  shoeDetail?: boolean;
 }
 
 export default function SwiperComponent({
   slidesPerView,
   spaceBetween,
+  shoeDetail = true,
 }: SwiperComponentProps) {
   return (
     <Swiper
@@ -34,19 +36,22 @@ export default function SwiperComponent({
               alt="The Crew"
             />
           </div>
-          <div className={styles.bottom_aria}>
-            <div className={styles.content}>
-              <div className={styles.start_icon}>
-                <img width="14px" src={"./star.svg"} />
+
+          {shoeDetail && (
+            <div className={styles.bottom_aria}>
+              <div className={styles.content}>
+                <div className={styles.start_icon}>
+                  <img width="14px" src={"./star.svg"} />
+                </div>
+                <div className={styles.rating}>7.5</div>
               </div>
-              <div className={styles.rating}>7.5</div>
+              <div className={styles.title}>The Crew</div>
+              <div className={styles.trailer_button}>
+                <img className={styles.play} src="./play-xxl.png" />
+                <div className={styles.trailer}>Trailer</div>
+              </div>
             </div>
-            <div className={styles.title}>The Crew</div>
-            <div className={styles.trailer_button}>
-              <img className={styles.play} src="./play-xxl.png" />
-              <div className={styles.trailer}>Trailer</div>
-            </div>
-          </div>
+          )}
         </div>
       </SwiperSlide>
 
@@ -59,19 +64,22 @@ export default function SwiperComponent({
               alt="how-to-tame_a-dragon-portrait"
             />
           </div>
-          <div className={styles.bottom_aria}>
-            <div className={styles.content}>
-              <div className={styles.start_icon}>
-                <img width="14px" src={"./star.svg"} />
+
+          {shoeDetail && (
+            <div className={styles.bottom_aria}>
+              <div className={styles.content}>
+                <div className={styles.start_icon}>
+                  <img width="14px" src={"./star.svg"} />
+                </div>
+                <div className={styles.rating}>7.5</div>
               </div>
-              <div className={styles.rating}>7.5</div>
+              <div className={styles.title}>How To Train A Dragon</div>
+              <div className={styles.trailer_button}>
+                <img className={styles.play} src="./play-xxl.png" />
+                <div className={styles.trailer}>Trailer</div>
+              </div>
             </div>
-            <div className={styles.title}>How To Train A Dragon</div>
-            <div className={styles.trailer_button}>
-              <img className={styles.play} src="./play-xxl.png" />
-              <div className={styles.trailer}>Trailer</div>
-            </div>
-          </div>
+          )}
         </div>
       </SwiperSlide>
 
@@ -84,19 +92,22 @@ export default function SwiperComponent({
               alt="The Crew"
             />
           </div>
-          <div className={styles.bottom_aria}>
-            <div className={styles.content}>
-              <div className={styles.start_icon}>
-                <img width="14px" src={"./star.svg"} />
+
+          {shoeDetail && (
+            <div className={styles.bottom_aria}>
+              <div className={styles.content}>
+                <div className={styles.start_icon}>
+                  <img width="14px" src={"./star.svg"} />
+                </div>
+                <div className={styles.rating}>7.5</div>
               </div>
-              <div className={styles.rating}>7.5</div>
+              <div className={styles.title}>Migration Portrait</div>
+              <div className={styles.trailer_button}>
+                <img className={styles.play} src="./play-xxl.png" />
+                <div className={styles.trailer}>Trailer</div>
+              </div>
             </div>
-            <div className={styles.title}>Migration Portrait</div>
-            <div className={styles.trailer_button}>
-              <img className={styles.play} src="./play-xxl.png" />
-              <div className={styles.trailer}>Trailer</div>
-            </div>
-          </div>
+          )}
         </div>
       </SwiperSlide>
 
@@ -109,19 +120,21 @@ export default function SwiperComponent({
               alt="The Crew"
             />
           </div>
-          <div className={styles.bottom_aria}>
-            <div className={styles.content}>
-              <div className={styles.start_icon}>
-                <img width="14px" src={"./star.svg"} />
+          {shoeDetail && (
+            <div className={styles.bottom_aria}>
+              <div className={styles.content}>
+                <div className={styles.start_icon}>
+                  <img width="14px" src={"./star.svg"} />
+                </div>
+                <div className={styles.rating}>7.5</div>
               </div>
-              <div className={styles.rating}>7.5</div>
+              <div className={styles.title}>The First Of Us</div>
+              <div className={styles.trailer_button}>
+                <img className={styles.play} src="./play-xxl.png" />
+                <div className={styles.trailer}>Trailer</div>
+              </div>
             </div>
-            <div className={styles.title}>The First Of Us</div>
-            <div className={styles.trailer_button}>
-              <img className={styles.play} src="./play-xxl.png" />
-              <div className={styles.trailer}>Trailer</div>
-            </div>
-          </div>
+          )}
         </div>
       </SwiperSlide>
 
@@ -134,19 +147,22 @@ export default function SwiperComponent({
               alt="The Crew"
             />
           </div>
-          <div className={styles.bottom_aria}>
-            <div className={styles.content}>
-              <div className={styles.start_icon}>
-                <img width="14px" src={"./star.svg"} />
+
+          {shoeDetail && (
+            <div className={styles.bottom_aria}>
+              <div className={styles.content}>
+                <div className={styles.start_icon}>
+                  <img width="14px" src={"./star.svg"} />
+                </div>
+                <div className={styles.rating}>7.5</div>
               </div>
-              <div className={styles.rating}>7.5</div>
+              <div className={styles.title}>The Titanic</div>
+              <div className={styles.trailer_button}>
+                <img className={styles.play} src="./play-xxl.png" />
+                <div className={styles.trailer}>Trailer</div>
+              </div>
             </div>
-            <div className={styles.title}>The Titanic</div>
-            <div className={styles.trailer_button}>
-              <img className={styles.play} src="./play-xxl.png" />
-              <div className={styles.trailer}>Trailer</div>
-            </div>
-          </div>
+          )}
         </div>
       </SwiperSlide>
 
@@ -159,19 +175,21 @@ export default function SwiperComponent({
               alt="The Crew"
             />
           </div>
-          <div className={styles.bottom_aria}>
-            <div className={styles.content}>
-              <div className={styles.start_icon}>
-                <img width="14px" src={"./star.svg"} />
+          {shoeDetail && (
+            <div className={styles.bottom_aria}>
+              <div className={styles.content}>
+                <div className={styles.start_icon}>
+                  <img width="14px" src={"./star.svg"} />
+                </div>
+                <div className={styles.rating}>7.5</div>
               </div>
-              <div className={styles.rating}>7.5</div>
+              <div className={styles.title}>The First Of Us</div>
+              <div className={styles.trailer_button}>
+                <img className={styles.play} src="./play-xxl.png" />
+                <div className={styles.trailer}>Trailer</div>
+              </div>
             </div>
-            <div className={styles.title}>The First Of Us</div>
-            <div className={styles.trailer_button}>
-              <img className={styles.play} src="./play-xxl.png" />
-              <div className={styles.trailer}>Trailer</div>
-            </div>
-          </div>
+          )}
         </div>
       </SwiperSlide>
 
@@ -184,19 +202,21 @@ export default function SwiperComponent({
               alt="The Crew"
             />
           </div>
-          <div className={styles.bottom_aria}>
-            <div className={styles.content}>
-              <div className={styles.start_icon}>
-                <img width="14px" src={"./star.svg"} />
+          {shoeDetail && (
+            <div className={styles.bottom_aria}>
+              <div className={styles.content}>
+                <div className={styles.start_icon}>
+                  <img width="14px" src={"./star.svg"} />
+                </div>
+                <div className={styles.rating}>7.5</div>
               </div>
-              <div className={styles.rating}>7.5</div>
+              <div className={styles.title}>The First Of Us</div>
+              <div className={styles.trailer_button}>
+                <img className={styles.play} src="./play-xxl.png" />
+                <div className={styles.trailer}>Trailer</div>
+              </div>
             </div>
-            <div className={styles.title}>The First Of Us</div>
-            <div className={styles.trailer_button}>
-              <img className={styles.play} src="./play-xxl.png" />
-              <div className={styles.trailer}>Trailer</div>
-            </div>
-          </div>
+          )}
         </div>
       </SwiperSlide>
 
@@ -209,19 +229,21 @@ export default function SwiperComponent({
               alt="The Crew"
             />
           </div>
-          <div className={styles.bottom_aria}>
-            <div className={styles.content}>
-              <div className={styles.start_icon}>
-                <img width="14px" src={"./star.svg"} />
+          {shoeDetail && (
+            <div className={styles.bottom_aria}>
+              <div className={styles.content}>
+                <div className={styles.start_icon}>
+                  <img width="14px" src={"./star.svg"} />
+                </div>
+                <div className={styles.rating}>7.5</div>
               </div>
-              <div className={styles.rating}>7.5</div>
+              <div className={styles.title}>The First Of Us</div>
+              <div className={styles.trailer_button}>
+                <img className={styles.play} src="./play-xxl.png" />
+                <div className={styles.trailer}>Trailer</div>
+              </div>
             </div>
-            <div className={styles.title}>The First Of Us</div>
-            <div className={styles.trailer_button}>
-              <img className={styles.play} src="./play-xxl.png" />
-              <div className={styles.trailer}>Trailer</div>
-            </div>
-          </div>
+          )}
         </div>
       </SwiperSlide>
     </Swiper>

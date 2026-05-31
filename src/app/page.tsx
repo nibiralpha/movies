@@ -17,7 +17,7 @@ export default function Page() {
         <SwiperComponent slidesPerView={6} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
-        <div className={styles.title}>Streming</div>
+        <div className={styles.title}>Tv Shows</div>
         <SwiperComponent slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
@@ -27,6 +27,14 @@ export default function Page() {
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Upcoming</div>
         <SwiperComponent slidesPerView={6} spaceBetween={15} />
+      </div>
+      <div className={`container ${styles.swiper}`}>
+        <div className={styles.title}>Viewed</div>
+        <SwiperComponent
+          shoeDetail={false}
+          slidesPerView={6}
+          spaceBetween={15}
+        />
       </div>
     </div>
   );
