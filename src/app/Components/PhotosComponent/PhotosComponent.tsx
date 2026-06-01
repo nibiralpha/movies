@@ -7,9 +7,9 @@ import Lightbox from "yet-another-react-lightbox";
 import "react-photo-album/styles.css";
 import "yet-another-react-lightbox/styles.css";
 
-import styles from "./Videos.module.css";
+import styles from "./Photos.module.css";
 
-const videos = [
+const photos = [
   {
     src: "/the-crew-portrait.webp",
     width: 1200,
@@ -46,27 +46,17 @@ const videos = [
     height: 800,
   },
 ];
-export default function VideosComponent() {
+export default function PhotosComponent() {
   const [index, setIndex] = useState(-1);
 
   return (
     <div className="container">
-      <div className={styles.videos_section}>
-        <h2 className={styles.videos}>Videos</h2>
+      <div className={styles.photos_section}>
+        <h2 className={styles.photos}>Photos</h2>
 
         <div className={styles.previewGrid}>
-          {videos.map((video, i) => (
-            <div key={i} className={styles.video_item}>
-              <img src={video.src} alt="" onClick={() => setIndex(i)} />
-              <div className={styles.play_button_area}>
-                <img
-                  className={styles.play_button}
-                  src="/play_button.svg"
-                  alt=""
-                  onClick={() => setIndex(i)}
-                />
-              </div>
-            </div>
+          {photos.map((photo, i) => (
+            <img key={i} src={photo.src} alt="" onClick={() => setIndex(i)} />
           ))}
         </div>
 
@@ -74,7 +64,7 @@ export default function VideosComponent() {
           open={index >= 0}
           close={() => setIndex(-1)}
           index={index}
-          slides={videos}
+          slides={photos}
         />
       </div>
     </div>

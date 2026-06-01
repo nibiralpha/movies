@@ -6,6 +6,7 @@ import HeaderComponent from "@/src/app/Components/HeaderComponent/HeaderComponen
 import MenuComponent from "@/src/app/Components/MenuComponent/MenuComponent";
 import MediaComponent from "@/src/app/Components/MediaComponent/MediaComponent";
 import VideosComponent from "@/src/app/Components/VideosComponent/VideosComponent";
+import PhotosComponent from "@/src/app/Components/PhotosComponent/PhotosComponent";
 
 export default function Detail() {
   return (
@@ -14,6 +15,8 @@ export default function Detail() {
       <HeaderComponent />
       <MediaComponent />
       <VideosComponent />
+      {/* <PhotosComponent /> */}
+      {/* <PhotosComponent /> */}
     </div>
   );
 }
