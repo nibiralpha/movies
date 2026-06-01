@@ -1,0 +1,36 @@
+.main {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.video {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  /* overflow: hidden; */
+  position: relative;
+}
+
+.video iframe {
+  width: 100% !important;
+  height: 100% !important;
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  border: none;
+}
+
+.video_section {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.videos {
+  font-size: 1.5em;
+}
+
+.description {
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: white;
+  line-height: 20px;
+}
