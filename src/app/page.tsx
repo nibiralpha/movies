@@ -14,7 +14,7 @@ export default function Page() {
       <SliderComponent />
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Trending This Week</div>
-        <SwiperComponent slidesPerView={6} spaceBetween={15} />
+        <SwiperComponent slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Now Playing</div>
@@ -26,23 +26,23 @@ export default function Page() {
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Trending Celebrities</div>
-        <CelebrityComponent slidesPerView={6} spaceBetween={15} />
+        <CelebrityComponent slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular TV Shows</div>
-        <SwiperComponent slidesPerView={6} spaceBetween={15} />
+        <SwiperComponent slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Upcoming Movies</div>
-        <SwiperComponent slidesPerView={6} spaceBetween={15} />
+        <SwiperComponent slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Top Rated TV Shows</div>
-        <SwiperComponent slidesPerView={6} spaceBetween={15} />
+        <SwiperComponent slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular Celebrities</div>
-        <CelebrityComponent slidesPerView={6} spaceBetween={15} />
+        <CelebrityComponent slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Viewed</div>

@@ -15,7 +15,7 @@ export default function Detail() {
       <HeaderComponent />
       <MediaComponent />
       <VideosComponent />
-      {/* <PhotosComponent /> */}
+      <PhotosComponent />
       {/* <PhotosComponent /> */}
     </div>
   );

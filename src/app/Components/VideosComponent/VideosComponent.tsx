@@ -54,17 +54,20 @@ export default function VideosComponent() {
       <div className={styles.videos_section}>
         <h2 className={styles.videos}>Videos</h2>
 
-        <div className={styles.previewGrid}>
+        <div className="row">
           {videos.map((video, i) => (
-            <div key={i} className={styles.video_item}>
-              <img src={video.src} alt="" onClick={() => setIndex(i)} />
-              <div className={styles.play_button_area}>
-                <img
-                  className={styles.play_button}
-                  src="/play_button.svg"
-                  alt=""
-                  onClick={() => setIndex(i)}
-                />
+            <div key={i} className="col-12 col-md-3">
+              <div className={styles.video_item}>
+                <img src={video.src} alt="" onClick={() => setIndex(i)} />
+                <div className={styles.play_button_area}>
+                  <img
+                    className={styles.play_button}
+                    src="/play_button.svg"
+                    alt=""
+                    onClick={() => setIndex(i)}
+                  />
+                  <div>Trailer: 2.25</div>
+                </div>
               </div>
             </div>
           ))}

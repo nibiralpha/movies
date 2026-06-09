@@ -36,12 +36,27 @@
 .play_button_area {
   z-index: 1;
   cursor: pointer;
-  width: 40px;
-  height: 60px;
+  align-items: center;
+  gap: 10px;
+  display: flex;
   position: absolute;
-  top: 50%;
-  left: 10%;
+  width: 30px;
+  height: 30px;
+  top: 85%;
+  left: 15%;
   transform: translate(-50%, -50%);
+}
+
+.play_text {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: 0.3s ease;
 }
 
 .previewGrid > div:nth-child(1),
@@ -59,6 +74,31 @@
 
 .video_item {
   position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.video_item img:first-child {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.video_item:hover img:first-child {
+  transform: scale(1.05);
+}
+
+.play_button {
+  transition: opacity 0.3s ease;
+}
+
+.play_button:hover {
+  opacity: 0.7;
+}
+
+.row {
+  --bs-gutter-x: 8px;
 }
 
 /* Mobile */
