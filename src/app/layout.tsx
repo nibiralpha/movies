@@ -1,5 +1,6 @@
+import React from "react";
 import "./globals.css";
-import "bootstrap-4-grid/css/grid.min.css"; 
+import StoreProvider from "../redux/StorePrvider";
 
 export default function RootLayout({
   children,
@@ -7,8 +8,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="">
-      <body>{children}</body>
+    <html lang="en">
+      <body>
+        <StoreProvider>{children}</StoreProvider>
+      </body>
     </html>
   );
 }
