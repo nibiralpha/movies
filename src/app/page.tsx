@@ -9,16 +9,21 @@ import CelebrityComponent from "@Components/CelebrityComponent/CelebrityComponen
 import { useEffect, useState } from "react";
 import useMovies from "@Hooks/useMovies";
 import { TopUpComingMovies } from "@app-types/TopUpComingMovies";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@redux/store";
+import { fetchSliderMovies } from "@Services/Home";
 export default function Page() {
-  const { sliderMovies } = useMovies();
-  const [sliderMovieList, setSliderMovieList] = useState<TopUpComingMovies[]>(
-    [],
-  );
+  const dispatch = useDispatch<AppDispatch>();
 
-  const getInitData = (): void => {
+  // const { sliderMovies } = useMovies();
+  // const [sliderMovieList, setSliderMovieList] = useState<TopUpComingMovies[]>(
+  //   [],
+  // );
+
+  const getInitData = (): void => {    
+    dispatch(fetchSliderMovies());
     // const sliderMoviesList = sliderMovies;
     // console.log(sliderMoviesList);
-    
     // setSliderMovieList(sliderMoviesList);
   };
 

@@ -25,6 +25,8 @@
       "@Hooks/*": ["./src/app/Hooks/*"],
       "@Components/*": ["./src/app/Components/*"],
       "@app-types/*": ["./src/app/types/*"],
+      "@Services/*": ["./src/app/Services/*"],
+      "@Constant/*": ["./src/app/Constant/*"],
     }
   },
   "include": [

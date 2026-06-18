@@ -2,9 +2,11 @@ import { startLoading } from "@redux/sliderSlice";
 import { getTopUpComingMovies } from "@Api/Home";
 import { Dispatch } from "@reduxjs/toolkit";
 
-const fetchHeroes = () => {
+const fetchSliderMovies = () => {
   return async (dispatch: Dispatch) => {
     try {
+      console.log("zzzzzzzzzzzz");
+      
       dispatch(startLoading(true));
       const slideResponse = await getTopUpComingMovies();
       const sliderData = slideResponse.data;
@@ -22,4 +24,4 @@ const fetchHeroes = () => {
   };
 };
 
-export { fetchHeroes };
+export { fetchSliderMovies };
