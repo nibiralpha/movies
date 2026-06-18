@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// import { HeroState, Hero } from "../app/Services/Heroes/HeroInterfaces";
+import { SliderState } from "@app-types/SliderState";
 
-const initialState = {
+const initialState: SliderState = {
   list: [],
-  details: {},
   loading: false,
   error: false,
   errorResponse: {},

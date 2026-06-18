@@ -19,7 +19,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@redux/*": ["./src/redux/*"],
+      "@Api/*": ["./src/app/Api/*"],
+      "@Hooks/*": ["./src/app/Hooks/*"],
+      "@Components/*": ["./src/app/Components/*"],
+      "@app-types/*": ["./src/app/types/*"],
     }
   },
   "include": [

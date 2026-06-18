@@ -2,12 +2,31 @@
 
 import styles from "./page.module.css";
 
-import MenuComponent from "./Components/MenuComponent/MenuComponent";
-import SliderComponent from "./Components/SliderComponent/SliderComponent";
-import SwiperComponent from "./Components/SwiperComponent/SwiperComponent";
-import CelebrityComponent from "./Components/CelebrityComponent/CelebrityComponent";
-
+import MenuComponent from "@Components/MenuComponent/MenuComponent";
+import SliderComponent from "@Components/SliderComponent/SliderComponent";
+import SwiperComponent from "@Components/SwiperComponent/SwiperComponent";
+import CelebrityComponent from "@Components/CelebrityComponent/CelebrityComponent";
+import { useEffect, useState } from "react";
+import useMovies from "@Hooks/useMovies";
+import { TopUpComingMovies } from "@app-types/TopUpComingMovies";
 export default function Page() {
+  const { sliderMovies } = useMovies();
+  const [sliderMovieList, setSliderMovieList] = useState<TopUpComingMovies[]>(
+    [],
+  );
+
+  const getInitData = (): void => {
+    // const sliderMoviesList = sliderMovies;
+    // console.log(sliderMoviesList);
+    
+    // setSliderMovieList(sliderMoviesList);
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    getInitData();
+  }, []);
+
   return (
     <div>
       <MenuComponent />
