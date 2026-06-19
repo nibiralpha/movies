@@ -25,4 +25,6 @@ export interface TopUpComingMovies {
   dates: MovieDates;
   page: number;
   results: MovieResult[];
+  total_pages: number,
+  total_results: number
 }
