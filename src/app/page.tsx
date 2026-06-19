@@ -9,22 +9,16 @@ import CelebrityComponent from "@Components/CelebrityComponent/CelebrityComponen
 import { useEffect, useState } from "react";
 import useMovies from "@Hooks/useMovies";
 import { TopUpComingMovies } from "@app-types/TopUpComingMovies";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@redux/store";
 import { fetchSliderMovies } from "@Services/Home";
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
 
-  // const { sliderMovies } = useMovies();
-  // const [sliderMovieList, setSliderMovieList] = useState<TopUpComingMovies[]>(
-  //   [],
-  // );
+  const sliderMovies = useSelector((state: RootState) => state.slider.list);
 
-  const getInitData = (): void => {    
+  const getInitData = async (): Promise<void> => {
     dispatch(fetchSliderMovies());
-    // const sliderMoviesList = sliderMovies;
-    // console.log(sliderMoviesList);
-    // setSliderMovieList(sliderMoviesList);
   };
 
   useEffect(() => {
@@ -35,7 +29,7 @@ export default function Page() {
   return (
     <div>
       <MenuComponent />
-      <SliderComponent />
+      <SliderComponent movies={sliderMovies}/>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Trending This Week</div>
         <SwiperComponent slidesPerView={5} spaceBetween={15} />

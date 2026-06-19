@@ -6,10 +6,11 @@ const fetchSliderMovies = () => {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(startLoading(true));
+      
       const slideResponse = await getTopUpComingMovies();
       const sliderData = slideResponse.data.results;
-      
       dispatch(setSliderData(sliderData));
+
       dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
