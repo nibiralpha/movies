@@ -6,19 +6,19 @@ import MenuComponent from "@Components/MenuComponent/MenuComponent";
 import SliderComponent from "@Components/SliderComponent/SliderComponent";
 import SwiperComponent from "@Components/SwiperComponent/SwiperComponent";
 import CelebrityComponent from "@Components/CelebrityComponent/CelebrityComponent";
-import { useEffect, useState } from "react";
-import useMovies from "@Hooks/useMovies";
-import { TopUpComingMovies } from "@app-types/TopUpComingMovies";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@redux/store";
-import { fetchSliderMovies } from "@Services/Home";
+import { fetchSliderMovies, fetchTrendingThisWeekMovies } from "@Services/Home";
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
 
   const sliderMovies = useSelector((state: RootState) => state.slider.list);
+  const trendingThisWeekMovies = useSelector((state: RootState) => state.movie.treandingThisWeek.list);
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchSliderMovies());
+    dispatch(fetchTrendingThisWeekMovies())
   };
 
   useEffect(() => {
@@ -30,9 +30,10 @@ export default function Page() {
     <div>
       <MenuComponent />
       <SliderComponent movies={sliderMovies}/>
+      
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Trending This Week</div>
-        <SwiperComponent slidesPerView={5} spaceBetween={15} />
+        <SwiperComponent data={trendingThisWeekMovies} slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Now Playing</div>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASEURL } from "../Constant/Api";
+import { BASEURL } from "@Constant/Api";
 
 const TOKEN = process.env.NEXT_PUBLIC_TMDB_READ_ACCESS_TOKEN;
 

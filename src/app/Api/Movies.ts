@@ -10,4 +10,11 @@ const getTopUpComingMovies = async (page: number = 1): Promise<AxiosResponse<Top
   return response;
 };
 
-export { getTopUpComingMovies };
+const getTrendingThisWeek = async (page: number = 1): Promise<AxiosResponse<TopUpComingMovies>> => {
+  const response = await apiClient.get<TopUpComingMovies>(
+    `${BASEURL}/trending/all/week?page=${page}`,
+  );
+  return response;
+};
+
+export { getTopUpComingMovies, getTrendingThisWeek };
