@@ -38,4 +38,12 @@ const getPopulerTvShows = async (page: number = 1): Promise<AxiosResponse<TopUpC
   return response;
 };
 
-export { getTopUpComingMovies, getTrendingThisWeek, getNowPlaying, getPopulerMovies, getPopulerTvShows };
+const getTopRatedTvShows = async (page: number = 1): Promise<AxiosResponse<TopUpComingMovies>> => {
+  const response = await apiClient.get<TopUpComingMovies>(
+    `${BASEURL}/tv/top_rated?page=${page}`,
+  );
+  return response;
+};
+
+
+export { getTopUpComingMovies, getTrendingThisWeek, getNowPlaying, getPopulerMovies, getPopulerTvShows, getTopRatedTvShows };

@@ -5,6 +5,7 @@ export interface MoviesInterface {
   nowPlaying?: MovieStateInterface
   populerMovies?: MovieStateInterface
   populerTvShows?: MovieStateInterface
+  topRatedTvShows?: MovieStateInterface
 }
 
 export interface MovieStateInterface {

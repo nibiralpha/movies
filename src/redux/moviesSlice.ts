@@ -26,6 +26,12 @@ const initialState: MoviesInterface = {
     // error: false,
     // errorResponse: {},
   },
+  topRatedTvShows: {
+    list: [],
+    // loading: false,
+    // error: false,
+    // errorResponse: {},
+  },
 };
 
 export const movieSlice = createSlice({
@@ -47,6 +53,9 @@ export const movieSlice = createSlice({
     setPopulerTvShowsData: (state, action: PayloadAction<MoviesInterface>) => {
       return { ...state, populerTvShows: action.payload.populerTvShows };
     },
+    setTopRatedTvShowsData: (state, action: PayloadAction<MoviesInterface>) => {
+      return { ...state, topRatedTvShows: action.payload.topRatedTvShows };
+    },
     // startLoading: (state, action: PayloadAction<boolean>) => {
     //   return { ...state, loading: action.payload };
     // },
@@ -58,5 +67,6 @@ export const {
   setNowPlayingkData,
   setPopulerMoviesData,
   setPopulerTvShowsData,
+  setTopRatedTvShowsData
 } = movieSlice.actions;
 export default movieSlice.reducer;
