@@ -19,7 +19,7 @@ export default function SliderComponent({
     arrows: false,
   };
 
-  const finalMovies = movies.slice(0, 6);
+  const finalMovies = movies.slice(0, 8);
 
   return (
     <>

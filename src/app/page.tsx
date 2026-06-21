@@ -94,13 +94,14 @@ export default function Page() {
         />
       </div>
       <div className={`container ${styles.swiper}`}>
-        <div className={styles.title}>Trending Celebrities</div>
+        <div className={styles.title}>Popular Celebrities</div>
         <CelebrityComponent
-          data={trendingCelebrities}
+          data={populerCelebrities}
           slidesPerView={6}
           spaceBetween={15}
         />
       </div>
+
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular TV Shows</div>
         <SwiperComponent
@@ -122,15 +123,16 @@ export default function Page() {
         />
       </div>
       <div className={`container ${styles.swiper}`}>
-        <div className={styles.title}>Popular Celebrities</div>
+        <div className={styles.title}>Trending Celebrities</div>
         <CelebrityComponent
-          data={populerCelebrities}
+          data={trendingCelebrities}
           slidesPerView={6}
           spaceBetween={15}
         />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Viewed</div>
+        You have no recently viewed pages
         <SwiperComponent
           shoeDetail={false}
           slidesPerView={6}
