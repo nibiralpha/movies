@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import sliderSlice from "./sliderSlice";
 import movieSlice from "./moviesSlice";
+import celebritySlice from "./celebritySlice";
 
 const rootReducer = combineReducers({
   slider: sliderSlice,
-  movie: movieSlice
+  movie: movieSlice,
+  celebrity: celebritySlice,
 });
 
 export const store = configureStore({

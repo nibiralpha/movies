@@ -15,7 +15,7 @@ interface CelebrityComponentProps {
 export default function CelebrityComponent({
   slidesPerView,
   spaceBetween,
-}: CelebrityComponentProps) {
+}: Readonly<CelebrityComponentProps>) {
   return (
     <Swiper
       navigation={true}

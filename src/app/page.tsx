@@ -17,6 +17,7 @@ import {
   fetchTopRatedTvShows,
   fetchTrendingThisWeekMovies,
 } from "@Services/Home";
+import { fetchTrendingCelebrities } from "@Services/Celebrity";
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
@@ -45,6 +46,7 @@ export default function Page() {
     dispatch(fetchPopulerMovies());
     dispatch(fetchPopulerTvShows());
     dispatch(fetchTopRatedTvShows());
+    dispatch(fetchTrendingCelebrities())
   };
 
   useEffect(() => {
