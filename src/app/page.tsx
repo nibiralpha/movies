@@ -15,8 +15,8 @@ export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
 
   const sliderMovies = useSelector((state: RootState) => state.slider.list);
-  const trendingThisWeekMovies = useSelector((state: RootState) => state.movie.treandingThisWeek?.list);
-  const nowPlayingMovies = useSelector((state: RootState) => state.movie.nowPlaying?.list);
+  const trendingThisWeekMovies = useSelector((state: RootState) => state.movie.treandingThisWeek?.list || []);
+  const nowPlayingMovies = useSelector((state: RootState) => state.movie.nowPlaying?.list || []);
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchSliderMovies());
