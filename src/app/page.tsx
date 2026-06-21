@@ -17,7 +17,10 @@ import {
   fetchTopRatedTvShows,
   fetchTrendingThisWeekMovies,
 } from "@Services/Home";
-import { fetchTrendingCelebrities } from "@Services/Celebrity";
+import {
+  fetchPopulerCelebrities,
+  fetchTrendingCelebrities,
+} from "@Services/Celebrity";
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
@@ -41,6 +44,9 @@ export default function Page() {
   const trendingCelebrities = useSelector(
     (state: RootState) => state.celebrity.treandingCelebrities?.list || [],
   );
+  const populerCelebrities = useSelector(
+    (state: RootState) => state.celebrity.populerCelebrities?.list || [],
+  );
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchSliderMovies());
@@ -50,6 +56,7 @@ export default function Page() {
     dispatch(fetchPopulerTvShows());
     dispatch(fetchTopRatedTvShows());
     dispatch(fetchTrendingCelebrities());
+    dispatch(fetchPopulerCelebrities());
   };
 
   useEffect(() => {
@@ -116,7 +123,11 @@ export default function Page() {
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular Celebrities</div>
-        <CelebrityComponent slidesPerView={5} spaceBetween={15} />
+        <CelebrityComponent
+          data={populerCelebrities}
+          slidesPerView={6}
+          spaceBetween={15}
+        />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Viewed</div>

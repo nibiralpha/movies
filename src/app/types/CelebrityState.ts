@@ -2,9 +2,7 @@ import { Celebrity } from "./Celebrity";
 
 export interface CelebritiesInterface {
   treandingCelebrities?: CelebrityStateInterface
-//   nowPlaying?: MovieStateInterface
-//   populerMovies?: MovieStateInterface
-//   populerTvShows?: MovieStateInterface
+  populerCelebrities?: CelebrityStateInterface
 //   topRatedTvShows?: MovieStateInterface
 }
 

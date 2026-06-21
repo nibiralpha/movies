@@ -8,12 +8,12 @@ const initialState: CelebritiesInterface = {
     // error: false,
     // errorResponse: {},
   },
-  //   nowPlaying: {
-  //     list: [],
-  //     // loading: false,
-  //     // error: false,
-  //     // errorResponse: {},
-  //   }
+  populerCelebrities: {
+    list: [],
+    // loading: false,
+    // error: false,
+    // errorResponse: {},
+  },
 };
 
 export const celebritySlice = createSlice({
@@ -24,19 +24,26 @@ export const celebritySlice = createSlice({
       state,
       action: PayloadAction<CelebritiesInterface>,
     ) => {
-      return { ...state, treandingCelebrities: action.payload.treandingCelebrities };
+      return {
+        ...state,
+        treandingCelebrities: action.payload.treandingCelebrities,
+      };
     },
-    // setNowPlayingkData: (state, action: PayloadAction<CelebritiesInterface>) => {
-    //   return { ...state, nowPlaying: action.payload.nowPlaying };
-    // },
+    setPopulerCelebritiesData: (
+      state,
+      action: PayloadAction<CelebritiesInterface>,
+    ) => {
+      return {
+        ...state,
+        populerCelebrities: action.payload.populerCelebrities,
+      };
+    },
     // startLoading: (state, action: PayloadAction<boolean>) => {
     //   return { ...state, loading: action.payload };
     // },
   },
 });
 
-export const {
-  setTreandingCelebritiesData,
-//   setNowPlayingkData,
-} = celebritySlice.actions;
+export const { setTreandingCelebritiesData, setPopulerCelebritiesData } =
+  celebritySlice.actions;
 export default celebritySlice.reducer;
