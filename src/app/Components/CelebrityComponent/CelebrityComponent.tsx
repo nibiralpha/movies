@@ -7,14 +7,18 @@ import { Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { Celebrity } from "@app-types/Celebrity";
+import { TMDB_IMAGE_BASE } from "../../Constant/ApiDataHelper";
 interface CelebrityComponentProps {
   slidesPerView: number;
   spaceBetween: number;
+  data: Celebrity[];
 }
 
 export default function CelebrityComponent({
   slidesPerView,
   spaceBetween,
+  data,
 }: Readonly<CelebrityComponentProps>) {
   return (
     <Swiper
@@ -38,117 +42,23 @@ export default function CelebrityComponent({
         },
       }}
     >
-      <SwiperSlide>
-        <div className={styles.card}>
-          <div className={styles.slide_image_wrapper}>
-            <img
-              src="./the-crew-portrait.webp"
-              className={styles.slide_image}
-              alt="The Crew"
-            />
+      {data?.map((celebrity) => (
+        <SwiperSlide key={celebrity.id}>
+          <div className={styles.card}>
+            <div className={styles.slide_image_wrapper}>
+              <img
+                src={celebrity.profile_path !== null ? `${TMDB_IMAGE_BASE}/${celebrity.profile_path}` : `/blank_celebrity.jpg`}
+                className={styles.slide_image}
+                alt={celebrity.name}
+              />
 
-            <div className={styles.overlay}></div>
+              <div className={styles.overlay}></div>
+            </div>
+
+            <div className={styles.name}>{celebrity.name}</div>
           </div>
-
-          <div className={styles.name}>The Crew Name</div>
-        </div>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <div className={styles.card}>
-          <div className={styles.slide_image_wrapper}>
-            <img
-              src="./the-crew-portrait.webp"
-              className={styles.slide_image}
-              alt="The Crew"
-            />
-
-            <div className={styles.overlay}></div>
-          </div>
-
-          <div className={styles.name}>The Crew Name</div>
-        </div>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <div className={styles.card}>
-          <div className={styles.slide_image_wrapper}>
-            <img
-              src="./the-crew-portrait.webp"
-              className={styles.slide_image}
-              alt="The Crew"
-            />
-
-            <div className={styles.overlay}></div>
-          </div>
-
-          <div className={styles.name}>The Crew Name</div>
-        </div>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <div className={styles.card}>
-          <div className={styles.slide_image_wrapper}>
-            <img
-              src="./the-crew-portrait.webp"
-              className={styles.slide_image}
-              alt="The Crew"
-            />
-
-            <div className={styles.overlay}></div>
-          </div>
-
-          <div className={styles.name}>The Crew Name</div>
-        </div>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <div className={styles.card}>
-          <div className={styles.slide_image_wrapper}>
-            <img
-              src="./the-crew-portrait.webp"
-              className={styles.slide_image}
-              alt="The Crew"
-            />
-
-            <div className={styles.overlay}></div>
-          </div>
-
-          <div className={styles.name}>The Crew Name</div>
-        </div>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <div className={styles.card}>
-          <div className={styles.slide_image_wrapper}>
-            <img
-              src="./the-crew-portrait.webp"
-              className={styles.slide_image}
-              alt="The Crew"
-            />
-
-            <div className={styles.overlay}></div>
-          </div>
-
-          <div className={styles.name}>The Crew Name</div>
-        </div>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <div className={styles.card}>
-          <div className={styles.slide_image_wrapper}>
-            <img
-              src="./the-crew-portrait.webp"
-              className={styles.slide_image}
-              alt="The Crew"
-            />
-
-            <div className={styles.overlay}></div>
-          </div>
-
-          <div className={styles.name}>The Crew Name</div>
-        </div>
-      </SwiperSlide>
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }

@@ -38,6 +38,9 @@ export default function Page() {
   const topRatedTvShows = useSelector(
     (state: RootState) => state.movie.topRatedTvShows?.list || [],
   );
+  const trendingCelebrities = useSelector(
+    (state: RootState) => state.celebrity.treandingCelebrities?.list || [],
+  );
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchSliderMovies());
@@ -46,7 +49,7 @@ export default function Page() {
     dispatch(fetchPopulerMovies());
     dispatch(fetchPopulerTvShows());
     dispatch(fetchTopRatedTvShows());
-    dispatch(fetchTrendingCelebrities())
+    dispatch(fetchTrendingCelebrities());
   };
 
   useEffect(() => {
@@ -85,7 +88,11 @@ export default function Page() {
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Trending Celebrities</div>
-        <CelebrityComponent slidesPerView={5} spaceBetween={15} />
+        <CelebrityComponent
+          data={trendingCelebrities}
+          slidesPerView={6}
+          spaceBetween={15}
+        />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular TV Shows</div>
