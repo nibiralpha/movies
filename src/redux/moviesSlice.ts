@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MovieResult } from "@app-types/TopUpComingMovies";
 import { MoviesInterface } from "@app-types/MovieState";
 
 const initialState: MoviesInterface = {
@@ -10,6 +9,12 @@ const initialState: MoviesInterface = {
     // errorResponse: {},
   },
   nowPlaying: {
+    list: [],
+    // loading: false,
+    // error: false,
+    // errorResponse: {},
+  },
+  populerMovies: {
     list: [],
     // loading: false,
     // error: false,
@@ -27,11 +32,14 @@ export const movieSlice = createSlice({
     setNowPlayingkData: (state, action: PayloadAction<MoviesInterface>) => {            
       return { ...state, nowPlaying: action.payload.nowPlaying };
     },
+    setPopulerMoviesData: (state, action: PayloadAction<MoviesInterface>) => {            
+      return { ...state, populerMovies: action.payload.populerMovies };
+    },
     // startLoading: (state, action: PayloadAction<boolean>) => {
     //   return { ...state, loading: action.payload };
     // },
   },
 });
 
-export const { setTreandingThisWeekData, setNowPlayingkData } = movieSlice.actions;
+export const { setTreandingThisWeekData, setNowPlayingkData, setPopulerMoviesData } = movieSlice.actions;
 export default movieSlice.reducer;

@@ -1,11 +1,13 @@
 import { setSliderData, startLoading } from "@redux/sliderSlice";
 import {
   setNowPlayingkData,
+  setPopulerMoviesData,
   setTreandingThisWeekData,
 } from "@redux/moviesSlice";
 
 import {
   getNowPlaying,
+  getPopulerMovies,
   getTopUpComingMovies,
   getTrendingThisWeek,
 } from "@/src/app/Api/Movies";
@@ -78,4 +80,28 @@ const fetchNowPlaying = () => {
   };
 };
 
-export { fetchSliderMovies, fetchTrendingThisWeekMovies, fetchNowPlaying };
+const fetchPopulerMovies = () => {
+  return async (dispatch: Dispatch) => {
+    try {
+      // dispatch(startLoading(true));
+
+      const movieResponse = await getPopulerMovies();
+      const populerMoviesData = movieResponse.data.results;
+      dispatch(
+        setPopulerMoviesData({
+          populerMovies: { list: populerMoviesData },
+        }),
+      );
+
+      // dispatch(startLoading(false));
+    } catch (error: unknown) {
+      console.log(error);
+      dispatch(startLoading(false));
+      // dispatch(getAllHeroesFailed(error))
+      // return Promise.reject(error?.response?.data);
+      throw error;
+    }
+  };
+};
+
+export { fetchSliderMovies, fetchTrendingThisWeekMovies, fetchNowPlaying, fetchPopulerMovies };
