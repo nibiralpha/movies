@@ -44,7 +44,7 @@ export const movieSlice = createSlice({
     ) => {
       return { ...state, treandingThisWeek: action.payload.treandingThisWeek };
     },
-    setNowPlayingkData: (state, action: PayloadAction<MoviesInterface>) => {
+    setNowPlayingData: (state, action: PayloadAction<MoviesInterface>) => {
       return { ...state, nowPlaying: action.payload.nowPlaying };
     },
     setPopulerMoviesData: (state, action: PayloadAction<MoviesInterface>) => {
@@ -64,7 +64,7 @@ export const movieSlice = createSlice({
 
 export const {
   setTreandingThisWeekData,
-  setNowPlayingkData,
+  setNowPlayingData,
   setPopulerMoviesData,
   setPopulerTvShowsData,
   setTopRatedTvShowsData

@@ -133,11 +133,11 @@ export default function Page() {
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Viewed</div>
         You have no recently viewed pages
-        <SwiperComponent
+        {/* <SwiperComponent
           shoeDetail={false}
           slidesPerView={6}
           spaceBetween={15}
-        />
+        /> */}
       </div>
     </div>
   );

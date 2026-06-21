@@ -1,6 +1,6 @@
 import { setSliderData, startLoading } from "@redux/sliderSlice";
 import {
-  setNowPlayingkData,
+  setNowPlayingData,
   setPopulerMoviesData,
   setPopulerTvShowsData,
   setTopRatedTvShowsData,
@@ -68,7 +68,7 @@ const fetchNowPlaying = () => {
       const movieResponse = await getNowPlaying();
       const nowPlayingData = movieResponse.data.results;
       dispatch(
-        setNowPlayingkData({
+        setNowPlayingData({
           nowPlaying: { list: nowPlayingData },
         }),
       );
