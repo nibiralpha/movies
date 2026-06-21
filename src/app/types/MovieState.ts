@@ -1,7 +1,8 @@
 import { MovieResult } from "./TopUpComingMovies";
 
 export interface MoviesInterface {
-  treandingThisWeek: MovieStateInterface
+  treandingThisWeek?: MovieStateInterface
+  nowPlaying?: MovieStateInterface
 }
 
 export interface MovieStateInterface {

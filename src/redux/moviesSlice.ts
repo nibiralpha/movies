@@ -9,6 +9,12 @@ const initialState: MoviesInterface = {
     // error: false,
     // errorResponse: {},
   },
+  nowPlaying: {
+    list: [],
+    // loading: false,
+    // error: false,
+    // errorResponse: {},
+  },
 };
 
 export const movieSlice = createSlice({
@@ -18,11 +24,14 @@ export const movieSlice = createSlice({
     setTreandingThisWeekData: (state, action: PayloadAction<MoviesInterface>) => {            
       return { ...state, treandingThisWeek: action.payload.treandingThisWeek };
     },
+    setNowPlayingkData: (state, action: PayloadAction<MoviesInterface>) => {            
+      return { ...state, nowPlaying: action.payload.nowPlaying };
+    },
     // startLoading: (state, action: PayloadAction<boolean>) => {
     //   return { ...state, loading: action.payload };
     // },
   },
 });
 
-export const { setTreandingThisWeekData } = movieSlice.actions;
+export const { setTreandingThisWeekData, setNowPlayingkData } = movieSlice.actions;
 export default movieSlice.reducer;

@@ -9,16 +9,19 @@ import CelebrityComponent from "@Components/CelebrityComponent/CelebrityComponen
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@redux/store";
-import { fetchSliderMovies, fetchTrendingThisWeekMovies } from "@Services/Home";
+import { fetchNowPlaying, fetchSliderMovies, fetchTrendingThisWeekMovies } from "@Services/Home";
+
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
 
   const sliderMovies = useSelector((state: RootState) => state.slider.list);
-  const trendingThisWeekMovies = useSelector((state: RootState) => state.movie.treandingThisWeek.list);
+  const trendingThisWeekMovies = useSelector((state: RootState) => state.movie.treandingThisWeek?.list);
+  const nowPlayingMovies = useSelector((state: RootState) => state.movie.nowPlaying?.list);
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchSliderMovies());
     dispatch(fetchTrendingThisWeekMovies())
+    dispatch(fetchNowPlaying())
   };
 
   useEffect(() => {
@@ -37,7 +40,7 @@ export default function Page() {
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Now Playing</div>
-        <SwiperComponent slidesPerView={5} spaceBetween={15} />
+        <SwiperComponent data={nowPlayingMovies} slidesPerView={5} spaceBetween={15} />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular Movies</div>
