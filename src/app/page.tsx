@@ -9,21 +9,37 @@ import CelebrityComponent from "@Components/CelebrityComponent/CelebrityComponen
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@redux/store";
-import { fetchNowPlaying, fetchPopulerMovies, fetchSliderMovies, fetchTrendingThisWeekMovies } from "@Services/Home";
+import {
+  fetchNowPlaying,
+  fetchPopulerMovies,
+  fetchPopulerTvShows,
+  fetchSliderMovies,
+  fetchTrendingThisWeekMovies,
+} from "@Services/Home";
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
 
   const sliderMovies = useSelector((state: RootState) => state.slider.list);
-  const trendingThisWeekMovies = useSelector((state: RootState) => state.movie.treandingThisWeek?.list || []);
-  const nowPlayingMovies = useSelector((state: RootState) => state.movie.nowPlaying?.list || []);
-  const populerMovies = useSelector((state: RootState) => state.movie.populerMovies?.list || []);
+  const trendingThisWeekMovies = useSelector(
+    (state: RootState) => state.movie.treandingThisWeek?.list || [],
+  );
+  const nowPlayingMovies = useSelector(
+    (state: RootState) => state.movie.nowPlaying?.list || [],
+  );
+  const populerMovies = useSelector(
+    (state: RootState) => state.movie.populerMovies?.list || [],
+  );
+  const populerTvShows = useSelector(
+    (state: RootState) => state.movie.populerTvShows?.list || [],
+  );
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchSliderMovies());
-    dispatch(fetchTrendingThisWeekMovies())
-    dispatch(fetchNowPlaying())
-    dispatch(fetchPopulerMovies())
+    dispatch(fetchTrendingThisWeekMovies());
+    dispatch(fetchNowPlaying());
+    dispatch(fetchPopulerMovies());
+    dispatch(fetchPopulerTvShows());
   };
 
   useEffect(() => {
@@ -34,19 +50,31 @@ export default function Page() {
   return (
     <div>
       <MenuComponent />
-      <SliderComponent movies={sliderMovies}/>
-      
+      <SliderComponent movies={sliderMovies} />
+
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Trending This Week</div>
-        <SwiperComponent data={trendingThisWeekMovies} slidesPerView={5} spaceBetween={15} />
+        <SwiperComponent
+          data={trendingThisWeekMovies}
+          slidesPerView={5}
+          spaceBetween={15}
+        />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Now Playing</div>
-        <SwiperComponent data={nowPlayingMovies} slidesPerView={5} spaceBetween={15} />
+        <SwiperComponent
+          data={nowPlayingMovies}
+          slidesPerView={5}
+          spaceBetween={15}
+        />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular Movies</div>
-        <SwiperComponent data={populerMovies} slidesPerView={5} spaceBetween={15} />
+        <SwiperComponent
+          data={populerMovies}
+          slidesPerView={5}
+          spaceBetween={15}
+        />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Trending Celebrities</div>
@@ -54,7 +82,11 @@ export default function Page() {
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular TV Shows</div>
-        <SwiperComponent slidesPerView={5} spaceBetween={15} />
+        <SwiperComponent
+          data={populerTvShows}
+          slidesPerView={5}
+          spaceBetween={15}
+        />
       </div>
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Upcoming Movies</div>

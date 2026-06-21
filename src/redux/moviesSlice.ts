@@ -20,20 +20,32 @@ const initialState: MoviesInterface = {
     // error: false,
     // errorResponse: {},
   },
+  populerTvShows: {
+    list: [],
+    // loading: false,
+    // error: false,
+    // errorResponse: {},
+  },
 };
 
 export const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    setTreandingThisWeekData: (state, action: PayloadAction<MoviesInterface>) => {            
+    setTreandingThisWeekData: (
+      state,
+      action: PayloadAction<MoviesInterface>,
+    ) => {
       return { ...state, treandingThisWeek: action.payload.treandingThisWeek };
     },
-    setNowPlayingkData: (state, action: PayloadAction<MoviesInterface>) => {            
+    setNowPlayingkData: (state, action: PayloadAction<MoviesInterface>) => {
       return { ...state, nowPlaying: action.payload.nowPlaying };
     },
-    setPopulerMoviesData: (state, action: PayloadAction<MoviesInterface>) => {            
+    setPopulerMoviesData: (state, action: PayloadAction<MoviesInterface>) => {
       return { ...state, populerMovies: action.payload.populerMovies };
+    },
+    setPopulerTvShowsData: (state, action: PayloadAction<MoviesInterface>) => {
+      return { ...state, populerTvShows: action.payload.populerTvShows };
     },
     // startLoading: (state, action: PayloadAction<boolean>) => {
     //   return { ...state, loading: action.payload };
@@ -41,5 +53,10 @@ export const movieSlice = createSlice({
   },
 });
 
-export const { setTreandingThisWeekData, setNowPlayingkData, setPopulerMoviesData } = movieSlice.actions;
+export const {
+  setTreandingThisWeekData,
+  setNowPlayingkData,
+  setPopulerMoviesData,
+  setPopulerTvShowsData,
+} = movieSlice.actions;
 export default movieSlice.reducer;

@@ -4,6 +4,7 @@ export interface MoviesInterface {
   treandingThisWeek?: MovieStateInterface
   nowPlaying?: MovieStateInterface
   populerMovies?: MovieStateInterface
+  populerTvShows?: MovieStateInterface
 }
 
 export interface MovieStateInterface {
