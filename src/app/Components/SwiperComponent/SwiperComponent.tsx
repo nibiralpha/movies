@@ -29,7 +29,7 @@ export default function SwiperComponent({
   const router = useRouter();
 
   const changePage = (id: number) => {
-    router.push("/detail/" + id);
+    router.push("/details/" + id);
   };
 
   return (
@@ -79,10 +79,7 @@ export default function SwiperComponent({
                   </div>
                 </div>
                 <div className={styles.title}>{movie.title || movie.name}</div>
-                {/* <div className={styles.trailer_button}>
-                <img className={styles.play} src="./play-xxl.png" />
-                <div className={styles.trailer}>Trailer</div>
-              </div> */}
+
                 <Button
                   onClick={() => changePage(movie.id)}
                   className="full_width"
