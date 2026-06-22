@@ -16,7 +16,7 @@ import {
   fetchSliderMovies,
   fetchTopRatedTvShows,
   fetchTrendingThisWeekMovies,
-} from "@Services/Home";
+} from "@/src/app/Services/Movies";
 import {
   fetchPopulerCelebrities,
   fetchTrendingCelebrities,

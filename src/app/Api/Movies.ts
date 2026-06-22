@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from "axios";
-import { BASEURL } from "../Constant/Api";
-import { TopUpComingMovies } from "../types/TopUpComingMovies";
+import { BASEURL } from "@Constant/Api";
+import { TopUpComingMovies } from "@app-types/TopUpComingMovies";
 import { apiClient } from "@Api/Client";
+import { MovieDetails } from "@app-types/MovieDetails";
 
 const getTopUpComingMovies = async (
   page: number = 1,
@@ -59,8 +60,8 @@ const getTopRatedTvShows = async (
 
 const getMovieDetails = async (
   id: number,
-): Promise<AxiosResponse<TopUpComingMovies>> => {
-  const response = await apiClient.get<TopUpComingMovies>(
+): Promise<AxiosResponse<MovieDetails>> => {
+  const response = await apiClient.get<MovieDetails>(
     `${BASEURL}/movie/${id}`,
   );
   return response;

@@ -1,6 +1,27 @@
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Header.module.css";
+import { AppDispatch, RootState } from "@/src/redux/store";
+import { useEffect } from "react";
+import { fetchMovieDetails } from "@Services/Movies";
+interface HeaderComponentProps {
+  id: number;
+}
+export default function HeaderComponent({ id }: Readonly<HeaderComponentProps>) {
+  const dispatch = useDispatch<AppDispatch>();
 
-export default function HeaderComponent() {
+  // const movieDetail = useSelector(
+  //   (state: RootState) => state.movie.treandingThisWeek?.list || [],
+  // );
+
+  const getInitData = async (): Promise<void> => {
+    dispatch(fetchMovieDetails(id));
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    getInitData();
+  }, []);
+
   return (
     <>
       <div className={styles.header}>
