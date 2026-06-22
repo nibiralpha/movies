@@ -4,15 +4,17 @@ interface ButtonProps {
   text?: string;
   icon?: boolean;
   className?: string;
+  onClick?: () => void;
 }
 export default function Button({
   text,
   icon,
   className,
+  onClick,
 }: Readonly<ButtonProps>) {
-
   return (
     <div
+      onClick={onClick}
       className={`${styles.button} ${styles[className == undefined ? "" : className]}`}
     >
       {icon && (

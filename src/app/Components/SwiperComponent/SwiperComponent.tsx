@@ -11,6 +11,8 @@ import Button from "../Button/ButtonComponent";
 import { MovieResult } from "@app-types/TopUpComingMovies";
 import { TMDB_IMAGE_BASE } from "../../Constant/ApiDataHelper";
 
+import { useRouter } from "next/navigation";
+
 interface SwiperComponentProps {
   slidesPerView: number;
   spaceBetween: number;
@@ -24,6 +26,12 @@ export default function SwiperComponent({
   shoeDetail = true,
   data,
 }: Readonly<SwiperComponentProps>) {
+  const router = useRouter();
+
+  const changePage = (id: number) => {
+    router.push("/detail/" + id);
+  };
+
   return (
     <Swiper
       navigation={true}
@@ -54,6 +62,7 @@ export default function SwiperComponent({
                 src={`${TMDB_IMAGE_BASE}/${movie.backdrop_path}`}
                 className={styles.slide_image}
                 alt={movie.title}
+                onClick={() => changePage(movie.id)}
               />
             </div>
 
@@ -74,7 +83,12 @@ export default function SwiperComponent({
                 <img className={styles.play} src="./play-xxl.png" />
                 <div className={styles.trailer}>Trailer</div>
               </div> */}
-                <Button className="full_width" text="Trailer 1" icon={true} />
+                <Button
+                  onClick={() => changePage(movie.id)}
+                  className="full_width"
+                  text="Trailer 1"
+                  icon={true}
+                />
               </div>
             )}
           </div>
