@@ -1,11 +1,47 @@
+import { MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Media.module.css";
+import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
+import { useEffect, useState } from "react";
+interface HeaderComponentProps {
+  id: number;
+  data: MovieDetails;
+}
+export default function MediaComponent({
+  id,
+  data,
+}: Readonly<HeaderComponentProps>) {
+  const [directorsData, setDirectors] = useState<string[]>([]);
 
-export default function MediaComponent() {
+  const getDirector = (): string[] => {
+    console.log("datadata", data);
+    
+    const directors = data?.credits?.crew
+      .filter((member: any) => member.job === "Director")
+      .map((director: any) => director.name);
+    console.log("loooop", directors);
+    
+    return directors ?? [];
+  };
+
+  useEffect(() => {
+    const director = getDirector();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    console.log("baaaaaaaaal", director);
+    
+    setDirectors(director);
+    // console.log(directors);
+  }, []);
+
   return (
     <div className="container">
+      {console.log(directorsData)}
       <div className={styles.media}>
         <div className={styles.left_img}>
-          <img className={styles.img} width={"270px"} src={"/sinner.jpg"} />
+          <img
+            className={styles.img}
+            width={"270px"}
+            src={`${TMDB_IMAGE_BASE}/${data.poster_path}`}
+          />
         </div>
         <div className={styles.right_video}>
           <iframe
@@ -21,15 +57,11 @@ export default function MediaComponent() {
         </div>
       </div>
       <div className={styles.detail_area}>
-        <div className={styles.details}>
-          Trying to leave their troubled lives behind, twin brothers return to
-          their hometown to start again, only to discover that an even greater
-          evil is waiting to welcome them back.
-        </div>
+        <div className={styles.details}>{data.overview}</div>
         <div className={styles.writers}>
           <div className={styles.writers_name}>
             <div className={styles.position}>Director</div>
-            <div className={styles.name}>Ryan Coogler</div>
+            <div className={styles.name}>{directorsData}</div>
           </div>
           <div className={styles.writers_name}>
             <div className={styles.position}>Writer</div>

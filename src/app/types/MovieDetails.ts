@@ -30,8 +30,21 @@ export interface MovieDetails {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  credits?: {
+    cast: CastMember[];
+    crew: CrewMember[];
+  };
 }
 
+export interface CastMember {
+  id: number;
+  name: string;
+}
+
+export interface CrewMember {
+  id: number;
+  name: string;
+}
 export interface Genre {
   id: number;
   name: string;

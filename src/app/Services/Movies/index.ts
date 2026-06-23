@@ -17,6 +17,10 @@ import {
   getTrendingThisWeek,
 } from "@/src/app/Api/Movies";
 import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setMovieDetailsData,
+  startDetailLoading,
+} from "@/src/redux/movieDetailSlice";
 
 const fetchSliderMovies = () => {
   return async (dispatch: Dispatch) => {
@@ -159,22 +163,17 @@ const fetchTopRatedTvShows = () => {
 const fetchMovieDetails = (id: number) => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(startDetailLoading(true));
 
       const movieDetailsResponse = await getMovieDetails(id);
       const movieData = movieDetailsResponse.data;
-      console.log(movieData);
-      
-      // dispatch(
-      //   setTopRatedTvShowsData({
-      //     topRatedTvShows: { list: topRatedTvShowsData },
-      //   }),
-      // );
 
-      // dispatch(startLoading(false));
+      dispatch(setMovieDetailsData(movieData));
+
+      dispatch(startDetailLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      // dispatch(startLoading(false));
+      dispatch(startLoading(true));
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;
@@ -189,5 +188,5 @@ export {
   fetchPopulerMovies,
   fetchPopulerTvShows,
   fetchTopRatedTvShows,
-  fetchMovieDetails
+  fetchMovieDetails,
 };

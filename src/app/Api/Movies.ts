@@ -62,7 +62,7 @@ const getMovieDetails = async (
   id: number,
 ): Promise<AxiosResponse<MovieDetails>> => {
   const response = await apiClient.get<MovieDetails>(
-    `${BASEURL}/movie/${id}`,
+    `${BASEURL}/movie/${id}?append_to_response=credits`,
   );
   return response;
 };

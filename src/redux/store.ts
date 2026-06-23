@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import sliderSlice from "./sliderSlice";
 import movieSlice from "./moviesSlice";
 import celebritySlice from "./celebritySlice";
-import { movieDetailSlice } from "./movieDetailSlice";
+import movieDetailSlice from "./movieDetailSlice";
 
 const rootReducer = combineReducers({
   slider: sliderSlice,
