@@ -3,6 +3,7 @@ import { BASEURL } from "@Constant/Api";
 import { TopUpComingMovies } from "@app-types/TopUpComingMovies";
 import { apiClient } from "@Api/Client";
 import { MovieDetails } from "@app-types/MovieDetails";
+import { VideosResponse } from "@app-types/Videos";
 
 const getTopUpComingMovies = async (
   page: number = 1,
@@ -78,8 +79,8 @@ const getTvSeriesDetails = async (
 
 const getMovieVideos = async (
   id: number,
-): Promise<AxiosResponse<TopUpComingMovies>> => {
-  const response = await apiClient.get<TopUpComingMovies>(
+): Promise<AxiosResponse<VideosResponse>> => {
+  const response = await apiClient.get<VideosResponse>(
     `${BASEURL}/movie/${id}/videos`,
   );
   return response;

@@ -9,6 +9,7 @@ import {
 
 import {
   getMovieDetails,
+  getMovieVideos,
   getNowPlaying,
   getPopulerMovies,
   getPopulerTvShows,
@@ -21,6 +22,7 @@ import {
   setMovieDetailsData,
   startDetailLoading,
 } from "@/src/redux/movieDetailSlice";
+import { setVideoData, setVideoLoading } from "@/src/redux/videosSlice";
 
 const fetchSliderMovies = () => {
   return async (dispatch: Dispatch) => {
@@ -181,6 +183,27 @@ const fetchMovieDetails = (id: number) => {
   };
 };
 
+const fetchMovieVideos = (id: number) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch(setVideoLoading(true));
+
+      const movieVideoResponse = await getMovieVideos(id);
+      const videoData = movieVideoResponse.data;
+
+      dispatch(setVideoData(videoData));
+
+      dispatch(setVideoLoading(false));
+    } catch (error: unknown) {
+      console.log(error);
+      dispatch(setVideoLoading(true));
+      // dispatch(getAllHeroesFailed(error))
+      // return Promise.reject(error?.response?.data);
+      throw error;
+    }
+  };
+};
+
 export {
   fetchSliderMovies,
   fetchTrendingThisWeekMovies,
@@ -189,4 +212,5 @@ export {
   fetchPopulerTvShows,
   fetchTopRatedTvShows,
   fetchMovieDetails,
+  fetchMovieVideos
 };
