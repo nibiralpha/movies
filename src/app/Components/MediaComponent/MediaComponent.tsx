@@ -1,4 +1,4 @@
-import { MovieDetails } from "@app-types/MovieDetails";
+import { CrewMember, MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Media.module.css";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useEffect, useState } from "react";
@@ -10,31 +10,24 @@ export default function MediaComponent({
   id,
   data,
 }: Readonly<HeaderComponentProps>) {
-  const [directorsData, setDirectors] = useState<string[]>([]);
+  const [directorsData, setDirectorsData] = useState<string[]>([]);
 
   const getDirector = (): string[] => {
-    console.log("datadata", data);
-    
     const directors = data?.credits?.crew
-      .filter((member: any) => member.job === "Director")
-      .map((director: any) => director.name);
-    console.log("loooop", directors);
-    
+      .filter((member: CrewMember) => member.job === "Director")
+      .map((director: CrewMember) => director.name);
+
     return directors ?? [];
   };
 
   useEffect(() => {
     const director = getDirector();
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    console.log("baaaaaaaaal", director);
-    
-    setDirectors(director);
-    // console.log(directors);
-  }, []);
+    setDirectorsData(director);
+  }, [data]);
 
   return (
     <div className="container">
-      {console.log(directorsData)}
       <div className={styles.media}>
         <div className={styles.left_img}>
           <img
@@ -61,7 +54,7 @@ export default function MediaComponent({
         <div className={styles.writers}>
           <div className={styles.writers_name}>
             <div className={styles.position}>Director</div>
-            <div className={styles.name}>{directorsData}</div>
+            <div className={styles.name}>{directorsData.join(", ")}</div>
           </div>
           <div className={styles.writers_name}>
             <div className={styles.position}>Writer</div>
