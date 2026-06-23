@@ -1,4 +1,4 @@
-import { CrewMember, MovieDetails } from "@app-types/MovieDetails";
+import { CrewMember, CrewRole, MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Media.module.css";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useEffect, useState } from "react";
@@ -11,19 +11,25 @@ export default function MediaComponent({
   data,
 }: Readonly<HeaderComponentProps>) {
   const [directorsData, setDirectorsData] = useState<string[]>([]);
+  const [producerData, setProducerData] = useState<string[]>([]);
+  const [writerData, setWriterData] = useState<string[]>([]);
 
-  const getDirector = (): string[] => {
+  const getMembers = (role: CrewRole): string[] => {
     const directors = data?.credits?.crew
-      .filter((member: CrewMember) => member.job === "Director")
+      .filter((member: CrewMember) => member.job === role)
       .map((director: CrewMember) => director.name);
 
     return directors ?? [];
   };
 
   useEffect(() => {
-    const director = getDirector();
+    const director = getMembers("Director");
+    const producer = getMembers("Producer");
+    const writer = getMembers("Writer");
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setDirectorsData(director);
+    setProducerData(producer);
+    setWriterData(writer);
   }, [data]);
 
   return (
@@ -57,21 +63,18 @@ export default function MediaComponent({
             <div className={styles.name}>{directorsData.join(", ")}</div>
           </div>
           <div className={styles.writers_name}>
-            <div className={styles.position}>Writer</div>
-            <div className={styles.name}>Ryan Coogler</div>
+            <div className={styles.position}>Producers</div>
+            <div className={styles.name}>{producerData.join(", ")}</div>
           </div>
           <div className={styles.writers_name}>
-            <div className={styles.position}>Stars</div>
-            <div className={styles.name}>
-              <div className={styles.stars}>
+            <div className={styles.position}>Writers</div>
+            <div className={styles.name}>{writerData.join(", ")}</div>
+            {/* <div className={styles.name}> */}
+              {/* <div className={styles.stars}>
                 <div className={styles.star}>Ryan Coogler</div>
                 <div className={styles.dot}></div>
-              </div>
-              <div className={styles.stars}>
-                <div className={styles.star}>Ryan Coogler</div>
-                <div className={styles.dot}></div>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
           </div>
         </div>
       </div>
