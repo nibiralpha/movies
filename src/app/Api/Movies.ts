@@ -76,6 +76,15 @@ const getTvSeriesDetails = async (
   return response;
 };
 
+const getMovieVideos = async (
+  id: number,
+): Promise<AxiosResponse<TopUpComingMovies>> => {
+  const response = await apiClient.get<TopUpComingMovies>(
+    `${BASEURL}/movie/${id}/videos`,
+  );
+  return response;
+};
+
 export {
   getTopUpComingMovies,
   getTrendingThisWeek,
@@ -84,5 +93,6 @@ export {
   getPopulerTvShows,
   getTopRatedTvShows,
   getMovieDetails,
-  getTvSeriesDetails
+  getTvSeriesDetails,
+  getMovieVideos
 };
