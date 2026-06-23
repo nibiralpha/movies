@@ -3,9 +3,11 @@ import styles from "./Media.module.css";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useEffect, useState } from "react";
 import { getMembers } from "@Helper/function";
+import { VideoInterface } from "@app-types/Videos";
 interface HeaderComponentProps {
   id: number;
   data: MovieDetails;
+  videos: VideoInterface[]
 }
 export default function MediaComponent({
   id,
