@@ -28,6 +28,7 @@
       "@app-types/*": ["./src/app/types/*"],
       "@Services/*": ["./src/app/Services/*"],
       "@Constant/*": ["./src/app/Constant/*"],
+      "@Helper/*": ["./src/app/Helper/*"],
     }
   },
   "include": [

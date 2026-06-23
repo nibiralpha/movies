@@ -1,4 +1,6 @@
-export function formatRuntime(totalMinutes: number | null): string {
+import { CrewMember, CrewRole, MovieDetails } from "@app-types/MovieDetails";
+
+export const formatRuntime = (totalMinutes: number | null): string => {
   if (!totalMinutes || totalMinutes <= 0) return "N/A";
 
   const hours = Math.floor(totalMinutes / 60);
@@ -10,4 +12,12 @@ export function formatRuntime(totalMinutes: number | null): string {
   }
 
   return `${hours}h ${minutes}m`;
-}
+};
+
+export const getMembers = (role: CrewRole, data: MovieDetails): string[] => {
+  const directors = data?.credits?.crew
+    .filter((member: CrewMember) => member.job === role)
+    .map((director: CrewMember) => director.name);
+
+  return directors ?? [];
+};
