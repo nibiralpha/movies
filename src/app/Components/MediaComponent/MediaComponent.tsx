@@ -2,20 +2,24 @@ import { CrewMember, CrewRole, MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Media.module.css";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useEffect, useState } from "react";
-import { getMembers } from "@Helper/function";
+import { generateEmbedUrl, getMembers, getOfficialVideo } from "@Helper/function";
 import { VideoInterface } from "@app-types/Videos";
 interface HeaderComponentProps {
   id: number;
   data: MovieDetails;
-  videos: VideoInterface[]
+  videos: VideoInterface[];
 }
 export default function MediaComponent({
   id,
   data,
+  videos,
 }: Readonly<HeaderComponentProps>) {
   const [directorsData, setDirectorsData] = useState<string[]>([]);
   const [producerData, setProducerData] = useState<string[]>([]);
   const [writerData, setWriterData] = useState<string[]>([]);
+  const [OfficialVideo, setOfficialVideo] = useState<VideoInterface | null>();
+
+ 
 
   useEffect(() => {
     const director = getMembers("Director", data);
@@ -25,7 +29,10 @@ export default function MediaComponent({
     setDirectorsData(director);
     setProducerData(producer);
     setWriterData(writer);
-  }, [data]);
+
+    const video = getOfficialVideo(videos);
+    setOfficialVideo(video);
+  }, [data, videos]);
 
   return (
     <div className="container">
@@ -38,16 +45,20 @@ export default function MediaComponent({
           />
         </div>
         <div className={styles.right_video}>
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/bKGxHflevuk?si=EVaSGzF8btOeCG6z"
-            title="YouTube video player"
-            // frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            // referrerpolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
+          {OfficialVideo?.key ? (
+            <iframe
+              width="560"
+              height="315"
+              src={generateEmbedUrl(OfficialVideo?.key)}
+              title="YouTube video player"
+              // frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              // referrerpolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <p>Loading trailer...</p>
+          )}
         </div>
       </div>
       <div className={styles.detail_area}>
