@@ -26,8 +26,6 @@ export const getMembers = (role: CrewRole, data: MovieDetails): string[] => {
 };
 
 export const getOfficialVideo = (videos: VideoInterface[]) => {
-  console.log(videos);
-
   const officialTrailer = videos.find(
     (video) =>
       video.official === true &&
@@ -44,7 +42,7 @@ export const getOfficialVideo = (videos: VideoInterface[]) => {
   return finalVideo ? finalVideo : null;
 };
 
-export const generateEmbedUrl = (id: string): string => {
+export const generateVideoEmbedUrl = (id: string): string => {
   return `https://www.youtube.com/embed/${id}`;
 };
 

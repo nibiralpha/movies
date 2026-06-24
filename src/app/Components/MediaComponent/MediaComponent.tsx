@@ -2,7 +2,7 @@ import { CrewMember, CrewRole, MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Media.module.css";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useEffect, useState } from "react";
-import { generateEmbedUrl, getMembers, getOfficialVideo } from "@Helper/function";
+import { generateVideoEmbedUrl, getMembers, getOfficialVideo } from "@Helper/function";
 import { VideoInterface } from "@app-types/Videos";
 interface HeaderComponentProps {
   id: number;
@@ -49,7 +49,7 @@ export default function MediaComponent({
             <iframe
               width="560"
               height="315"
-              src={generateEmbedUrl(OfficialVideo?.key)}
+              src={generateVideoEmbedUrl(OfficialVideo?.key)}
               title="YouTube video player"
               // frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

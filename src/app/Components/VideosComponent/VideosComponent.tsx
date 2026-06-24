@@ -9,7 +9,7 @@ import "yet-another-react-lightbox/styles.css";
 
 import styles from "./Videos.module.css";
 import { VideoInterface } from "@app-types/Videos";
-import { generateEmbedUrl, generateImageUrl } from "@Helper/function";
+import { generateVideoEmbedUrl, generateImageUrl } from "@Helper/function";
 
 interface VideosComponentProps {
   readonly videos: readonly VideoInterface[];
@@ -31,7 +31,7 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
                 {/* <iframe
                   width="560"
                   height="315"
-                  src={generateEmbedUrl(video.key)}
+                  src={generateVideoEmbedUrl(video.key)}
                   title="YouTube video player"
                   // frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
