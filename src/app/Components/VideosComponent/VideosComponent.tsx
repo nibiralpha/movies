@@ -16,6 +16,8 @@ interface VideosComponentProps {
 }
 
 export default function VideosComponent({ videos }: VideosComponentProps) {
+  const numberOfVideos: number = 6;
+  const displayVideos = videos.slice(0, 7);
   const [index, setIndex] = useState(-1);
 
   return (
@@ -24,10 +26,14 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
         <h2 className={styles.videos}>Videos</h2>
 
         <div className="row">
-          {videos.map((video, i) => (
+          {displayVideos.map((video, i) => (
             <div key={i} className="col-12 col-md-3">
               <div className={styles.video_item}>
-                <img src={generateImageUrl(video.key, "medium")} alt="" onClick={() => setIndex(i)} />
+                <img
+                  src={generateImageUrl(video.key, "medium")}
+                  alt=""
+                  onClick={() => setIndex(i)}
+                />
                 {/* <iframe
                   width="560"
                   height="315"
@@ -49,6 +55,22 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
               </div>
             </div>
           ))}
+
+          <div className="col-12 col-md-3">
+            <div className={styles.video_item}>
+              {/* <img
+                src={generateImageUrl(video.key, "medium")}
+                alt=""
+                onClick={() => setIndex(i)}
+              /> */}
+              <img
+                src={generateImageUrl(videos[numberOfVideos + 1].key, "medium")}
+                alt=""
+                // onClick={() => setIndex(i)}
+              />
+              <div className={styles.show_all}>Show All</div>
+            </div>
+          </div>
         </div>
 
         <Lightbox
