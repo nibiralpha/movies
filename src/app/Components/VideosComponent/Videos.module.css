@@ -42,7 +42,7 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  top: 85%;
+  top: 75%;
   left: 15%;
   transform: translate(-50%, -50%);
 }
@@ -79,7 +79,7 @@
   cursor: pointer;
 
   margin: 5px;
-  height: 300px;
+  height: 200px;
 }
 
 .video_item img:first-child {

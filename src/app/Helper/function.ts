@@ -1,6 +1,8 @@
 import { CrewMember, CrewRole, MovieDetails } from "@app-types/MovieDetails";
 import { VideoInterface } from "@app-types/Videos";
 
+type ThumbnailQuality = "high" | "medium" | "default";
+
 export const formatRuntime = (totalMinutes: number | null): string => {
   if (!totalMinutes || totalMinutes <= 0) return "N/A";
 
@@ -44,4 +46,19 @@ export const getOfficialVideo = (videos: VideoInterface[]) => {
 
 export const generateEmbedUrl = (id: string): string => {
   return `https://www.youtube.com/embed/${id}`;
+};
+
+export const generateImageUrl = (
+  id: string,
+  thumbQuality: ThumbnailQuality,
+): string => {
+  let fileType = "default.jpg";
+
+  if (thumbQuality === "high") {
+    fileType = "hqdefault.jpg";
+  } else if (thumbQuality === "medium") {
+    fileType = "mqdefault.jpg";
+  }
+
+  return `https://img.youtube.com/vi/${id}/${fileType}`;
 };

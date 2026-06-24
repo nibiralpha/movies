@@ -9,45 +9,7 @@ import "yet-another-react-lightbox/styles.css";
 
 import styles from "./Videos.module.css";
 import { VideoInterface } from "@app-types/Videos";
-import { generateEmbedUrl } from "@Helper/function";
-
-const videosData = [
-  {
-    src: "/the-crew-portrait.webp",
-    width: 1200,
-    height: 800,
-  },
-  {
-    src: "/the-crew-portrait.webp",
-    width: 1200,
-    height: 800,
-  },
-  {
-    src: "/the-crew-portrait.webp",
-    width: 1200,
-    height: 800,
-  },
-  {
-    src: "/the-crew-portrait.webp",
-    width: 1200,
-    height: 800,
-  },
-  {
-    src: "/the-crew-portrait.webp",
-    width: 1200,
-    height: 800,
-  },
-  {
-    src: "/the-crew-portrait.webp",
-    width: 1200,
-    height: 800,
-  },
-  {
-    src: "/the-crew-portrait.webp",
-    width: 1200,
-    height: 800,
-  },
-];
+import { generateEmbedUrl, generateImageUrl } from "@Helper/function";
 
 interface VideosComponentProps {
   readonly videos: readonly VideoInterface[];
@@ -65,8 +27,8 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
           {videos.map((video, i) => (
             <div key={i} className="col-12 col-md-3">
               <div className={styles.video_item}>
-                {/* <img src={video.src} alt="" onClick={() => setIndex(i)} /> */}
-                <iframe
+                <img src={generateImageUrl(video.key, "medium")} alt="" onClick={() => setIndex(i)} />
+                {/* <iframe
                   width="560"
                   height="315"
                   src={generateEmbedUrl(video.key)}
@@ -75,7 +37,7 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   // referrerpolicy="strict-origin-when-cross-origin"
                   allowFullScreen
-                ></iframe>
+                ></iframe> */}
                 <div className={styles.play_button_area}>
                   <img
                     className={styles.play_button}
@@ -83,7 +45,6 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
                     alt=""
                     onClick={() => setIndex(i)}
                   />
-                  {/* <div>Play</div> */}
                 </div>
               </div>
             </div>
