@@ -42,7 +42,7 @@ export default function Detail() {
       <MenuComponent />
       <HeaderComponent id={id} data={movieDetail} />
       <MediaComponent id={id} data={movieDetail} videos={videos?.results}/>
-      <VideosComponent />
+      <VideosComponent videos={videos?.results}/>
       <PhotosComponent />
     </div>
   );

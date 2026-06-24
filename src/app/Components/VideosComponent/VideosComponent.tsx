@@ -8,8 +8,10 @@ import "react-photo-album/styles.css";
 import "yet-another-react-lightbox/styles.css";
 
 import styles from "./Videos.module.css";
+import { VideoInterface } from "@app-types/Videos";
+import { generateEmbedUrl } from "@Helper/function";
 
-const videos = [
+const videosData = [
   {
     src: "/the-crew-portrait.webp",
     width: 1200,
@@ -46,7 +48,12 @@ const videos = [
     height: 800,
   },
 ];
-export default function VideosComponent() {
+
+interface VideosComponentProps {
+  readonly videos: readonly VideoInterface[];
+}
+
+export default function VideosComponent({ videos }: VideosComponentProps) {
   const [index, setIndex] = useState(-1);
 
   return (
@@ -58,7 +65,17 @@ export default function VideosComponent() {
           {videos.map((video, i) => (
             <div key={i} className="col-12 col-md-3">
               <div className={styles.video_item}>
-                <img src={video.src} alt="" onClick={() => setIndex(i)} />
+                {/* <img src={video.src} alt="" onClick={() => setIndex(i)} /> */}
+                <iframe
+                  width="560"
+                  height="315"
+                  src={generateEmbedUrl(video.key)}
+                  title="YouTube video player"
+                  // frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  // referrerpolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
                 <div className={styles.play_button_area}>
                   <img
                     className={styles.play_button}
@@ -66,7 +83,7 @@ export default function VideosComponent() {
                     alt=""
                     onClick={() => setIndex(i)}
                   />
-                  <div>Trailer: 2.25</div>
+                  {/* <div>Play</div> */}
                 </div>
               </div>
             </div>

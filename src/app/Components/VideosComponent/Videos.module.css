@@ -104,6 +104,13 @@
   --bs-gutter-x: 8px;
 }
 
+.video_item {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Mobile */
 
 @media screen and (max-width: 430px) {

@@ -18,7 +18,7 @@ export default function HeaderComponent({
       <div className={styles.header}>
         <div className={`container top ${styles.head}`}>
           <div>
-            <div className={styles.movie_title}>{data.original_title}</div>
+            <div className={styles.movie_title}>{data.title}</div>
             <div className={styles.year_time}>
               <div className={styles.year}>
                 {data.release_date.split("-")[0]}
