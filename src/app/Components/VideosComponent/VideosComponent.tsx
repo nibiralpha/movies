@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 
@@ -12,15 +12,33 @@ import { VideoInterface } from "@app-types/Videos";
 import { generateVideoEmbedUrl, generateImageUrl } from "@Helper/function";
 
 interface VideosComponentProps {
-  readonly videos: readonly VideoInterface[];
+  videos: VideoInterface[];
 }
 
 export default function VideosComponent({ videos }: VideosComponentProps) {
-  console.log(videos);
+  // const displayVideos = videos.slice(0, 8);
+  const numberOfVideosToShow: number = 8;
+  const [showAllButton, setShowAllButton] = useState<boolean>(false);
+  const [showigVideos, setShowingVideos] =
+    useState<number>(numberOfVideosToShow);
+  const [displayVideos, setDisplayVideos] = useState<VideoInterface[]>([]);
 
-  const numberOfVideos: number = 6;
-  const displayVideos = videos.slice(0, 8);
   const [index, setIndex] = useState(-1);
+
+  const showAll = () => {
+    setShowingVideos(videos.length);
+    setShowAllButton(true);
+  };
+
+  const hideAll = () => {
+    setShowingVideos(numberOfVideosToShow);
+    setShowAllButton(false);
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setDisplayVideos(videos);
+  }, [videos]);
 
   return (
     <div className="container">
@@ -29,13 +47,15 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
           <div>
             <h2 className={styles.videos}>Videos</h2>
           </div>
-          <div className={styles.show_all}>Show All</div>
+          <div onClick={showAllButton == true ? hideAll : showAll} className={styles.show_all}>
+            {showAllButton ? "Hide All" : "Show All"}
+          </div>
         </div>
 
         <div className="row">
-          {displayVideos.map((video, i) => (
+          {displayVideos.slice(0, showigVideos).map((video, i) => (
             <div key={i} className="col-12 col-md-3">
-              <div className={styles.video_item}>
+              <div key={video.id} className={styles.video_item}>
                 <img
                   src={generateImageUrl(video.key, "medium")}
                   alt=""

@@ -53,12 +53,13 @@
   align-items: center;
   gap: 10px;
   display: flex;
+  justify-content: center;
   /* position: absolute; */
-  width: auto;
+  width: 120px;
   height: 30px;
   /* top: 50%; */
   /* left: 50%; */
-  padding: 0 10px;
+  padding: 20px 10px;
   border: 1px solid;
   /* transform: translate(-50%, -50%); */
 }
