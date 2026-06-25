@@ -10,7 +10,7 @@ import PhotosComponent from "@/src/app/Components/PhotosComponent/PhotosComponen
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/src/redux/store";
-import { fetchMovieDetails, fetchMovieVideos } from "@/src/app/Services/Movies";
+import { fetchMovieDetails, fetchMoviePhotos, fetchMovieVideos } from "@/src/app/Services/Movies";
 
 export default function Detail() {
   const params = useParams();
@@ -25,10 +25,15 @@ export default function Detail() {
   const videos = useSelector(
     (state: RootState) => state.videos.data || {},
   );
+  
+  const photos = useSelector(
+    (state: RootState) => state.photos.data || {},
+  );
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchMovieDetails(id));
     dispatch(fetchMovieVideos(id));
+    dispatch(fetchMoviePhotos(id));
   };
 
   useEffect(() => {
@@ -43,7 +48,7 @@ export default function Detail() {
       <HeaderComponent id={id} data={movieDetail} />
       <MediaComponent id={id} data={movieDetail} videos={videos?.results}/>
       <VideosComponent videos={videos?.results}/>
-      <PhotosComponent />
+      <PhotosComponent photos={photos?.backdrops}/>
     </div>
   );
 }

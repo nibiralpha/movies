@@ -1,5 +1,6 @@
 import { CrewMember, CrewRole, MovieDetails } from "@app-types/MovieDetails";
 import { VideoInterface } from "@app-types/Videos";
+import { TMDB_IMAGE_BASE, TMDB_IMAGE_BASE_URL } from "@Constant/ApiDataHelper";
 
 type ThumbnailQuality = "high" | "medium" | "default";
 
@@ -58,4 +59,12 @@ export const generateImageUrl = (
   }
 
   return `https://img.youtube.com/vi/${id}/${fileType}`;
+};
+
+export const generateImageData = (
+  filePath: string | null,
+  size: "w300" | "w500" | "w1280" | "original" = "w1280",
+): string => {
+
+  return `${TMDB_IMAGE_BASE_URL}${size}${filePath}`;
 };

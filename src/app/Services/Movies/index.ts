@@ -24,6 +24,7 @@ import {
   startDetailLoading,
 } from "@/src/redux/movieDetailSlice";
 import { setVideoData, setVideoLoading } from "@/src/redux/videosSlice";
+import { setPhotoData, setPhotoLoading } from "@/src/redux/photoSlice";
 
 const fetchSliderMovies = () => {
   return async (dispatch: Dispatch) => {
@@ -208,17 +209,16 @@ const fetchMovieVideos = (id: number) => {
 const fetchMoviePhotos = (id: number) => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(setVideoLoading(true));
+      dispatch(setPhotoLoading(true));
 
       const moviePhotoResponse = await getMoviePhotos(id);
       const photoData = moviePhotoResponse.data;
 
-      // dispatch(setVideoData(videoData));
-
-      // dispatch(setVideoLoading(false));
+      dispatch(setPhotoData(photoData));
+      dispatch(setPhotoLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      // dispatch(setVideoLoading(true));
+      dispatch(setPhotoLoading(true));
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;
@@ -235,5 +235,5 @@ export {
   fetchTopRatedTvShows,
   fetchMovieDetails,
   fetchMovieVideos,
-  fetchMoviePhotos
+  fetchMoviePhotos,
 };

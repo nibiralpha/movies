@@ -8,7 +8,10 @@ interface PhotoState {
 
 const initialState: PhotoState = {
   data: {
+    id: 0,
     backdrops: [],
+    logos: [],
+    posters: []
   },
   loading: false,
 };

@@ -11,4 +11,7 @@ export interface PhotoInterface {
 
 export interface PhotoResponse {
   backdrops: PhotoInterface[];
+  logos: PhotoInterface[];
+  posters: PhotoInterface[];
+  id: number
 }
