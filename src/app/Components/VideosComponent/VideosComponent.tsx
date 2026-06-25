@@ -47,12 +47,14 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
           <div>
             <h2 className={styles.videos}>Videos</h2>
           </div>
-         {videos.length > numberOfVideosToShow && (
-          <div onClick={showAllButton == true ? hideAll : showAll} className={styles.show_all}>
-            {showAllButton ? "Hide All" : "Show All"}
-          </div>
-         )}
-          
+          {videos.length > numberOfVideosToShow && (
+            <div
+              onClick={showAllButton == true ? hideAll : showAll}
+              className={styles.show_all}
+            >
+              {showAllButton ? "Hide All" : "Show All"}
+            </div>
+          )}
         </div>
 
         <div className="row">
@@ -92,6 +94,32 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
           close={() => setIndex(-1)}
           index={index}
           slides={videos}
+          render={{
+            slide: ({ slide }) => {
+              return (
+                <div
+                  style={{
+                    width: "100%",
+                    maxWidth: "800px",
+                    aspectRatio: "16/9",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={generateVideoEmbedUrl(slide.key)}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    style={{ border: "none" }}
+                  ></iframe>
+                </div>
+              );
+            },
+          }}
         />
       </div>
     </div>
