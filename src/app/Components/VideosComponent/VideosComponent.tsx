@@ -47,9 +47,12 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
           <div>
             <h2 className={styles.videos}>Videos</h2>
           </div>
+         {videos.length > numberOfVideosToShow && (
           <div onClick={showAllButton == true ? hideAll : showAll} className={styles.show_all}>
             {showAllButton ? "Hide All" : "Show All"}
           </div>
+         )}
+          
         </div>
 
         <div className="row">
@@ -82,18 +85,6 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
               </div>
             </div>
           ))}
-
-          {/* <div className="col-12 col-md-3">
-            <div className={styles.video_item}>
-              <img
-                src={generateImageUrl(videos[3]?.key, "medium")}
-                alt=""
-                onClick={() => setIndex(i)}
-              />
-
-              <div className={styles.show_all}>Show All</div>
-            </div>
-          </div> */}
         </div>
 
         <Lightbox
