@@ -93,9 +93,15 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
           open={index >= 0}
           close={() => setIndex(-1)}
           index={index}
+          // @ts-expect-error unknow type
           slides={videos}
           render={{
-            slide: ({ slide }) => {
+            // @ts-expect-error unknown type
+            slide: ({ slide, index: slideIndex, carousel }) => {
+              const currentIndex = carousel?.index;
+
+              const isActive = slideIndex === currentIndex;
+
               return (
                 <div
                   style={{
@@ -107,15 +113,20 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
                     alignItems: "center",
                   }}
                 >
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={generateVideoEmbedUrl(slide.key)}
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    style={{ border: "none" }}
-                  ></iframe>
+                  {isActive ? (
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      // @ts-expect-error uknow type
+                      src={generateVideoEmbedUrl(slide.key)}
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      style={{ border: "none" }}
+                    />
+                  ) : (
+                    <div>Loading video...</div>
+                  )}
                 </div>
               );
             },
