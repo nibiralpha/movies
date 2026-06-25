@@ -10,7 +10,7 @@ export interface MovieDetails {
   budget: number;
   genres: Genre[];
   homepage: string | null;
-  id: string;
+  id: number;
   imdb_id: string | null;
   origin_country: string[];
   original_language: string;

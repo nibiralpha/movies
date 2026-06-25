@@ -126,6 +126,7 @@
   text-align: center;
   justify-content: center;
   align-items: center;
+  border: 1px solid #292929;
 }
 
 .section_title{
