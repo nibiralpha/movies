@@ -4,6 +4,7 @@ import { TopUpComingMovies } from "@app-types/TopUpComingMovies";
 import { apiClient } from "@Api/Client";
 import { MovieDetails } from "@app-types/MovieDetails";
 import { VideosResponse } from "@app-types/Videos";
+import { PhotoResponse } from "@app-types/Photos";
 
 const getTopUpComingMovies = async (
   page: number = 1,
@@ -86,6 +87,15 @@ const getMovieVideos = async (
   return response;
 };
 
+const getMoviePhotos = async (
+  id: number,
+): Promise<AxiosResponse<PhotoResponse>> => {
+  const response = await apiClient.get<PhotoResponse>(
+    `${BASEURL}/movie/${id}/images`,
+  );
+  return response;
+};
+
 export {
   getTopUpComingMovies,
   getTrendingThisWeek,
@@ -95,5 +105,6 @@ export {
   getTopRatedTvShows,
   getMovieDetails,
   getTvSeriesDetails,
-  getMovieVideos
+  getMovieVideos,
+  getMoviePhotos
 };

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MovieDetails, CastMember, CrewMember } from "@app-types/MovieDetails";
-import { VideoInterface, VideosResponse } from "@app-types/Videos";
+import { VideosResponse } from "@app-types/Videos";
 
 interface VideoState {
   data: VideosResponse;

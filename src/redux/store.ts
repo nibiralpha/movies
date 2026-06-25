@@ -4,13 +4,15 @@ import movieSlice from "./moviesSlice";
 import celebritySlice from "./celebritySlice";
 import movieDetailSlice from "./movieDetailSlice";
 import videosSlice from "./videosSlice";
+import photoSlice from "./photoSlice";
 
 const rootReducer = combineReducers({
   slider: sliderSlice,
   movie: movieSlice,
   celebrity: celebritySlice,
   movieDetail: movieDetailSlice,
-  videos: videosSlice
+  videos: videosSlice,
+  photos: photoSlice,
 });
 
 export const store = configureStore({

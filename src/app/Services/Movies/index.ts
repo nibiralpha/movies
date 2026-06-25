@@ -9,6 +9,7 @@ import {
 
 import {
   getMovieDetails,
+  getMoviePhotos,
   getMovieVideos,
   getNowPlaying,
   getPopulerMovies,
@@ -204,6 +205,27 @@ const fetchMovieVideos = (id: number) => {
   };
 };
 
+const fetchMoviePhotos = (id: number) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      // dispatch(setVideoLoading(true));
+
+      const moviePhotoResponse = await getMoviePhotos(id);
+      const photoData = moviePhotoResponse.data;
+
+      // dispatch(setVideoData(videoData));
+
+      // dispatch(setVideoLoading(false));
+    } catch (error: unknown) {
+      console.log(error);
+      // dispatch(setVideoLoading(true));
+      // dispatch(getAllHeroesFailed(error))
+      // return Promise.reject(error?.response?.data);
+      throw error;
+    }
+  };
+};
+
 export {
   fetchSliderMovies,
   fetchTrendingThisWeekMovies,
@@ -212,5 +234,6 @@ export {
   fetchPopulerTvShows,
   fetchTopRatedTvShows,
   fetchMovieDetails,
-  fetchMovieVideos
+  fetchMovieVideos,
+  fetchMoviePhotos
 };
