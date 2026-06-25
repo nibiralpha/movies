@@ -16,14 +16,21 @@ interface VideosComponentProps {
 }
 
 export default function VideosComponent({ videos }: VideosComponentProps) {
+  console.log(videos);
+
   const numberOfVideos: number = 6;
-  const displayVideos = videos.slice(0, 7);
+  const displayVideos = videos.slice(0, 8);
   const [index, setIndex] = useState(-1);
 
   return (
     <div className="container">
       <div className={styles.videos_section}>
-        <h2 className={styles.videos}>Videos</h2>
+        <div className={styles.section_title}>
+          <div>
+            <h2 className={styles.videos}>Videos</h2>
+          </div>
+          <div className={styles.show_all}>Show All</div>
+        </div>
 
         <div className="row">
           {displayVideos.map((video, i) => (
@@ -56,21 +63,17 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
             </div>
           ))}
 
-          <div className="col-12 col-md-3">
+          {/* <div className="col-12 col-md-3">
             <div className={styles.video_item}>
-              {/* <img
-                src={generateImageUrl(video.key, "medium")}
+              <img
+                src={generateImageUrl(videos[3]?.key, "medium")}
                 alt=""
                 onClick={() => setIndex(i)}
-              /> */}
-              <img
-                src={generateImageUrl(videos[numberOfVideos + 1].key, "medium")}
-                alt=""
-                // onClick={() => setIndex(i)}
               />
+
               <div className={styles.show_all}>Show All</div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <Lightbox
