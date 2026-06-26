@@ -72,6 +72,7 @@ export default function Page() {
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Trending This Week</div>
         <SwiperComponent
+          type="movie"
           data={trendingThisWeekMovies}
           slidesPerView={5}
           spaceBetween={15}
@@ -80,6 +81,7 @@ export default function Page() {
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Now Playing</div>
         <SwiperComponent
+          type="movie"
           data={nowPlayingMovies}
           slidesPerView={5}
           spaceBetween={15}
@@ -88,6 +90,7 @@ export default function Page() {
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular Movies</div>
         <SwiperComponent
+          type="movie"
           data={populerMovies}
           slidesPerView={5}
           spaceBetween={15}
@@ -105,6 +108,7 @@ export default function Page() {
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Popular TV Shows</div>
         <SwiperComponent
+          type="tvshow"
           data={populerTvShows}
           slidesPerView={5}
           spaceBetween={15}
@@ -117,6 +121,7 @@ export default function Page() {
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Top Rated TV Shows</div>
         <SwiperComponent
+          type="tvshow"
           data={topRatedTvShows}
           slidesPerView={5}
           spaceBetween={15}

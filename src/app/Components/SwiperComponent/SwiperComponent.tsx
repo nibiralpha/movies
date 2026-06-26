@@ -18,6 +18,7 @@ interface SwiperComponentProps {
   spaceBetween: number;
   shoeDetail?: boolean;
   data: MovieResult[];
+  type: "movie" | "tvshow";
 }
 
 export default function SwiperComponent({
