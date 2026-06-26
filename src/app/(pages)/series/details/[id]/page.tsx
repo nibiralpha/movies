@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import styles from "./Details.module.css";
+import styles from "./Series.module.css";
 
 import HeaderComponent from "@/src/app/Components/HeaderComponent/HeaderComponent";
 import MenuComponent from "@/src/app/Components/MenuComponent/MenuComponent";
@@ -14,7 +14,7 @@ import { AppDispatch, RootState } from "@/src/redux/store";
 import { fetchMovieDetails, fetchMoviePhotos, fetchMovieVideos } from "@/src/app/Services/Movies";
 
 
-export default function Detail() {
+export default function SeriesDetail() {
   const params = useParams();
   const id = Number(params.id);
 

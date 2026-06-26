@@ -3,7 +3,6 @@
 import styles from "./Swiper.module.css";
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -26,11 +25,16 @@ export default function SwiperComponent({
   spaceBetween,
   shoeDetail = true,
   data,
+  type
 }: Readonly<SwiperComponentProps>) {
   const router = useRouter();
 
   const changePage = (id: number) => {
     router.push("/details/" + id);
+  };
+
+  const changePageToTvShow = (id: number) => {
+    router.push("/series/details/" + id);
   };
 
   return (
@@ -63,7 +67,7 @@ export default function SwiperComponent({
                 src={`${TMDB_IMAGE_BASE}/${movie.backdrop_path}`}
                 className={styles.slide_image}
                 alt={movie.title}
-                onClick={() => changePage(movie.id)}
+                onClick={() => type == "movie" ? changePage(movie.id) : changePageToTvShow(movie.id)}
               />
             </div>
 
