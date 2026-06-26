@@ -80,6 +80,10 @@ body {
     width: 25%;
   }
 
+  .col-md-4 {
+    width: 33.33%;
+  }
+
   .col-md-9 {
     width: 75%;
   }

@@ -7,10 +7,12 @@ import MenuComponent from "@/src/app/Components/MenuComponent/MenuComponent";
 import MediaComponent from "@/src/app/Components/MediaComponent/MediaComponent";
 import VideosComponent from "@/src/app/Components/VideosComponent/VideosComponent";
 import PhotosComponent from "@/src/app/Components/PhotosComponent/PhotosComponent";
+import CastComponent from "@/src/app/Components/CastComponent/CastComponent";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/src/redux/store";
 import { fetchMovieDetails, fetchMoviePhotos, fetchMovieVideos } from "@/src/app/Services/Movies";
+
 
 export default function Detail() {
   const params = useParams();
@@ -49,6 +51,7 @@ export default function Detail() {
       <MediaComponent id={id} data={movieDetail} videos={videos?.results}/>
       <VideosComponent videos={videos?.results}/>
       <PhotosComponent photos={photos?.backdrops}/>
+      <CastComponent />
     </div>
   );
 }

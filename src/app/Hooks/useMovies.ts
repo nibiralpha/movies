@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-// import { Movies } from "../Services/Movies/MovieInterfaces";
 import { RootState } from "@/src/redux/store";
 
 const useMovies = () => {

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 
 import "react-photo-album/styles.css";
@@ -11,24 +10,26 @@ import styles from "./Photos.module.css";
 import { PhotoInterface } from "@app-types/Photos";
 import { generateImageData } from "../../Helper/function";
 
-interface photoSliderFormat {
+interface PhotoSliderFormat {
   src: string;
   height: number;
-  width: number
+  width: number;
 }
 
 interface PhotosComponentProps {
   photos: PhotoInterface[];
 }
-export default function PhotosComponent({ photos }: PhotosComponentProps) {
+export default function PhotosComponent({
+  photos,
+}: Readonly<PhotosComponentProps>) {
   const [index, setIndex] = useState(-1);
-  const [photosFormat, setPhotosFormat] = useState<photoSliderFormat[]>([]);
+  const [photosFormat, setPhotosFormat] = useState<PhotoSliderFormat[]>([]);
 
   useEffect(() => {
     const formattedPhotos = photos.map((photo) => ({
-      src: generateImageData(photo.file_path, "w1280"),
+      src: generateImageData(photo.file_path, "w500"),
       width: photo.width,
-      height: photo.height
+      height: photo.height,
     }));
 
     // eslint-disable-next-line react-hooks/set-state-in-effect
