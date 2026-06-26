@@ -39,12 +39,14 @@ export interface MovieDetails {
 export interface CastMember {
   id: number;
   name: string;
+  profile_path: string;
   job?: string
 }
 
 export interface CrewMember {
   id: number;
   name: string;
+  profile_path: string;
   job?: string 
 }
 export interface Genre {

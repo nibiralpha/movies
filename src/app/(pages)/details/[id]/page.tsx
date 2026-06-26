@@ -23,6 +23,10 @@ export default function Detail() {
   const movieDetail = useSelector(
     (state: RootState) => state.movieDetail.data || {},
   );
+  
+  const casts = useSelector(
+    (state: RootState) => state.movieDetail.data.credits?.cast || [],
+  );
 
   const videos = useSelector(
     (state: RootState) => state.videos.data || {},
@@ -51,7 +55,7 @@ export default function Detail() {
       <MediaComponent id={id} data={movieDetail} videos={videos?.results}/>
       <VideosComponent videos={videos?.results}/>
       <PhotosComponent photos={photos?.backdrops}/>
-      <CastComponent />
+      <CastComponent casts={casts}/>
     </div>
   );
 }
