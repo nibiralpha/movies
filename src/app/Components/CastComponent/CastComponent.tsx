@@ -1,6 +1,6 @@
 "use client";
 
-import { TMDB_IMAGE_BASE, TMDB_IMAGE_BASE_URL } from "@Constant/ApiDataHelper";
+import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { CastMember } from "@app-types/MovieDetails";
 import styles from "./Cast.module.css";
 interface CastProps {

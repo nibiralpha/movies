@@ -56,6 +56,15 @@ export default function Detail() {
       <VideosComponent videos={videos?.results}/>
       <PhotosComponent photos={photos?.backdrops}/>
       <CastComponent casts={casts}/>
+      <div className={`container`}>
+        <div className={styles.title}>Viewed</div>
+        You have no recently viewed pages
+        {/* <SwiperComponent
+          shoeDetail={false}
+          slidesPerView={6}
+          spaceBetween={15}
+        /> */}
+      </div>
     </div>
   );
 }
