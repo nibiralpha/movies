@@ -1,43 +1,49 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MovieDetails, CastMember, CrewMember } from "@app-types/MovieDetails";
+import { TvShowDetailsResponse } from "@app-types/TvSeries";
 
-interface MovieDetailState {
-  data: MovieDetails;
+interface TVShowDetailState {
+  data: TvShowDetailsResponse;
   loading: boolean;
 }
 
-const initialState: MovieDetailState = {
+const initialState: TVShowDetailState = {
   data: {
     adult: false,
     backdrop_path: null,
-    belongs_to_collection: null,
-    budget: 0,
+    created_by: [],
+    episode_run_time: [],
+    first_air_date: "",
     genres: [],
-    homepage: null,
+    homepage: "",
     id: 0,
-    imdb_id: null,
+    in_production: false,
+    languages: [],
+    last_air_date: "",
+    last_episode_to_air: null,
+    name: "", 
+    next_episode_to_air: null,
+    networks: [],
+    number_of_episodes: 0,
+    number_of_seasons: 0,
     origin_country: [],
     original_language: "",
-    original_title: "",
+    original_name: "",
     overview: "",
     popularity: 0,
     poster_path: null,
     production_companies: [],
     production_countries: [],
-    release_date: "",
-    revenue: 0,
-    runtime: null,
+    seasons: [],
     spoken_languages: [],
     status: "",
-    tagline: null,
-    title: "",
-    video: false,
+    tagline: "",
+    type: "",
     vote_average: 0,
     vote_count: 0,
     credits: {
-        cast: [],
-        crew: []
-      }
+      crew: [],
+      cast: [],
+    },
   },
   loading: true,
 };
@@ -46,7 +52,7 @@ export const tvShowDetailSlice = createSlice({
   name: "tvShowDetail",
   initialState,
   reducers: {
-    setTVSeriesData: (state, action: PayloadAction<MovieDetails>) => {
+    setTVSeriesData: (state, action: PayloadAction<TvShowDetailsResponse>) => {
       return { ...state, data: action.payload };
     },
     startLoading: (state, action: PayloadAction<boolean>) => {
@@ -55,6 +61,5 @@ export const tvShowDetailSlice = createSlice({
   },
 });
 
-export const { setTVSeriesData, startLoading } =
-  tvShowDetailSlice.actions;
+export const { setTVSeriesData, startLoading } = tvShowDetailSlice.actions;
 export default tvShowDetailSlice.reducer;

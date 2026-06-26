@@ -5,12 +5,14 @@ import celebritySlice from "./celebritySlice";
 import movieDetailSlice from "./movieDetailSlice";
 import videosSlice from "./videosSlice";
 import photoSlice from "./photoSlice";
+import tvShowDetailSlice from "./tvShowDetailSlice";
 
 const rootReducer = combineReducers({
   slider: sliderSlice,
   movie: movieSlice,
   celebrity: celebritySlice,
   movieDetail: movieDetailSlice,
+  tvShowDetail: tvShowDetailSlice,
   videos: videosSlice,
   photos: photoSlice,
 });

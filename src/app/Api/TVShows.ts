@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { BASEURL } from "@Constant/Api";
 import { TopUpComingMovies } from "@app-types/TopUpComingMovies";
 import { apiClient } from "@Api/Client";
+import { TvShowDetailsResponse } from "@app-types/TvSeries";
 
 const getPopulerTvShows = async (
   page: number = 1,
@@ -23,8 +24,8 @@ const getTopRatedTvShows = async (
 
 const getTvSeriesDetails = async (
   id: number,
-): Promise<AxiosResponse<TopUpComingMovies>> => {
-  const response = await apiClient.get<TopUpComingMovies>(
+): Promise<AxiosResponse<TvShowDetailsResponse>> => {
+  const response = await apiClient.get<TvShowDetailsResponse>(
     `${BASEURL}/tv/${id}`,
   );
   return response;
