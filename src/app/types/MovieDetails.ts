@@ -40,6 +40,7 @@ export interface CastMember {
   id: number;
   name: string;
   profile_path: string;
+  character?: string;
   job?: string
 }
 
@@ -47,6 +48,7 @@ export interface CrewMember {
   id: number;
   name: string;
   profile_path: string;
+  character?: string;
   job?: string 
 }
 export interface Genre {
