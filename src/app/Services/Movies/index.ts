@@ -13,11 +13,16 @@ import {
   getMovieVideos,
   getNowPlaying,
   getPopulerMovies,
-  getPopulerTvShows,
-  getTopRatedTvShows,
   getTopUpComingMovies,
   getTrendingThisWeek,
 } from "@/src/app/Api/Movies";
+
+import {
+  getPopulerTvShows,
+  getTopRatedTvShows,
+
+} from "@/src/app/Api/TVShows";
+
 import { Dispatch } from "@reduxjs/toolkit";
 import {
   setMovieDetailsData,
