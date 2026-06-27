@@ -28,12 +28,8 @@ export default function SeriesDetail() {
     (state: RootState) => state.tvShowDetail.data || {},
   );
 
-  const movieDetail = useSelector(
-    (state: RootState) => state.movieDetail.data || {},
-  );
-
   const casts = useSelector(
-    (state: RootState) => state.movieDetail.data.credits?.cast || [],
+    (state: RootState) => state.tvShowDetail.data.credits?.cast || [],
   );
 
   const videos = useSelector((state: RootState) => state.videos.data || {});
@@ -42,12 +38,9 @@ export default function SeriesDetail() {
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchTvSeriesDetails(id));
-    // dispatch(fetchMovieDetails(id));
-
     dispatch(fetchTvSeriesVideos(id));
     dispatch(fetchTvSeriesPhotos(id));
-    // dispatch(fetchMovieVideos(id));
-    // dispatch(fetchMoviePhotos(id));
+    dispatch(fetchTvSeriesPhotos(id));
   };
 
   useEffect(() => {
@@ -69,15 +62,11 @@ export default function SeriesDetail() {
       />
       <VideosComponent videos={videos?.results} />
       <PhotosComponent photos={photos?.backdrops} />
-      {/* <CastComponent casts={casts} /> */}
+      <CastComponent type="tvShow" casts={casts} />
+      
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>
         You have no recently viewed pages
-        {/* <SwiperComponent
-          shoeDetail={false}
-          slidesPerView={6}
-          spaceBetween={15}
-        /> */}
       </div>
     </div>
   );

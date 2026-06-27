@@ -17,18 +17,12 @@ interface MovieHeaderProps {
   data: MovieDetails;
   videos: VideoInterface[];
 }
-
 interface TvShowHeaderProps {
   id: number;
   type: "tvShow";
   data: TvShowDetailsResponse;
   videos: VideoInterface[];
 }
-// interface HeaderComponentProps {
-//   id: number;
-//   data: MovieDetails;
-//   videos: VideoInterface[];
-// }
 
 type HeaderComponentProps = MovieHeaderProps | TvShowHeaderProps;
 export default function MediaComponent({

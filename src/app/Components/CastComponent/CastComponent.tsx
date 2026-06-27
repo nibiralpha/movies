@@ -3,10 +3,23 @@
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { CastMember } from "@app-types/MovieDetails";
 import styles from "./Cast.module.css";
-interface CastProps {
+import { CreditsCastMember } from "@app-types/TvSeries";
+// interface CastProps {
+//   casts: CastMember[];
+// }
+
+interface MovieCastProps {
+  type: "movies";
   casts: CastMember[];
 }
-export default function CastComponent({ casts }: CastProps) {
+interface TvShowCastProps {
+  type: "tvShow";
+  casts: CreditsCastMember[];
+}
+
+type CastComponentProps = MovieCastProps | TvShowCastProps;
+
+export default function CastComponent({ casts }: CastComponentProps) {
   return (
     <div className="container">
       <div className={styles.cast_section}>
@@ -20,7 +33,11 @@ export default function CastComponent({ casts }: CastProps) {
                     <div className={styles.cast_img}>
                       <img
                         className={styles.avater}
-                        src={cast.profile_path == null ? '/blank_celebrity.jpg' : `${TMDB_IMAGE_BASE}/${cast.profile_path}`}
+                        src={
+                          cast.profile_path == null
+                            ? "/blank_celebrity.jpg"
+                            : `${TMDB_IMAGE_BASE}/${cast.profile_path}`
+                        }
                         alt={cast.name}
                       />
                     </div>

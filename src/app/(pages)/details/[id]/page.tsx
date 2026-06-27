@@ -51,11 +51,12 @@ export default function Detail() {
   return (
     <div>
       <MenuComponent />
-      <HeaderComponent id={id} data={movieDetail} />
-      <MediaComponent id={id} data={movieDetail} videos={videos?.results}/>
+      <HeaderComponent type="movie" id={id} data={movieDetail} />
+      <MediaComponent type="movie" id={id} data={movieDetail} videos={videos?.results}/>
       <VideosComponent videos={videos?.results}/>
       <PhotosComponent photos={photos?.backdrops}/>
-      <CastComponent casts={casts}/>
+      <CastComponent type="movies" casts={casts}/>
+      
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>
         You have no recently viewed pages
