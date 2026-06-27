@@ -31,7 +31,7 @@ export default function HeaderComponent({
         <div className={`container top ${styles.head}`}>
           <div>
             <div className={styles.movie_title}>
-              {type == "movie" ? data.title : data.name}
+              {type == "movie" ? data.title : data.name} 
             </div>
             <div className={styles.year_time}>
               <div className={styles.year}>

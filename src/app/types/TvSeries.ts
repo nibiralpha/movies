@@ -78,6 +78,12 @@ export interface CreditsCastMember {
   order: number;
 }
 
+export interface job {
+  credit_id: string;
+  job: string;
+  episode_count: number;
+}
+
 export interface CreditsCrewMember {
   adult: boolean;
   gender: number;
@@ -89,7 +95,8 @@ export interface CreditsCrewMember {
   profile_path: string | null;
   department: string;
   credit_id: string;
-  job: number;
+  // job: job[];
+  job: string;
 }
 
 export interface CreditsData {

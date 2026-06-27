@@ -11,9 +11,12 @@ import CastComponent from "@/src/app/Components/CastComponent/CastComponent";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/src/redux/store";
-import { fetchMovieDetails, fetchMoviePhotos, fetchMovieVideos } from "@/src/app/Services/Movies";
-import { fetchTvSeriesDetails } from "@/src/app/Services/Series";
-
+import {
+  fetchMovieDetails,
+  fetchMoviePhotos,
+  fetchMovieVideos,
+} from "@/src/app/Services/Movies";
+import { fetchTvSeriesDetails, fetchTvSeriesVideos } from "@/src/app/Services/Series";
 
 export default function SeriesDetail() {
   const params = useParams();
@@ -24,27 +27,25 @@ export default function SeriesDetail() {
   const tvShowDetail = useSelector(
     (state: RootState) => state.tvShowDetail.data || {},
   );
-  
+
   const movieDetail = useSelector(
     (state: RootState) => state.movieDetail.data || {},
   );
-  
+
   const casts = useSelector(
     (state: RootState) => state.movieDetail.data.credits?.cast || [],
   );
 
-  const videos = useSelector(
-    (state: RootState) => state.videos.data || {},
-  );
-  
-  const photos = useSelector(
-    (state: RootState) => state.photos.data || {},
-  );
+  const videos = useSelector((state: RootState) => state.videos.data || {});
+
+  const photos = useSelector((state: RootState) => state.photos.data || {});
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchTvSeriesDetails(id));
     dispatch(fetchMovieDetails(id));
-    dispatch(fetchMovieVideos(id));
+
+    dispatch(fetchTvSeriesVideos(id));
+    // dispatch(fetchMovieVideos(id));
     dispatch(fetchMoviePhotos(id));
   };
 
@@ -52,17 +53,22 @@ export default function SeriesDetail() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     getInitData();
   }, []);
-  
 
   return (
     <div>
       <MenuComponent />
       <HeaderComponent type="tvShow" id={id} data={tvShowDetail} />
-      <HeaderComponent type="movie" id={id} data={movieDetail} />
-      <MediaComponent id={id} data={movieDetail} videos={videos?.results}/>
-      <VideosComponent videos={videos?.results}/>
-      <PhotosComponent photos={photos?.backdrops}/>
-      <CastComponent casts={casts}/>
+      {/* <HeaderComponent type="movie" id={id} data={movieDetail} /> */}
+      {/* <MediaComponent id={id} data={movieDetail} videos={videos?.results}/> */}
+      <MediaComponent
+        type="tvShow"
+        id={id}
+        data={tvShowDetail}
+        videos={videos?.results}
+      />
+      <VideosComponent videos={videos?.results} />
+      <PhotosComponent photos={photos?.backdrops} />
+      {/* <CastComponent casts={casts} /> */}
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>
         You have no recently viewed pages

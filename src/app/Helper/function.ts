@@ -1,6 +1,7 @@
 import { CrewMember, CrewRole, MovieDetails } from "@app-types/MovieDetails";
 import { VideoInterface } from "@app-types/Videos";
 import { TMDB_IMAGE_BASE, TMDB_IMAGE_BASE_URL } from "@Constant/ApiDataHelper";
+import { CreditsCrewMember, TvShowDetailsResponse } from "../types/TvSeries";
 
 type ThumbnailQuality = "high" | "medium" | "default";
 
@@ -21,6 +22,14 @@ export const getMembers = (role: CrewRole, data: MovieDetails): string[] => {
   const directors = data?.credits?.crew
     .filter((member: CrewMember) => member.job === role)
     .map((director: CrewMember) => director.name);
+
+  return directors ?? [];
+};
+
+export const getTvSeriesMembers = (role: CrewRole, data: TvShowDetailsResponse): string[] => {
+  const directors = data?.credits?.crew
+    .filter((member: CreditsCrewMember) => member.job === role)
+    .map((director: CreditsCrewMember) => director.name);
 
   return directors ?? [];
 };

@@ -2,15 +2,38 @@ import { CrewMember, CrewRole, MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Media.module.css";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useEffect, useState } from "react";
-import { generateVideoEmbedUrl, getMembers, getOfficialVideo } from "@Helper/function";
+import {
+  generateVideoEmbedUrl,
+  getMembers,
+  getTvSeriesMembers,
+  getOfficialVideo,
+} from "@Helper/function";
 import { VideoInterface } from "@app-types/Videos";
-interface HeaderComponentProps {
+import { TvShowDetailsResponse } from "@app-types/TvSeries";
+
+interface MovieHeaderProps {
   id: number;
+  type: "movie";
   data: MovieDetails;
   videos: VideoInterface[];
 }
+
+interface TvShowHeaderProps {
+  id: number;
+  type: "tvShow";
+  data: TvShowDetailsResponse;
+  videos: VideoInterface[];
+}
+// interface HeaderComponentProps {
+//   id: number;
+//   data: MovieDetails;
+//   videos: VideoInterface[];
+// }
+
+type HeaderComponentProps = MovieHeaderProps | TvShowHeaderProps;
 export default function MediaComponent({
   id,
+  type,
   data,
   videos,
 }: Readonly<HeaderComponentProps>) {
@@ -19,12 +42,10 @@ export default function MediaComponent({
   const [writerData, setWriterData] = useState<string[]>([]);
   const [OfficialVideo, setOfficialVideo] = useState<VideoInterface | null>();
 
- 
-
   useEffect(() => {
-    const director = getMembers("Director", data);
-    const producer = getMembers("Producer", data);
-    const writer = getMembers("Writer", data);
+    const director = type == "movie" ? getMembers("Director", data) : getTvSeriesMembers("Director", data);
+    const producer =type == "movie" ?  getMembers("Producer", data) : getTvSeriesMembers("Producer", data);
+    const writer = type == "movie" ?  getMembers("Writer", data) : getTvSeriesMembers("Producer", data);
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setDirectorsData(director);
     setProducerData(producer);

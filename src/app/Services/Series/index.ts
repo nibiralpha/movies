@@ -8,9 +8,11 @@ import {
   getPopulerTvShows,
   getTopRatedTvShows,
   getTvSeriesDetails,
+  getTvShowsVideos,
 } from "@/src/app/Api/TVShows";
 
 import { Dispatch } from "@reduxjs/toolkit";
+import { setVideoData, setVideoLoading } from "@/src/redux/videosSlice";
 
 const fetchPopulerTvShows = () => {
   return async (dispatch: Dispatch) => {
@@ -80,4 +82,24 @@ const fetchTvSeriesDetails = (id: number) => {
   };
 };
 
-export { fetchPopulerTvShows, fetchTopRatedTvShows, fetchTvSeriesDetails };
+const fetchTvSeriesVideos = (id: number) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch(setVideoLoading(true));
+
+      const tvShowsVideoResponse = await getTvShowsVideos(id);
+      const tvShowsVideoData = tvShowsVideoResponse.data;
+      dispatch(setVideoData(tvShowsVideoData));
+
+      dispatch(setVideoLoading(false));
+    } catch (error: unknown) {
+      console.log(error);
+      dispatch(setVideoLoading(false));
+      // dispatch(getAllHeroesFailed(error))
+      // return Promise.reject(error?.response?.data);
+      throw error;
+    }
+  };
+};
+
+export { fetchPopulerTvShows, fetchTopRatedTvShows, fetchTvSeriesDetails, fetchTvSeriesVideos };
