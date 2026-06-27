@@ -45,7 +45,7 @@ const initialState: TVShowDetailState = {
       cast: [],
     },
   },
-  loading: true,
+  loading: false,
 };
 
 export const tvShowDetailSlice = createSlice({

@@ -1,10 +1,14 @@
-import { setSliderData, startLoading } from "@redux/sliderSlice";
+import { setTVSeriesData, startLoading } from "@redux/tvShowDetailSlice";
 import {
   setPopulerTvShowsData,
-  setTopRatedTvShowsData
+  setTopRatedTvShowsData,
 } from "@redux/moviesSlice";
 
-import { getPopulerTvShows, getTopRatedTvShows, getTvSeriesDetails } from "@/src/app/Api/TVShows";
+import {
+  getPopulerTvShows,
+  getTopRatedTvShows,
+  getTvSeriesDetails,
+} from "@/src/app/Api/TVShows";
 
 import { Dispatch } from "@reduxjs/toolkit";
 
@@ -56,20 +60,16 @@ const fetchTopRatedTvShows = () => {
   };
 };
 
-const fetchTvSeriesDetails = () => {
+const fetchTvSeriesDetails = (id: number) => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(startLoading(true));
 
-      const tvShowsResponse = await getTopRatedTvShows();
-      const tvShowsData = tvShowsResponse.data.results;
-    //   dispatch(
-    //     setTopRatedTvShowsData({
-    //       topRatedTvShows: { list: tvShowsResponse },
-    //     }),
-    //   );
+      const tvShowsResponse = await getTvSeriesDetails(id);
+      const tvShowsData = tvShowsResponse.data;
+      dispatch(setTVSeriesData(tvShowsData));
 
-      // dispatch(startLoading(false));
+      dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
       dispatch(startLoading(false));

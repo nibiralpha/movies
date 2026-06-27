@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/src/redux/store";
 import { fetchMovieDetails, fetchMoviePhotos, fetchMovieVideos } from "@/src/app/Services/Movies";
+import { fetchTvSeriesDetails } from "@/src/app/Services/Series";
 
 
 export default function SeriesDetail() {
@@ -20,6 +21,10 @@ export default function SeriesDetail() {
 
   const dispatch = useDispatch<AppDispatch>();
 
+  const tvShowDetail = useSelector(
+    (state: RootState) => state.tvShowDetail.data || {},
+  );
+  
   const movieDetail = useSelector(
     (state: RootState) => state.movieDetail.data || {},
   );
@@ -37,6 +42,7 @@ export default function SeriesDetail() {
   );
 
   const getInitData = async (): Promise<void> => {
+    dispatch(fetchTvSeriesDetails(id));
     dispatch(fetchMovieDetails(id));
     dispatch(fetchMovieVideos(id));
     dispatch(fetchMoviePhotos(id));
