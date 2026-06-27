@@ -16,7 +16,7 @@ import {
   fetchMoviePhotos,
   fetchMovieVideos,
 } from "@/src/app/Services/Movies";
-import { fetchTvSeriesDetails, fetchTvSeriesVideos } from "@/src/app/Services/Series";
+import { fetchTvSeriesDetails, fetchTvSeriesPhotos, fetchTvSeriesVideos } from "@/src/app/Services/Series";
 
 export default function SeriesDetail() {
   const params = useParams();
@@ -42,11 +42,12 @@ export default function SeriesDetail() {
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchTvSeriesDetails(id));
-    dispatch(fetchMovieDetails(id));
+    // dispatch(fetchMovieDetails(id));
 
     dispatch(fetchTvSeriesVideos(id));
+    dispatch(fetchTvSeriesPhotos(id));
     // dispatch(fetchMovieVideos(id));
-    dispatch(fetchMoviePhotos(id));
+    // dispatch(fetchMoviePhotos(id));
   };
 
   useEffect(() => {
