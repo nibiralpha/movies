@@ -57,7 +57,8 @@ export default function SeriesDetail() {
   return (
     <div>
       <MenuComponent />
-      <HeaderComponent id={id} data={movieDetail} />
+      <HeaderComponent type="tvShow" id={id} data={tvShowDetail} />
+      <HeaderComponent type="movie" id={id} data={movieDetail} />
       <MediaComponent id={id} data={movieDetail} videos={videos?.results}/>
       <VideosComponent videos={videos?.results}/>
       <PhotosComponent photos={photos?.backdrops}/>
