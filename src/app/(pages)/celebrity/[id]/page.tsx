@@ -59,13 +59,13 @@ export default function Celebrity() {
     <div>
       <MenuComponent />
       <HeaderComponent type="celebrity" id={id} data={celebrityDetail} />
-      {/* <HeaderComponent type="movie" id={id} data={movieDetail} /> */}
       <MediaComponent
-        type="movie"
+        type="celebrity"
         id={id}
-        data={movieDetail}
+        data={celebrityDetail}
         videos={videos?.results}
       />
+
       <VideosComponent videos={videos?.results} />
       <PhotosComponent photos={photos?.backdrops} />
       <CastComponent type="movies" casts={casts} />
