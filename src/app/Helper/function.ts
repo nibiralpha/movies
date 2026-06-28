@@ -26,7 +26,10 @@ export const getMembers = (role: CrewRole, data: MovieDetails): string[] => {
   return directors ?? [];
 };
 
-export const getTvSeriesMembers = (role: CrewRole, data: TvShowDetailsResponse): string[] => {
+export const getTvSeriesMembers = (
+  role: CrewRole,
+  data: TvShowDetailsResponse,
+): string[] => {
   const directors = data?.credits?.crew
     .filter((member: CreditsCrewMember) => member.job === role)
     .map((director: CreditsCrewMember) => director.name);
@@ -74,6 +77,17 @@ export const generateImageData = (
   filePath: string | null,
   size: "w300" | "w500" | "w1280" | "original" = "w1280",
 ): string => {
-
   return `${TMDB_IMAGE_BASE_URL}${size}${filePath}`;
+};
+
+export const formatBirthday = (dateString: string | null) => {
+  if (!dateString) return "N/A";
+  const [year, month, day] = dateString.split("-").map(Number);
+  const date = new Date(year, month - 1, day);
+
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 };

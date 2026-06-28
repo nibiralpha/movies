@@ -1,7 +1,7 @@
 // import { useDispatch, useSelector } from "react-redux";
 import { MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Header.module.css";
-import { formatRuntime } from "@Helper/function";
+import { formatBirthday, formatRuntime } from "@Helper/function";
 import { TvShowDetailsResponse } from "@app-types/TvSeries";
 import { CelebrityDetailResponse } from "../../types/Celebrity";
 // import { AppDispatch, RootState } from "@/src/redux/store";
@@ -37,7 +37,7 @@ export default function HeaderComponent({
       ? (data.release_date?.split("-")[0] ?? "N/A")
       : type === "tvShow"
         ? (data.first_air_date?.split("-")[0] ?? "N/A")
-        : (data.birthday ?? "N/A");
+        : (formatBirthday(data.birthday) ?? "N/A");
 
   const airData =
     type === "movie"
