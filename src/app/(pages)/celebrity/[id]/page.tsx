@@ -26,10 +26,6 @@ export default function Celebrity() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const movieDetail = useSelector(
-    (state: RootState) => state.movieDetail.data || {},
-  );
-
   const celebrityDetail = useSelector(
     (state: RootState) =>
       state.celebrity.celebrityDetail?.details ||
@@ -39,8 +35,6 @@ export default function Celebrity() {
   const casts = useSelector(
     (state: RootState) => state.movieDetail.data.credits?.cast || [],
   );
-
-  const videos = useSelector((state: RootState) => state.videos.data || []);
 
   const photos = useSelector((state: RootState) => state.photos.data || []);
 
@@ -63,7 +57,7 @@ export default function Celebrity() {
 
       <CelebrityMediaComponent id={id} data={celebrityDetail}/>
 
-      <VideosComponent videos={videos?.results} />
+      {/* <VideosComponent videos={videos?.results} /> */}
       <PhotosComponent photos={photos?.backdrops} />
       <CastComponent type="movies" casts={casts} />
 

@@ -4,6 +4,7 @@ import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useEffect, useState } from "react";
 
 import { CelebrityDetailResponse } from "@app-types/Celebrity";
+import { truncateDetails } from "@Helper/function";
 
 interface CelebrityHeaderProps {
   id: number;
@@ -43,7 +44,7 @@ export default function CelebrityMediaComponent({
         </div>
       </div>
       <div className={styles.detail_area}>
-        <div className={styles.details}>{data.biography}</div>
+        <div className={styles.details}>{truncateDetails(data.biography, 300)}</div>
       </div>
     </div>
   );

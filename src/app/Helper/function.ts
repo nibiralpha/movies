@@ -91,3 +91,11 @@ export const formatBirthday = (dateString: string | null) => {
     year: "numeric",
   });
 };
+
+export function truncateDetails(text: string | null | undefined, characterLimit: number = 150): string {
+  if (!text) return "No details available.";
+  if (text.length <= characterLimit) return text;
+
+  return `${text.slice(0, characterLimit).trim()}...`;
+}
+

@@ -1,4 +1,4 @@
-import { CrewMember, CrewRole, MovieDetails } from "@app-types/MovieDetails";
+import { MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Media.module.css";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useEffect, useState } from "react";

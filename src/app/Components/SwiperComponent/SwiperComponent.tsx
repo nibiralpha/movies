@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Button from "../Button/ButtonComponent";
 import { MovieResult } from "@app-types/TopUpComingMovies";
-import { TMDB_IMAGE_BASE } from "../../Constant/ApiDataHelper";
+import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 
 import { useRouter } from "next/navigation";
 

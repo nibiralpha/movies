@@ -26,7 +26,6 @@ export default function CelebrityComponent({
   const router = useRouter();
 
   const changePage = (id: number) => {
-    console.log("Zzzzzzzzzzzzzzzzzzz");
     router.push("/celebrity/" + id);
   };
 
