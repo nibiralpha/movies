@@ -1,6 +1,4 @@
 import { setCelebrityDetailData, setPopulerCelebritiesData, setTreandingCelebritiesData } from "@redux/celebritySlice";
-import { setTreandingThisWeekData } from "@redux/moviesSlice";
-
 import { Dispatch } from "@reduxjs/toolkit";
 import { getCelebrityDetail, getPopulerCelebrities, getTrendingCelebrities } from "@Api/Celebrity";
 

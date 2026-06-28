@@ -11,8 +11,13 @@ import CastComponent from "@/src/app/Components/CastComponent/CastComponent";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/src/redux/store";
-import { fetchMovieDetails, fetchMoviePhotos, fetchMovieVideos } from "@/src/app/Services/Movies";
-
+import {
+  fetchMovieDetails,
+  fetchMoviePhotos,
+  fetchMovieVideos,
+} from "@/src/app/Services/Movies";
+import { fetchCelebrityDetails } from "@/src/app/Services/Celebrity";
+import { CelebrityDetailResponse } from "@/src/app/types/Celebrity";
 
 export default function Celebrity() {
   const params = useParams();
@@ -23,20 +28,23 @@ export default function Celebrity() {
   const movieDetail = useSelector(
     (state: RootState) => state.movieDetail.data || {},
   );
-  
+
+  const celebrityDetail = useSelector(
+    (state: RootState) =>
+      state.celebrity.celebrityDetail?.details ||
+      ({} as CelebrityDetailResponse),
+  );
+
   const casts = useSelector(
     (state: RootState) => state.movieDetail.data.credits?.cast || [],
   );
 
-  const videos = useSelector(
-    (state: RootState) => state.videos.data || {},
-  );
-  
-  const photos = useSelector(
-    (state: RootState) => state.photos.data || {},
-  );
+  const videos = useSelector((state: RootState) => state.videos.data || []);
+
+  const photos = useSelector((state: RootState) => state.photos.data || []);
 
   const getInitData = async (): Promise<void> => {
+    dispatch(fetchCelebrityDetails(id));
     dispatch(fetchMovieDetails(id));
     dispatch(fetchMovieVideos(id));
     dispatch(fetchMoviePhotos(id));
@@ -46,17 +54,22 @@ export default function Celebrity() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     getInitData();
   }, []);
-  
 
   return (
     <div>
       <MenuComponent />
+      <HeaderComponent type="celebrity" id={id} data={celebrityDetail} />
       <HeaderComponent type="movie" id={id} data={movieDetail} />
-      <MediaComponent type="movie" id={id} data={movieDetail} videos={videos?.results}/>
-      <VideosComponent videos={videos?.results}/>
-      <PhotosComponent photos={photos?.backdrops}/>
-      <CastComponent type="movies" casts={casts}/>
-      
+      <MediaComponent
+        type="movie"
+        id={id}
+        data={movieDetail}
+        videos={videos?.results}
+      />
+      <VideosComponent videos={videos?.results} />
+      <PhotosComponent photos={photos?.backdrops} />
+      <CastComponent type="movies" casts={casts} />
+
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>
         You have no recently viewed pages
