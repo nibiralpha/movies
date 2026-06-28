@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 
 import "react-photo-album/styles.css";

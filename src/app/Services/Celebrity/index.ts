@@ -1,8 +1,32 @@
-import { setPopulerCelebritiesData, setTreandingCelebritiesData } from "@redux/celebritySlice";
+import { setCelebrityDetailData, setPopulerCelebritiesData, setTreandingCelebritiesData } from "@redux/celebritySlice";
 import { setTreandingThisWeekData } from "@redux/moviesSlice";
 
 import { Dispatch } from "@reduxjs/toolkit";
-import { getPopulerCelebrities, getTrendingCelebrities } from "@Api/Celebrity";
+import { getCelebrityDetail, getPopulerCelebrities, getTrendingCelebrities } from "@Api/Celebrity";
+
+const fetchCelebrityDetails = (id: number) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      // dispatch(startLoading(true));
+
+      const celebrityDetails = await getCelebrityDetail(id);
+      const celebrityDetailsData = celebrityDetails.data;
+      dispatch(
+        setCelebrityDetailData({
+          celebrityDetail: { details: celebrityDetailsData },
+        }),
+      );
+
+      // dispatch(startLoading(false));
+    } catch (error: unknown) {
+      console.log(error);
+      // dispatch(startLoading(false));
+      // dispatch(getAllHeroesFailed(error))
+      // return Promise.reject(error?.response?.data);
+      throw error;
+    }
+  };
+};
 
 const fetchTrendingCelebrities = () => {
   return async (dispatch: Dispatch) => {
@@ -50,4 +74,4 @@ const fetchPopulerCelebrities = () => {
   };
 };
 
-export { fetchTrendingCelebrities, fetchPopulerCelebrities };
+export { fetchTrendingCelebrities, fetchPopulerCelebrities, fetchCelebrityDetails };

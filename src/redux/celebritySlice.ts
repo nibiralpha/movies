@@ -14,6 +14,12 @@ const initialState: CelebritiesInterface = {
     // error: false,
     // errorResponse: {},
   },
+  celebrityDetail: {
+    details: null,
+    // loading: false,
+    // error: false,
+    // errorResponse: {},
+  },
 };
 
 export const celebritySlice = createSlice({
@@ -38,12 +44,24 @@ export const celebritySlice = createSlice({
         populerCelebrities: action.payload.populerCelebrities,
       };
     },
-    // startLoading: (state, action: PayloadAction<boolean>) => {
-    //   return { ...state, loading: action.payload };
-    // },
+    setCelebrityDetailData: (
+      state,
+      action: PayloadAction<CelebritiesInterface>,
+    ) => {
+      return {
+        ...state,
+        celebrityDetail: action.payload.celebrityDetail,
+      };
+    },
+    startLoading: (state, action: PayloadAction<boolean>) => {
+      return { ...state, loading: action.payload };
+    },
   },
 });
 
-export const { setTreandingCelebritiesData, setPopulerCelebritiesData } =
-  celebritySlice.actions;
+export const {
+  setTreandingCelebritiesData,
+  setPopulerCelebritiesData,
+  setCelebrityDetailData,
+} = celebritySlice.actions;
 export default celebritySlice.reducer;

@@ -8,7 +8,10 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Celebrity } from "@app-types/Celebrity";
-import { TMDB_IMAGE_BASE } from "../../Constant/ApiDataHelper";
+import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
+
+import { useRouter } from "next/navigation";
+
 interface CelebrityComponentProps {
   slidesPerView: number;
   spaceBetween: number;
@@ -20,6 +23,13 @@ export default function CelebrityComponent({
   spaceBetween,
   data,
 }: Readonly<CelebrityComponentProps>) {
+  const router = useRouter();
+
+  const changePage = (id: number) => {
+    console.log("Zzzzzzzzzzzzzzzzzzz");
+    router.push("/celebrity/" + id);
+  };
+
   return (
     <Swiper
       navigation={true}
@@ -45,9 +55,16 @@ export default function CelebrityComponent({
       {data?.map((celebrity) => (
         <SwiperSlide key={celebrity.id}>
           <div className={styles.card}>
-            <div className={styles.slide_image_wrapper}>
+            <div
+              onClick={() => changePage(celebrity.id)}
+              className={styles.slide_image_wrapper}
+            >
               <img
-                src={celebrity.profile_path !== null ? `${TMDB_IMAGE_BASE}/${celebrity.profile_path}` : `/blank_celebrity.jpg`}
+                src={
+                  celebrity.profile_path !== null
+                    ? `${TMDB_IMAGE_BASE}/${celebrity.profile_path}`
+                    : `/blank_celebrity.jpg`
+                }
                 className={styles.slide_image}
                 alt={celebrity.name}
               />
@@ -55,7 +72,12 @@ export default function CelebrityComponent({
               <div className={styles.overlay}></div>
             </div>
 
-            <div className={styles.name}>{celebrity.name}</div>
+            <div
+              onClick={() => changePage(celebrity.id)}
+              className={styles.name}
+            >
+              {celebrity.name}
+            </div>
           </div>
         </SwiperSlide>
       ))}
