@@ -5,7 +5,8 @@ import {
   CelebrityDetailResponse,
   CelebrityResponse,
 } from "@app-types/Celebrity";
-import { CelebrityPhotosResponse } from "../types/Photos";
+import { CelebrityPhotosResponse } from "@app-types/Photos";
+import { CelebrityMoviesResponse } from "@app-types/MoviesForCelebrity";
 
 const getTrendingCelebrities = async (): Promise<
   AxiosResponse<CelebrityResponse>
@@ -43,9 +44,19 @@ const getCelebrityPhotos = async (
   return response;
 };
 
+const getCelebrityMovies = async (
+  id: number,
+): Promise<AxiosResponse<CelebrityMoviesResponse>> => {
+  const response = await apiClient.get<CelebrityMoviesResponse>(
+    `${BASEURL}/person/${id}/combined_credits`,
+  );
+  return response;
+};
+
 export {
   getTrendingCelebrities,
   getPopulerCelebrities,
   getCelebrityDetail,
   getCelebrityPhotos,
+  getCelebrityMovies
 };
