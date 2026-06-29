@@ -16,7 +16,7 @@ import {
   fetchMoviePhotos,
   fetchMovieVideos,
 } from "@/src/app/Services/Movies";
-import { fetchCelebrityDetails } from "@/src/app/Services/Celebrity";
+import { fetchCelebrityDetails, fetchCelebrityPhotos } from "@/src/app/Services/Celebrity";
 import { CelebrityDetailResponse } from "@/src/app/types/Celebrity";
 import CelebrityMediaComponent from "@/src/app/Components/MediaComponent/CelebrityMediaComponent";
 
@@ -40,6 +40,7 @@ export default function Celebrity() {
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchCelebrityDetails(id));
+    dispatch(fetchCelebrityPhotos(id));
     dispatch(fetchMovieDetails(id));
     dispatch(fetchMovieVideos(id));
     dispatch(fetchMoviePhotos(id));

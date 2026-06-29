@@ -13,5 +13,11 @@ export interface PhotoResponse {
   backdrops: PhotoInterface[];
   logos: PhotoInterface[];
   posters: PhotoInterface[];
-  id: number
+  profiles: PhotoInterface[];
+  id: number;
+}
+
+export interface CelebrityPhotosResponse {
+  id: number;
+  profiles: PhotoInterface[];
 }

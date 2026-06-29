@@ -11,7 +11,8 @@ const initialState: PhotoState = {
     id: 0,
     backdrops: [],
     logos: [],
-    posters: []
+    posters: [],
+    profiles: []
   },
   loading: false,
 };

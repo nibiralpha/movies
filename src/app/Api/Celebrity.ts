@@ -1,7 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { BASEURL } from "@Constant/Api";
 import { apiClient } from "@Api/Client";
-import { CelebrityDetailResponse, CelebrityResponse } from "@app-types/Celebrity";
+import {
+  CelebrityDetailResponse,
+  CelebrityResponse,
+} from "@app-types/Celebrity";
+import { CelebrityPhotosResponse } from "../types/Photos";
 
 const getTrendingCelebrities = async (): Promise<
   AxiosResponse<CelebrityResponse>
@@ -30,4 +34,18 @@ const getCelebrityDetail = async (
   return response;
 };
 
-export { getTrendingCelebrities, getPopulerCelebrities, getCelebrityDetail };
+const getCelebrityPhotos = async (
+  id: number,
+): Promise<AxiosResponse<CelebrityPhotosResponse>> => {
+  const response = await apiClient.get<CelebrityPhotosResponse>(
+    `${BASEURL}/person/${id}/images`,
+  );
+  return response;
+};
+
+export {
+  getTrendingCelebrities,
+  getPopulerCelebrities,
+  getCelebrityDetail,
+  getCelebrityPhotos,
+};
