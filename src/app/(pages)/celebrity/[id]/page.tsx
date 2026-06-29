@@ -57,7 +57,7 @@ export default function Celebrity() {
       <HeaderComponent type="celebrity" id={id} data={celebrityDetail} />
       <CelebrityMediaComponent id={id} data={celebrityDetail}/>
 
-      <PhotosComponent photos={photos?.backdrops} />
+      <PhotosComponent photos={photos?.profiles} />
       <CastComponent type="movies" casts={casts} />
 
       <div className={`container`}>

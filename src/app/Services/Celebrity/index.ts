@@ -93,10 +93,10 @@ const fetchCelebrityPhotos = (id: number) => {
 
       const data: PhotoResponse = {
         id: CelebrityPhotossData.id,
+        profiles: CelebrityPhotossData.profiles,
         backdrops: [],
         logos: [],
         posters: [],
-        profiles: CelebrityPhotossData.profiles,
       };
 
       dispatch(setPhotoData(data));
