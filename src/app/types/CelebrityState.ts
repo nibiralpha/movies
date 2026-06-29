@@ -1,10 +1,10 @@
-import { Celebrity, CelebrityDetailResponse } from "./Celebrity";
+import { Celebrity, CelebrityDetailResponse, CelebrityWorkInterface } from "./Celebrity";
 
 export interface CelebritiesInterface {
   treandingCelebrities?: CelebrityStateInterface
   populerCelebrities?: CelebrityStateInterface
   celebrityDetail?: CelebrityDetailInterface
-//   topRatedTvShows?: MovieStateInterface
+  works?: CelebrityWorkInterface 
 }
 
 export interface CelebrityStateInterface {

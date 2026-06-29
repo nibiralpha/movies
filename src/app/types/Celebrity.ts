@@ -33,3 +33,22 @@ export interface Celebrity {
   known_for_department: string;
   profile_path: string | null;
 }
+
+export interface CelebrityWorks {
+  adult: boolean;
+  backdrop_path: string | null;
+  character: string;
+  id: number;
+  media_type: "movie" | "tv";
+  original_title: string;
+  title: string;
+  overview: string;
+  poster_path: string;
+  vote_average: number;
+}
+
+export interface CelebrityWorkInterface {
+  id: number;
+  cast: CelebrityWorks[];
+  crew: CelebrityWorks[];
+}

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CelebritiesInterface } from "@app-types/CelebrityState";
+import { CelebrityWorkInterface } from "../app/types/Celebrity";
 
 const initialState: CelebritiesInterface = {
   treandingCelebrities: {
@@ -19,6 +20,11 @@ const initialState: CelebritiesInterface = {
     // loading: false,
     // error: false,
     // errorResponse: {},
+  },
+  works: {
+    id: 0,
+    cast: [],
+    crew: [],
   },
 };
 
@@ -53,6 +59,15 @@ export const celebritySlice = createSlice({
         celebrityDetail: action.payload.celebrityDetail,
       };
     },
+    setCelebrityWorkData: (
+      state,
+      action: PayloadAction<CelebrityWorkInterface>,
+    ) => {
+      return {
+        ...state,
+        works: { ...action.payload },
+      };
+    },
     startLoading: (state, action: PayloadAction<boolean>) => {
       return { ...state, loading: action.payload };
     },
@@ -63,5 +78,6 @@ export const {
   setTreandingCelebritiesData,
   setPopulerCelebritiesData,
   setCelebrityDetailData,
+  setCelebrityWorkData,
 } = celebritySlice.actions;
 export default celebritySlice.reducer;

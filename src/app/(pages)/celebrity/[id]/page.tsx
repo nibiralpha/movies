@@ -16,7 +16,7 @@ import {
   fetchMoviePhotos,
   fetchMovieVideos,
 } from "@/src/app/Services/Movies";
-import { fetchCelebrityDetails, fetchCelebrityPhotos } from "@/src/app/Services/Celebrity";
+import { fetchCelebrityDetails, fetchCelebrityPhotos, fetchCelebrityWorks } from "@/src/app/Services/Celebrity";
 import { CelebrityDetailResponse } from "@/src/app/types/Celebrity";
 import CelebrityMediaComponent from "@/src/app/Components/MediaComponent/CelebrityMediaComponent";
 import MovieTableComponent from "@/src/app/Components/CastComponent/MovieTableComponent";
@@ -33,18 +33,19 @@ export default function Celebrity() {
       ({} as CelebrityDetailResponse),
   );
 
-  const casts = useSelector(
-    (state: RootState) => state.movieDetail.data.credits?.cast || [],
-  );
-
   const photos = useSelector((state: RootState) => state.photos.data || []);
 
+   const works = useSelector(
+    (state: RootState) => state.movieDetail.data.credits?.cast || [],
+  );
+  
   const getInitData = async (): Promise<void> => {
     dispatch(fetchCelebrityDetails(id));
     dispatch(fetchCelebrityPhotos(id));
-    dispatch(fetchMovieDetails(id));
-    dispatch(fetchMovieVideos(id));
-    dispatch(fetchMoviePhotos(id));
+    dispatch(fetchCelebrityWorks(id));
+    // dispatch(fetchMovieDetails(id));
+    // dispatch(fetchMovieVideos(id));
+    // dispatch(fetchMoviePhotos(id));
   };
 
   useEffect(() => {

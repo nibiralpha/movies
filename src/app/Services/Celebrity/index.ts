@@ -1,17 +1,20 @@
 import {
   setCelebrityDetailData,
+  setCelebrityWorkData,
   setPopulerCelebritiesData,
   setTreandingCelebritiesData,
 } from "@redux/celebritySlice";
 import { Dispatch } from "@reduxjs/toolkit";
 import {
   getCelebrityDetail,
+  getCelebrityMovies,
   getCelebrityPhotos,
   getPopulerCelebrities,
   getTrendingCelebrities,
 } from "@Api/Celebrity";
 import { setPhotoData } from "@/src/redux/photoSlice";
 import { PhotoResponse } from "@app-types/Photos";
+import { CelebrityWorkInterface, CelebrityWorks } from "../../types/Celebrity";
 
 const fetchCelebrityDetails = (id: number) => {
   return async (dispatch: Dispatch) => {
@@ -112,9 +115,75 @@ const fetchCelebrityPhotos = (id: number) => {
   };
 };
 
+const fetchCelebrityWorks = (id: number) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      // dispatch(startLoading(true));
+
+      const celebritityWorks = await getCelebrityMovies(id);
+      const CelebrityWorksData = celebritityWorks.data;
+
+      const data: CelebrityWorkInterface = {
+        id: CelebrityWorksData.id,
+
+        cast: (CelebrityWorksData.cast || []).map((item) => ({
+          adult: item.adult ?? false,
+          backdrop_path: item.backdrop_path ?? "",
+          character: item.character ?? "",
+          id: item.id,
+          media_type: item.media_type,
+
+          original_title:
+            item.media_type === "movie"
+              ? (item.original_title ?? "")
+              : (item.original_name ?? ""),
+          title:
+            item.media_type === "movie"
+              ? (item.title ?? "")
+              : (item.name ?? ""),
+
+          overview: item.overview ?? "",
+          poster_path: item.poster_path ?? "",
+          vote_average: item.vote_average ?? 0,
+        })),
+
+        crew: (CelebrityWorksData.crew || []).map((item) => ({
+          adult: item.adult ?? false,
+          backdrop_path: item.backdrop_path ?? "",
+          character: item.character ?? "",
+          id: item.id,
+          media_type: item.media_type ?? "movie",
+          original_title:
+            item.media_type === "movie"
+              ? (item.original_title ?? "")
+              : (item.original_name ?? ""),
+          title:
+            item.media_type === "movie"
+              ? (item.title ?? "")
+              : (item.name ?? ""),
+          overview: item.overview ?? "",
+          poster_path: item.poster_path ?? "",
+          vote_average: item.vote_average ?? 0,
+        })),
+      };
+
+      dispatch(setCelebrityWorkData(data));
+
+      // dispatch(startLoading(false));
+    } catch (error: unknown) {
+      console.log(error);
+      // dispatch(startLoading(false));
+      // dispatch(getAllHeroesFailed(error))
+      // return Promise.reject(error?.response?.data);
+      throw error;
+    }
+  };
+};
+
 export {
   fetchTrendingCelebrities,
   fetchPopulerCelebrities,
   fetchCelebrityDetails,
   fetchCelebrityPhotos,
+  fetchCelebrityWorks,
 };
