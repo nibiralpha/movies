@@ -80,6 +80,24 @@ export const generateImageData = (
   return `${TMDB_IMAGE_BASE_URL}${size}${filePath}`;
 };
 
+export const calculateAge = (birthdayString: string | null) => {
+  if (!birthdayString) return "N/A";
+
+  const birthDate = new Date(birthdayString);
+  const today = new Date();
+
+  let age = today.getFullYear() - birthDate.getFullYear();
+
+  const monthDifference = today.getMonth() - birthDate.getMonth();
+  const dayDifference = today.getDate() - birthDate.getDate();
+
+  if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+    age--;
+  }
+
+  return `${age} years old`;
+};
+
 export const formatBirthday = (dateString: string | null) => {
   if (!dateString) return "N/A";
   const [year, month, day] = dateString.split("-").map(Number);
@@ -92,10 +110,19 @@ export const formatBirthday = (dateString: string | null) => {
   });
 };
 
-export function truncateDetails(text: string | null | undefined, characterLimit: number = 150): string {
+export function truncateDetails(
+  text: string | null | undefined,
+  characterLimit: number = 150,
+): string {
   if (!text) return "No details available.";
   if (text.length <= characterLimit) return text;
 
   return `${text.slice(0, characterLimit).trim()}...`;
 }
 
+export const getGender = (value: number): string => {
+  if (value == 1) return "Female";
+  if (value == 2) return "Male";
+  if (value == 3) return "Non-binary";
+  else return "Not specified";
+};

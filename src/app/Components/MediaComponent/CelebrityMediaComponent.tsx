@@ -4,7 +4,13 @@ import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useEffect, useState } from "react";
 
 import { CelebrityDetailResponse } from "@app-types/Celebrity";
-import { truncateDetails } from "@Helper/function";
+import {
+  calculateAge,
+  formatBirthday,
+  getGender,
+  truncateDetails,
+} from "@Helper/function";
+import Link from "next/link";
 
 interface CelebrityHeaderProps {
   id: number;
@@ -18,20 +24,6 @@ export default function CelebrityMediaComponent({
   data,
   //   videos,
 }: Readonly<HeaderComponentProps>) {
-  //   const [OfficialVideo, setOfficialVideo] = useState<VideoInterface | null>();
-
-  //   useEffect(() => {
-  //     const writer =
-  //       type === "celebrity"
-  //         ? null
-  //         : type === "movie"
-  //           ? getMembers("Writer", data)
-  //           : getTvSeriesMembers("Writer", data);
-  //     eslint-disable-next-line react-hooks/set-state-in-effect
-  //     const video = getOfficialVideo(videos);
-  //     setOfficialVideo(video);
-  //   }, [data]);
-
   return (
     <div className="container">
       <div className={styles.media}>
@@ -49,33 +41,48 @@ export default function CelebrityMediaComponent({
           <div className={styles.right_area}>
             <div className={styles.right_side_content}>
               <div className={styles.point}>Born</div>
-              <div className={styles.right_side_detail}>November 11, 1999</div>
+              <div className={styles.right_side_detail}>
+                {formatBirthday(data.birthday)}
+              </div>
             </div>
             <div className={styles.right_side_content}>
               <div className={styles.point}>Age</div>
-              <div className={styles.right_side_detail}>49 years old</div>
+              <div className={styles.right_side_detail}>
+                {calculateAge(data.birthday)}
+              </div>
+            </div>
+            <div className={styles.right_side_content}>
+              <div className={styles.point}>Gender</div>
+              <div className={styles.right_side_detail}>
+                {getGender(data.gender)}
+              </div>
             </div>
             <div className={styles.right_side_content}>
               <div className={styles.point}>Birthplace</div>
               <div className={styles.right_side_detail}>
-                Los Angels, California, USA
+                {/* {console.log(data.place_of_birth)} */}
+                {data.place_of_birth ?? "N/A"}
               </div>
             </div>
             <div className={styles.right_side_content}>
-              <div className={styles.point}>Nationality</div>
-              <div className={styles.right_side_detail}>American</div>
+              <div className={styles.point}>Also Known As</div>
+              <div className={styles.right_side_detail}>
+                {data.also_known_as && data.also_known_as.length > 0
+                  ? data.also_known_as.join(", ")
+                  : "None"}
+              </div>
             </div>
             <div className={styles.right_side_content}>
-              <div className={styles.point}>Height</div>
-              <div className={styles.right_side_detail}>1.83 m</div>
-            </div>
-            <div className={styles.right_side_content}>
-              <div className={styles.point}>Also know as</div>
-              <div className={styles.right_side_detail}>Leo DiCaprio</div>
-            </div>
-            <div className={styles.right_side_content}>
-              <div className={styles.point}>Years active</div>
-              <div className={styles.right_side_detail}>1990 - preasent</div>
+              <div className={styles.point}>IMDB</div>
+              <div className={styles.right_side_detail}>
+                <Link
+                  href={`https://www.imdb.com/name/${data.imdb_id}`}
+                  target="_blank"
+                  className={styles.link}
+                >
+                  View on IMDB
+                </Link>
+              </div>
             </div>
           </div>
         </div>

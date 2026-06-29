@@ -57,7 +57,6 @@ export default function Celebrity() {
 
       <CelebrityMediaComponent id={id} data={celebrityDetail}/>
 
-      {/* <VideosComponent videos={videos?.results} /> */}
       <PhotosComponent photos={photos?.backdrops} />
       <CastComponent type="movies" casts={casts} />
 

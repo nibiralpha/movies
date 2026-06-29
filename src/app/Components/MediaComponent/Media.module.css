@@ -140,6 +140,10 @@
   }
 }
 
+.link{
+  color: #0000EE;
+}
+
 /* TAB */
 
 @media (min-width: 768px) and (max-width: 1024px) {
