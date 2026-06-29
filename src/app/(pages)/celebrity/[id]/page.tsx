@@ -54,7 +54,6 @@ export default function Celebrity() {
     <div>
       <MenuComponent />
       <HeaderComponent type="celebrity" id={id} data={celebrityDetail} />
-
       <CelebrityMediaComponent id={id} data={celebrityDetail}/>
 
       <PhotosComponent photos={photos?.backdrops} />
