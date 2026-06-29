@@ -19,6 +19,7 @@ import {
 import { fetchCelebrityDetails, fetchCelebrityPhotos } from "@/src/app/Services/Celebrity";
 import { CelebrityDetailResponse } from "@/src/app/types/Celebrity";
 import CelebrityMediaComponent from "@/src/app/Components/MediaComponent/CelebrityMediaComponent";
+import MovieTableComponent from "@/src/app/Components/CastComponent/MovieTableComponent";
 
 export default function Celebrity() {
   const params = useParams();
@@ -56,9 +57,9 @@ export default function Celebrity() {
       <MenuComponent />
       <HeaderComponent type="celebrity" id={id} data={celebrityDetail} />
       <CelebrityMediaComponent id={id} data={celebrityDetail}/>
-
       <PhotosComponent photos={photos?.profiles} />
-      <CastComponent type="movies" casts={casts} />
+      
+      <MovieTableComponent />
 
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>

@@ -11,10 +11,32 @@
   margin-bottom: 30px;
 }
 
+.celeb_cast{
+  align-items: flex-start;
+  display: flex;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+.celeb_cast_img {
+  display: flex;
+  /* align-items: center; */
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
 .cast_img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.celeb_cast_img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10%;
   overflow: hidden;
   margin-right: 15px;
 }
