@@ -1,3 +1,4 @@
+import SearchInputComponent from "../SearchInputComponent/SearchComponent";
 import styles from "./Menu.module.css";
 
 export default function MenuComponent() {
@@ -24,7 +25,8 @@ export default function MenuComponent() {
         <div className={styles.right}>
           <div className={styles.search}>
             <div className={styles.icon}>
-              <img src={"/search_icon.svg"} />
+              {/* <img src={"/search_icon.svg"} /> */}
+              <SearchInputComponent />
             </div>
           </div>
         </div>
