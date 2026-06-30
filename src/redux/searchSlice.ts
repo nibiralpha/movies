@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PhotoResponse } from "@app-types/Photos";
 import { SearchPersonResult, TmdbSearchResponse } from "@app-types/Search";
-
-// interface PhotoState {
-//   data: PhotoResponse;
-//   loading: boolean;
-// }
-
 interface SearchState {
   data: {
     page: number;
@@ -25,26 +18,7 @@ const initialState: SearchState = {
     total_results: 0,
   },
   loading: false,
-  //   data: {
-  //     id: 0,
-  //     backdrops: [],
-  //     logos: [],
-  //     posters: [],
-  //     profiles: [],
-  //   },
-  //   loading: false,
 };
-
-// const initialState: PhotoState = {
-//   data: {
-//     id: 0,
-//     backdrops: [],
-//     logos: [],
-//     posters: [],
-//     profiles: [],
-//   },
-//   loading: false,
-// };
 
 export const searchSlice = createSlice({
   name: "photos",
@@ -53,11 +27,11 @@ export const searchSlice = createSlice({
     setSearchData: (state, action: PayloadAction<TmdbSearchResponse>) => {
       return { ...state, data: action.payload };
     },
-    setSearchLoading: (state, action: PayloadAction<boolean>) => {
+    searchLoading: (state, action: PayloadAction<boolean>) => {
       return { ...state, loading: action.payload };
     },
   },
 });
 
-export const { setSearchData, setSearchLoading } = searchSlice.actions;
+export const { setSearchData, searchLoading } = searchSlice.actions;
 export default searchSlice.reducer;
