@@ -16,7 +16,11 @@ import {
   fetchMoviePhotos,
   fetchMovieVideos,
 } from "@/src/app/Services/Movies";
-import { fetchCelebrityDetails, fetchCelebrityPhotos, fetchCelebrityWorks } from "@/src/app/Services/Celebrity";
+import {
+  fetchCelebrityDetails,
+  fetchCelebrityPhotos,
+  fetchCelebrityWorks,
+} from "@/src/app/Services/Celebrity";
 import { CelebrityDetailResponse } from "@/src/app/types/Celebrity";
 import CelebrityMediaComponent from "@/src/app/Components/MediaComponent/CelebrityMediaComponent";
 import MovieTableComponent from "@/src/app/Components/CastComponent/MovieTableComponent";
@@ -35,10 +39,11 @@ export default function Celebrity() {
 
   const photos = useSelector((state: RootState) => state.photos.data || []);
 
-   const works = useSelector(
-    (state: RootState) => state.movieDetail.data.credits?.cast || [],
+  const celebrityWorks = useSelector(
+    (state: RootState) =>
+      state.celebrity.works || { id: 0, crew: [], cast: [] },
   );
-  
+
   const getInitData = async (): Promise<void> => {
     dispatch(fetchCelebrityDetails(id));
     dispatch(fetchCelebrityPhotos(id));
@@ -57,10 +62,11 @@ export default function Celebrity() {
     <div>
       <MenuComponent />
       <HeaderComponent type="celebrity" id={id} data={celebrityDetail} />
-      <CelebrityMediaComponent id={id} data={celebrityDetail}/>
+      <CelebrityMediaComponent id={id} data={celebrityDetail} />
       <PhotosComponent photos={photos?.profiles} />
-      
-      <MovieTableComponent />
+
+      <MovieTableComponent title="Worked on as Cast" id={id} data={celebrityWorks.cast} />
+      <MovieTableComponent title="Worked on as Crew" id={id} data={celebrityWorks.crew} />
 
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>
