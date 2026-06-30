@@ -2,6 +2,12 @@ import SearchInputComponent from "../SearchInputComponent/SearchComponent";
 import styles from "./Menu.module.css";
 
 export default function MenuComponent() {
+
+  const onSearch = (searchedData: string) => {
+    console.log(searchedData);
+    
+  }
+
   return (
     <>
       <div className={styles.menu_container}>
@@ -26,7 +32,7 @@ export default function MenuComponent() {
           <div className={styles.search}>
             <div className={styles.icon}>
               {/* <img src={"/search_icon.svg"} /> */}
-              <SearchInputComponent />
+              <SearchInputComponent onChange={onSearch}/>
             </div>
           </div>
         </div>
