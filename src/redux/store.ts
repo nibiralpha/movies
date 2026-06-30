@@ -6,6 +6,7 @@ import movieDetailSlice from "./movieDetailSlice";
 import videosSlice from "./videosSlice";
 import photoSlice from "./photoSlice";
 import tvShowDetailSlice from "./tvShowDetailSlice";
+import searchSlice from "./searchSlice";
 
 const rootReducer = combineReducers({
   slider: sliderSlice,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   tvShowDetail: tvShowDetailSlice,
   videos: videosSlice,
   photos: photoSlice,
+  search: searchSlice,
 });
 
 export const store = configureStore({

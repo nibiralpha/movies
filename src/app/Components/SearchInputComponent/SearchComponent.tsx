@@ -1,12 +1,12 @@
 "use client";
 
 import AsyncSelect from "react-select/async";
-import { components } from "react-select";
+import { components, DropdownIndicatorProps  } from "react-select";
 import { Search } from "lucide-react";
 import styles from "./Search.module.css";
 import { ChangeEvent, useRef, useState } from "react";
 
-const SearchIcon = (props: any) => (
+const SearchIcon = (props: DropdownIndicatorProps<unknown, false>) => (
   <components.DropdownIndicator {...props}>
     <Search size={18} />
   </components.DropdownIndicator>
@@ -24,7 +24,7 @@ export default function SearchInputComponent({
 
   const [search, setSearch] = useState<string>("");
 
-  const onchangeKeyword = (value: string) => {
+  const onChangeKeyword = (value: string) => {
     setSearch(value);
 
     if (timerRef.current !== null) {
@@ -40,14 +40,16 @@ export default function SearchInputComponent({
 
   const searchMovies = async (input: string) => {
     if (!input) return [];
-    onchangeKeyword(input);
+    onChangeKeyword(input);
 
-    //   return data.results.map((item: any) => ({
-    //     value: item.id,
-    //     label: item.title || item.name,
-    //     image: item.poster_path || item.profile_path,
-    //     type: item.media_type,
-    //   }));
+    // let data = { results: [] };
+
+    // return data.results.map((item: any) => ({
+    //   value: item.id,
+    //   label: item.title || item.name,
+    //   image: item.poster_path || item.profile_path,
+    //   type: item.media_type,
+    // }));
   };
 
   return (

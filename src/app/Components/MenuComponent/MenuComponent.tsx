@@ -1,12 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
 import SearchInputComponent from "../SearchInputComponent/SearchComponent";
 import styles from "./Menu.module.css";
+import { AppDispatch, RootState } from "@/src/redux/store";
+import { fetchSearchResults } from "../../Services/Search/Search";
 
 export default function MenuComponent() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const searchResult = useSelector(
+    (state: RootState) => state.search.data || {},
+  );
 
   const onSearch = (searchedData: string) => {
-    console.log(searchedData);
-    
-  }
+    dispatch(fetchSearchResults(searchedData));
+  };
 
   return (
     <>
@@ -32,7 +39,7 @@ export default function MenuComponent() {
           <div className={styles.search}>
             <div className={styles.icon}>
               {/* <img src={"/search_icon.svg"} /> */}
-              <SearchInputComponent onChange={onSearch}/>
+              <SearchInputComponent onChange={onSearch} />
             </div>
           </div>
         </div>
