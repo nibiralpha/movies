@@ -65,8 +65,8 @@ export default function Celebrity() {
       <CelebrityMediaComponent id={id} data={celebrityDetail} />
       <PhotosComponent photos={photos?.profiles} />
 
-      <MovieTableComponent title="Worked on as Cast" id={id} data={celebrityWorks.cast} />
-      <MovieTableComponent title="Worked on as Crew" id={id} data={celebrityWorks.crew} />
+      <MovieTableComponent title="Worked on as Cast" type="cast" id={id} data={celebrityWorks.cast} />
+      <MovieTableComponent title="Worked on as Crew" type="crew" id={id} data={celebrityWorks.crew} />
 
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>
