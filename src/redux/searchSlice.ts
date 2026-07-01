@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SearchPersonResult, TmdbSearchResponse } from "@app-types/Search";
-interface SearchState {
+export interface SearchState {
   data: {
     page: number;
     results: SearchPersonResult[];

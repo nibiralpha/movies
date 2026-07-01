@@ -7,7 +7,7 @@ const fetchSearchResults = (data: string) => {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(searchLoading(true));
-console.log("zzzzzzzzzzzzzzzzzzzz");
+      console.log("fetchSearchResults");
 
       const searchResponse = await getSearchResults(data);
       const searchData = searchResponse.data;
