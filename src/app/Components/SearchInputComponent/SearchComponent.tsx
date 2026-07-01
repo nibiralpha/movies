@@ -6,6 +6,7 @@ import { Search } from "lucide-react";
 import styles from "./Search.module.css";
 import { useRef, useState } from "react";
 import { SearchPersonResult, TmdbSearchResponse } from "@app-types/Search";
+import { TMDB_IMAGE_BASE } from "../../Constant/ApiDataHelper";
 
 interface SearchOption {
   value: number;
@@ -48,7 +49,7 @@ export default function SearchInputComponent({
   };
 
   const searchMovies = async (input: string) => {
-    if (!input) return [];
+    // if (!input) return [];
     onChangeKeyword(input);
   };
 
@@ -67,6 +68,36 @@ export default function SearchInputComponent({
   };
 
   const getName = (searchResult: SearchPersonResult): string => {
+    if (
+      (searchResult.media_type === "tv" ||
+        searchResult.media_type === "person") &&
+      searchResult.name !== undefined
+    ) {
+      return searchResult.name;
+    } else if (
+      searchResult.media_type === "movie" &&
+      searchResult.title !== undefined
+    ) {
+      return searchResult.title;
+    }
+
+    return "Not Found";
+  };
+
+  const getTvProgramImage = (searchResult: SearchPersonResult): string => {
+    if (
+      (searchResult.media_type === "tv" ||
+        searchResult.media_type === "movie") &&
+      searchResult.poster_path !== null
+    ) {
+      return searchResult.poster_path;
+    } else if (
+      searchResult.media_type === "person" &&
+      searchResult.profile_path !== null
+    ) {
+      return searchResult.profile_path;
+    }
+
     return "";
   };
 
@@ -80,7 +111,8 @@ export default function SearchInputComponent({
           data?.results.map((item: SearchPersonResult) => ({
             value: item.id,
             label: getName(item),
-            image: item.profile_path,
+            // image: item.profile_path,
+            image: getTvProgramImage(item),
             type: item.media_type,
           })) || []
         }
@@ -112,9 +144,9 @@ export default function SearchInputComponent({
             >
               <img
                 src={
-                  option.image
+                  option.image !== ""
                     ? `https://image.tmdb.org/t/p/w92${option.image}`
-                    : "/placeholder.png"
+                    : "/blank_celebrity.jpg"
                 }
                 width={40}
                 height={55}
