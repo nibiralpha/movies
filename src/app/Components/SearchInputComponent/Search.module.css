@@ -5,4 +5,5 @@
 .text_background {
   color: black;
   text-transform: capitalize;
+  margin-bottom: -5px;
 }

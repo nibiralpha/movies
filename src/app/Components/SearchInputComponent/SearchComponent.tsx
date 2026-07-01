@@ -6,7 +6,10 @@ import { Search } from "lucide-react";
 import styles from "./Search.module.css";
 import { useRef, useState } from "react";
 import { SearchPersonResult, TmdbSearchResponse } from "@app-types/Search";
-import { TMDB_IMAGE_BASE } from "../../Constant/ApiDataHelper";
+import {
+  TMDB_IMAGE_BASE,
+  TMDB_IMAGE_BASE_THUMB,
+} from "../../Constant/ApiDataHelper";
 
 interface SearchOption {
   value: number;
@@ -54,7 +57,7 @@ export default function SearchInputComponent({
   };
 
   const showData = async (inputValue: string) => {
-    console.log("showData function", data);
+    // console.log("showData function", data);
 
     return (
       data?.results.map((item: SearchPersonResult) => ({
@@ -132,7 +135,7 @@ export default function SearchInputComponent({
           IndicatorSeparator: null,
         }}
         formatOptionLabel={(option: SearchOption) => {
-          console.log("React Select Dropdown Option Data:", option);
+          // console.log("React Select Dropdown Option Data:", option);
 
           return (
             <div
@@ -144,9 +147,9 @@ export default function SearchInputComponent({
             >
               <img
                 src={
-                  option.image !== ""
-                    ? `https://image.tmdb.org/t/p/w92${option.image}`
-                    : "/blank_celebrity.jpg"
+                  option.image
+                    ? `${TMDB_IMAGE_BASE_THUMB}/${option.image}`
+                    : "/no_image.jpg"
                 }
                 width={40}
                 height={55}
