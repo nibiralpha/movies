@@ -110,6 +110,7 @@ export default function SearchInputComponent({
         instanceId="movie-search"
         inputValue={search}
         openMenuOnFocus={true}
+        isSearchable={true}
         defaultOptions={
           data?.results.map((item: SearchPersonResult) => ({
             value: item.id,
