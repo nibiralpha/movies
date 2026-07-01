@@ -5,7 +5,7 @@ import { components, DropdownIndicatorProps } from "react-select";
 import { Search } from "lucide-react";
 import styles from "./Search.module.css";
 import { useRef, useState } from "react";
-import { SearchPersonResult, TmdbSearchResponse } from "../../types/Search";
+import { SearchPersonResult, TmdbSearchResponse } from "@app-types/Search";
 
 interface SearchOption {
   value: number;
@@ -50,21 +50,6 @@ export default function SearchInputComponent({
   const searchMovies = async (input: string) => {
     if (!input) return [];
     onChangeKeyword(input);
-    // return [{
-    //   value: "11",
-    //   label: "ad",
-    //   image: "asd",
-    //   type: "asd"
-    // }];
-
-    // let data = { results: [] };
-
-    // return data.results.map((item: any) => ({
-    //   value: item.id,
-    //   label: item.title || item.name,
-    //   image: item.poster_path || item.profile_path,
-    //   type: item.media_type,
-    // }));
   };
 
   const showData = async (inputValue: string) => {
@@ -73,11 +58,16 @@ export default function SearchInputComponent({
     return (
       data?.results.map((item: SearchPersonResult) => ({
         value: item.id,
-        label: item.name || item.original_name,
+        // label: item.name || item.original_name,
+        label: getName(item),
         image: item.profile_path,
         type: item.media_type as "person",
       })) || []
     );
+  };
+
+  const getName = (searchResult: SearchPersonResult): string => {
+    return "";
   };
 
   return (
@@ -85,13 +75,24 @@ export default function SearchInputComponent({
       <AsyncSelect
         instanceId="movie-search"
         inputValue={search}
+        openMenuOnFocus={true}
+        defaultOptions={
+          data?.results.map((item: SearchPersonResult) => ({
+            value: item.id,
+            label: getName(item),
+            image: item.profile_path,
+            type: item.media_type,
+          })) || []
+        }
         onInputChange={(value, { action }) => {
           if (action === "input-change") {
-            // setSearch(value);
             searchMovies(value);
           }
 
           return value;
+        }}
+        onFocus={(event) => {
+          searchMovies(search);
         }}
         loadOptions={showData}
         components={{
@@ -125,8 +126,8 @@ export default function SearchInputComponent({
               />
 
               <div>
-                <div className={styles.text_background}>{option.label} aaa</div>
-                <small className={styles.text_background}>{option.type} bbbbb</small>
+                <div className={styles.text_background}>{option.label}</div>
+                <small className={styles.text_background}>{option.type}</small>
               </div>
             </div>
           );

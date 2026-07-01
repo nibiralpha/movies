@@ -29,6 +29,7 @@
       "@Services/*": ["./src/app/Services/*"],
       "@Constant/*": ["./src/app/Constant/*"],
       "@Helper/*": ["./src/app/Helper/*"],
+      "@search/*": ["./src/app/search/*"],
     }
   },
   "include": [

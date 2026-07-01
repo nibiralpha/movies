@@ -2,6 +2,7 @@
   width: 250px;
 }
 
-.text_background{
-    color: black;
+.text_background {
+  color: black;
+  text-transform: capitalize;
 }
