@@ -43,7 +43,7 @@ export default function Page() {
       <MenuComponent />
       <div className="container">
         <div className={styles.movie_section}>
-          <h2>Top 250 movies</h2>
+          <h2 className={styles.top_movies_title}>Top 250 movies</h2>
           <div className={styles.table}>
             <div className="row">
               <div key={"11"} className="col-12 col-md-2">
