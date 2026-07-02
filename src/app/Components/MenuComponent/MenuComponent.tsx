@@ -30,7 +30,7 @@ export default function MenuComponent() {
               <div className={styles.icon}>{/* <img src={} /> */}</div>
             </div>
             <div className={styles.menu}>
-              <div className={styles.menu_name}>Category</div>
+              <div className={styles.menu_name}>Top 250</div>
               <div className={styles.icon}>{/* <img src={} /> */}</div>
             </div>
           </div>

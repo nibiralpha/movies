@@ -29,7 +29,7 @@ export default function CastComponent({ casts }: CastComponentProps) {
             {casts.slice(0, 30).map((cast) => {
               return (
                 <div key={cast.id} className="col-12 col-md-2">
-                  <div className={styles.cast}>
+                  <div className={styles.top_movies}>
                     <div className={styles.cast_img}>
                       <img
                         className={styles.avater}
