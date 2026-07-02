@@ -1,6 +1,6 @@
 "use client";
 
-import AsyncSelect from "react-select/async";
+import Select from "react-select";
 import { components, DropdownIndicatorProps } from "react-select";
 import { Search } from "lucide-react";
 import styles from "./Search.module.css";
@@ -62,10 +62,9 @@ export default function SearchInputComponent({
     return (
       data?.results.map((item: SearchPersonResult) => ({
         value: item.id,
-        // label: item.name || item.original_name,
         label: getName(item),
         image: item.profile_path,
-        type: item.media_type as "person",
+        type: item.media_type,
       })) || []
     );
   };
@@ -106,16 +105,15 @@ export default function SearchInputComponent({
 
   return (
     <div className={styles.search_select}>
-      <AsyncSelect
+      <Select
         instanceId="movie-search"
         inputValue={search}
         openMenuOnFocus={true}
         isSearchable={true}
-        defaultOptions={
+        options={
           data?.results.map((item: SearchPersonResult) => ({
             value: item.id,
             label: getName(item),
-            // image: item.profile_path,
             image: getTvProgramImage(item),
             type: item.media_type,
           })) || []
@@ -130,7 +128,7 @@ export default function SearchInputComponent({
         onFocus={(event) => {
           searchMovies(search);
         }}
-        loadOptions={showData}
+        // loadOptions={showData}
         components={{
           // DropdownIndicator: SearchIcon,
           IndicatorSeparator: null,
