@@ -21,6 +21,7 @@ import {
   fetchPopulerCelebrities,
   fetchTrendingCelebrities,
 } from "@Services/Celebrity";
+import RecentViewComponent from "./Components/RecentView/RecentViewComponent";
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
@@ -136,14 +137,17 @@ export default function Page() {
         />
       </div>
       <div className={`container ${styles.swiper}`}>
+        <RecentViewComponent />
+      </div>
+      {/* <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Viewed</div>
         You have no recently viewed pages
-        {/* <SwiperComponent
+         <SwiperComponent
           shoeDetail={false}
           slidesPerView={6}
           spaceBetween={15}
-        /> */}
-      </div>
+        /> 
+      </div> */}
     </div>
   );
 }
