@@ -111,6 +111,7 @@ export default function Detail() {
       <MenuComponent />
       <HeaderComponent type="movie" id={id} data={movieDetail} />
       <MediaComponent
+        key={id}
         type="movie"
         id={id}
         data={movieDetail}

@@ -31,23 +31,41 @@ export default function MediaComponent({
   data,
   videos,
 }: Readonly<HeaderComponentProps>) {
-  const [directorsData, setDirectorsData] = useState<string[]>([]);
-  const [producerData, setProducerData] = useState<string[]>([]);
-  const [writerData, setWriterData] = useState<string[]>([]);
-  const [OfficialVideo, setOfficialVideo] = useState<VideoInterface | null>();
+  // const [directorsData, setDirectorsData] = useState<string[]>([]);
+  // const [producerData, setProducerData] = useState<string[]>([]);
+  // const [writerData, setWriterData] = useState<string[]>([]);
 
-  useEffect(() => {
-    const director = type == "movie" ? getMembers("Director", data) : getTvSeriesMembers("Director", data);
-    const producer =type == "movie" ?  getMembers("Producer", data) : getTvSeriesMembers("Producer", data);
-    const writer = type == "movie" ?  getMembers("Writer", data) : getTvSeriesMembers("Producer", data);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setDirectorsData(director);
-    setProducerData(producer);
-    setWriterData(writer);
+  const officialVideo = getOfficialVideo(videos);
 
-    const video = getOfficialVideo(videos);
-    setOfficialVideo(video);
-  }, [data, videos]);
+  const directorsData =
+    type === "movie"
+      ? getMembers("Director", data)
+      : getTvSeriesMembers("Director", data);
+
+  const producerData =
+    type === "movie"
+      ? getMembers("Producer", data)
+      : getTvSeriesMembers("Producer", data);
+
+  const writerData =
+    type === "movie"
+      ? getMembers("Writer", data)
+      : getTvSeriesMembers("Producer", data);
+
+  // const [OfficialVideo, setOfficialVideo] = useState<VideoInterface | null>();
+
+  // useEffect(() => {
+  //   const director = type == "movie" ? getMembers("Director", data) : getTvSeriesMembers("Director", data);
+  //   const producer =type == "movie" ?  getMembers("Producer", data) : getTvSeriesMembers("Producer", data);
+  //   const writer = type == "movie" ?  getMembers("Writer", data) : getTvSeriesMembers("Producer", data);
+  //   // eslint-disable-next-line react-hooks/set-state-in-effect
+  //   setDirectorsData(director);
+  //   setProducerData(producer);
+  //   setWriterData(writer);
+
+  //   const video = getOfficialVideo(videos);
+  //   setOfficialVideo(video);
+  // }, [data, videos]);
 
   return (
     <div className="container">
@@ -60,11 +78,11 @@ export default function MediaComponent({
           />
         </div>
         <div className={styles.right_video}>
-          {OfficialVideo?.key ? (
-            <iframe
+          {officialVideo?.key ? (
+            <iframe 
               width="560"
               height="315"
-              src={generateVideoEmbedUrl(OfficialVideo?.key)}
+              src={generateVideoEmbedUrl(officialVideo?.key)}
               title="YouTube video player"
               // frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
