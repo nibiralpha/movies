@@ -25,6 +25,7 @@ import {
 import { LocalStrorageData } from "@/src/app/types/Saved";
 import { useLocalStorage } from "@/src/app/Hooks/useLocalStorage";
 import { title } from "process";
+import { resetState } from "@/src/redux/movieDetailSlice";
 
 export default function Detail() {
   const params = useParams();
@@ -98,6 +99,12 @@ export default function Detail() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     getInitData();
   }, []);
+
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(resetState());
+  //   };
+  // }, [dispatch]);
 
   return (
     <div>

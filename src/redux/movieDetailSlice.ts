@@ -52,9 +52,10 @@ export const movieDetailSlice = createSlice({
     startDetailLoading: (state, action: PayloadAction<boolean>) => {
       return { ...state, loading: action.payload };
     },
+    resetState: () => initialState,
   },
 });
 
-export const { setMovieDetailsData, startDetailLoading } =
+export const { setMovieDetailsData, startDetailLoading, resetState } =
   movieDetailSlice.actions;
 export default movieDetailSlice.reducer;
