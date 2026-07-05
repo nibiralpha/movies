@@ -1,18 +1,16 @@
 import { useCallback, useState } from "react";
+import { localStorageName } from "@Constant/ApiDataHelper";
+import { LocalStrorageData } from "@app-types/Saved";
 
-export function useLocalStorage() {
+export const useLocalStorage = () => {
+  
   const getValue = (key: string) => {
     if (typeof window === "undefined") {
       return null;
     }
 
-    try {
-      const item = localStorage.getItem(key);
-
-      return item ? JSON.parse(item) : null;
-    } catch (error) {
-      console.error("Error reading localStorage:", error);
-    }
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : null;
   };
 
   const setValue = useCallback((key: string, value: unknown) => {
@@ -25,15 +23,16 @@ export function useLocalStorage() {
     }
   }, []);
 
-  const removeValue = useCallback((key: string) => {
-    if (typeof window === "undefined") return;
-
-    localStorage.removeItem(key);
-  }, []);
+  const removeValue = (id: number) => {
+    const data: LocalStrorageData[] = getValue(localStorageName);
+    const filterItem = data.filter((item) => item.id === id)
+    
+    return filterItem;
+  };
 
   return {
     getValue,
     setValue,
     removeValue,
   };
-}
+};
