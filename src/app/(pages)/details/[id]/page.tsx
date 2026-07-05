@@ -46,11 +46,11 @@ export default function Detail() {
   };
 
   useEffect(() => {
-    if(keyExists("movies")){
+    // if(keyExists("movies")){
       
-    }
+    // }
 
-    saveDataToLocalStorage("test", "{asd: 'Asd'}");
+    // saveDataToLocalStorage("test", "{asd: 'Asd'}");
   }, []);
 
   useEffect(() => {

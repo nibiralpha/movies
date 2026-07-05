@@ -126,3 +126,7 @@ export const getGender = (value: number): string => {
   if (value == 3) return "Non-binary";
   else return "Not specified";
 };
+
+export const isEmptyObject = (obj: Record<string, unknown>): boolean => {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+};
