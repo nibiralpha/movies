@@ -1,9 +1,17 @@
-export const saveDataToLocalStorage = (key: string, items: string) => {
+export const saveData = (key: string, items: string) => {
   localStorage.setItem(key, items);
 };
 
-export const deleteDataFromLocalStorage = (key: string) => {
+export const deleteData = (key: string) => {
   localStorage.removeItem(key);
+};
+
+export const loadData = <T>(key: string): T | null => {
+  const item = localStorage.getItem(key);
+  if (item === null) {
+    return null;
+  }
+  return JSON.parse(item) as T;
 };
 
 export const keyExists = (key: string): boolean => {

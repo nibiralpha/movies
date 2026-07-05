@@ -16,16 +16,21 @@ import {
   fetchMoviePhotos,
   fetchMovieVideos,
 } from "@/src/app/Services/Movies";
+import { keyExists, loadData, saveData } from "@/src/app/Helper/localstorage";
 import {
-  keyExists,
-  saveDataToLocalStorage,
-} from "@/src/app/Helper/localstorage";
+  localStorageName,
+  TMDB_IMAGE_BASE,
+} from "@/src/app/Constant/ApiDataHelper";
+import { LocalStrorageData } from "@/src/app/types/Saved";
+import { useLocalStorage } from "@/src/app/Hooks/useLocalStorage";
 
 export default function Detail() {
   const params = useParams();
   const id = Number(params.id);
 
   const dispatch = useDispatch<AppDispatch>();
+
+  const { getValue, setValue, removeValue } = useLocalStorage();
 
   const movieDetail = useSelector(
     (state: RootState) => state.movieDetail.data || {},
@@ -45,18 +50,30 @@ export default function Detail() {
     dispatch(fetchMoviePhotos(id));
   };
 
-  useEffect(() => {
-    // if(keyExists("movies")){
-      
-    // }
+  const saveDataToLocalStorage = () => {
+    const movieData: LocalStrorageData = {
+      id: movieDetail.id,
+      title: movieDetail.title,
+      image: `${TMDB_IMAGE_BASE}${movieDetail.poster_path}`,
+      type: "movie",
+    };
+    // setValue(localStorageName, movieData)
+    // console.log(getValue(localStorageName));
+    // removeValue(localStorageName)
 
-    // saveDataToLocalStorage("test", "{asd: 'Asd'}");
-  }, []);
+    // if (!keyExists("movies")) {
+    //   saveData(localStorageName, JSON.stringify(movieData));
+    // }
+  };
+
+  useEffect(() => {
+    saveDataToLocalStorage();
+  }, [movieDetail]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     getInitData();
-  }, [movieDetail]);
+  }, []);
 
   return (
     <div>
