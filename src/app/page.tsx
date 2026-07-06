@@ -29,11 +29,12 @@ export default function Page() {
   // const trendingThisWeekMovies = useSelector(
   //   (state: RootState) => state.movie.treandingThisWeek?.list || [],
   // );
-  const { trendingMovies: trendingThisWeekMovies, isLoadingTrendingMovies } =
-    useSelector((state: RootState) => ({
-      trendingMovies: state.movie.treandingThisWeek?.list || [],
+  const { trendingThisWeekMovies, isLoadingTrendingMovies } = useSelector(
+    (state: RootState) => ({
+      trendingThisWeekMovies: state.movie.treandingThisWeek?.list || [],
       isLoadingTrendingMovies: state.movie.treandingThisWeek?.loading ?? false,
-    }));
+    }),
+  );
 
   const { nowPlayingMovies, isLoadingNowPlaying } = useSelector(
     (state: RootState) => ({
@@ -49,12 +50,20 @@ export default function Page() {
     }),
   );
 
-  const populerTvShows = useSelector(
-    (state: RootState) => state.movie.populerTvShows?.list || [],
+  const { populerTvShows, isLoadingPopularTvShows } = useSelector(
+    (state: RootState) => ({
+      populerTvShows: state.movie.populerTvShows?.list || [],
+      isLoadingPopularTvShows: state.movie.populerTvShows?.loading ?? false,
+    }),
   );
-  const topRatedTvShows = useSelector(
-    (state: RootState) => state.movie.topRatedTvShows?.list || [],
+
+  const { topRatedTvShows, isLoadingTopRatedTvShows } = useSelector(
+    (state: RootState) => ({
+      topRatedTvShows: state.movie.topRatedTvShows?.list || [],
+      isLoadingTopRatedTvShows: state.movie.topRatedTvShows?.loading ?? false,
+    }),
   );
+
   const trendingCelebrities = useSelector(
     (state: RootState) => state.celebrity.treandingCelebrities?.list || [],
   );
@@ -129,12 +138,10 @@ export default function Page() {
           data={populerTvShows}
           slidesPerView={5}
           spaceBetween={15}
+          loading={isLoadingPopularTvShows}
         />
       </div>
-      {/* <div className={`container ${styles.swiper}`}>
-        <div className={styles.title}>Upcoming Movies</div>
-        <SwiperComponent slidesPerView={5} spaceBetween={15} />
-      </div> */}
+
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Top Rated TV Shows</div>
         <SwiperComponent
@@ -142,6 +149,7 @@ export default function Page() {
           data={topRatedTvShows}
           slidesPerView={5}
           spaceBetween={15}
+          loading={isLoadingTopRatedTvShows}
         />
       </div>
       <div className={`container ${styles.swiper}`}>

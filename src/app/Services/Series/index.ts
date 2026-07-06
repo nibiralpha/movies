@@ -33,14 +33,14 @@ const fetchPopulerTvShows = () => {
           populerTvShows: { list: populerTvShowsData, loading: false },
         }),
       );
-      // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
       dispatch(
         setPopulerTvShowsData({
           populerTvShows: { list: [], loading: false },
         }),
-      ); // dispatch(getAllHeroesFailed(error))
+      );
+
       // return Promise.reject(error?.response?.data);
       throw error;
     }
@@ -64,8 +64,6 @@ const fetchTopRatedTvShows = () => {
           topRatedTvShows: { list: topRatedTvShowsData, loading: false },
         }),
       );
-
-      // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
       dispatch(
@@ -73,7 +71,6 @@ const fetchTopRatedTvShows = () => {
           topRatedTvShows: { list: [], loading: false },
         }),
       );
-      // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;
     }

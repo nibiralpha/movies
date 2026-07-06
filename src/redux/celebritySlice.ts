@@ -5,13 +5,13 @@ import { CelebrityWorkInterface } from "../app/types/Celebrity";
 const initialState: CelebritiesInterface = {
   treandingCelebrities: {
     list: [],
-    // loading: false,
+    loading: false,
     // error: false,
     // errorResponse: {},
   },
   populerCelebrities: {
     list: [],
-    // loading: false,
+    loading: false,
     // error: false,
     // errorResponse: {},
   },

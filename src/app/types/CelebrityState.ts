@@ -9,7 +9,7 @@ export interface CelebritiesInterface {
 
 export interface CelebrityStateInterface {
   list: Celebrity[];
-  // loading: boolean;
+  loading: boolean;
   // error: boolean;
   // errorResponse: object;
 }

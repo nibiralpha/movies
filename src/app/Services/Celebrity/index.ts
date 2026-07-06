@@ -43,18 +43,26 @@ const fetchCelebrityDetails = (id: number) => {
 const fetchTrendingCelebrities = () => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(
+        setTreandingCelebritiesData({
+          treandingCelebrities: { list: [], loading: true },
+        }),
+      );
 
       const trendingCelebrityResponse = await getTrendingCelebrities();
       const trendingCelebrityData = trendingCelebrityResponse.data.results;
       dispatch(
         setTreandingCelebritiesData({
-          treandingCelebrities: { list: trendingCelebrityData },
+          treandingCelebrities: { list: trendingCelebrityData, loading: false },
         }),
       );
-      // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
+      dispatch(
+        setTreandingCelebritiesData({
+          treandingCelebrities: { list: [], loading: false },
+        }),
+      );
       // dispatch(startLoading(false));
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
@@ -65,21 +73,26 @@ const fetchTrendingCelebrities = () => {
 const fetchPopulerCelebrities = () => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(
+        setPopulerCelebritiesData({
+          populerCelebrities: { list: [], loading: true },
+        }),
+      );
 
       const populerCelebrities = await getPopulerCelebrities();
       const populerCelebritiesData = populerCelebrities.data.results;
       dispatch(
         setPopulerCelebritiesData({
-          populerCelebrities: { list: populerCelebritiesData },
+          populerCelebrities: { list: populerCelebritiesData, loading: false },
         }),
       );
-
-      // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      // dispatch(startLoading(false));
-      // dispatch(getAllHeroesFailed(error))
+      dispatch(
+        setPopulerCelebritiesData({
+          populerCelebrities: { list: [], loading: false },
+        }),
+      );
       // return Promise.reject(error?.response?.data);
       throw error;
     }
