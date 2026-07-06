@@ -8,6 +8,7 @@ import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 
 export default function SliderComponent({
   movies,
+  loading,
 }: Readonly<SliderComponentProps>) {
   const settings = {
     speed: 500,
@@ -20,6 +21,16 @@ export default function SliderComponent({
   };
 
   const finalMovies = movies.slice(0, 8);
+
+  if (loading) {
+    return (
+      <div className={styles.skeleton_container}>
+        <div className={styles.skeleton_content}>
+          <img src="/loading.gif" width={"40px"} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

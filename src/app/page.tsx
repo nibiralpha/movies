@@ -25,10 +25,13 @@ import { fetchPopulerTvShows, fetchTopRatedTvShows } from "@Services/Series";
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
 
-  const sliderMovies = useSelector((state: RootState) => state.slider.list);
-  // const trendingThisWeekMovies = useSelector(
-  //   (state: RootState) => state.movie.treandingThisWeek?.list || [],
-  // );
+  // const sliderMovies = useSelector((state: RootState) => state.slider.list);
+
+  const { sliderMovies, isLoadingSlider } = useSelector((state: RootState) => ({
+    sliderMovies: state.slider?.list || [],
+    isLoadingSlider: state.slider?.loading,
+  }));
+
   const { trendingThisWeekMovies, isLoadingTrendingMovies } = useSelector(
     (state: RootState) => ({
       trendingThisWeekMovies: state.movie.treandingThisWeek?.list || [],
@@ -63,13 +66,6 @@ export default function Page() {
       isLoadingTopRatedTvShows: state.movie.topRatedTvShows?.loading ?? false,
     }),
   );
-
-  // const trendingCelebrities = useSelector(
-  //   (state: RootState) => state.celebrity.treandingCelebrities?.list || [],
-  // );
-  // const populerCelebrities = useSelector(
-  //   (state: RootState) => state.celebrity.populerCelebrities?.list || [],
-  // );
 
   const { trendingCelebrities, isLoadingTrendingCelebrities } = useSelector(
     (state: RootState) => ({
@@ -106,7 +102,7 @@ export default function Page() {
   return (
     <div>
       <MenuComponent />
-      <SliderComponent movies={sliderMovies} />
+      <SliderComponent movies={sliderMovies} loading={isLoadingSlider}/>
 
       <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Trending This Week</div>

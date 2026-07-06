@@ -4,7 +4,7 @@ import { MovieResult } from "../app/types/TopUpComingMovies";
 
 const initialState: SliderState = {
   list: [],
-  loading: false,
+  loading: true,
   error: false,
   errorResponse: {},
 };
