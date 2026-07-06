@@ -45,7 +45,7 @@ export default function SliderComponent({
               <div className={styles.title}>{movie.title}</div>
               <div className={styles.desc}>{movie.overview}</div>
               <div className={styles.footer}>
-                <Button text={"Play Now"} icon={true} />
+                <Button text={"View Now"} icon={true} />
               </div>
             </div>
           </div>

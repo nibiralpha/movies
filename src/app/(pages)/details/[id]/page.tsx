@@ -35,9 +35,14 @@ export default function Detail() {
 
   const { getValue, setValue, removeValue } = useLocalStorage();
 
-  const movieDetail = useSelector(
-    (state: RootState) => state.movieDetail.data || {},
-  );
+  const { movieDetail, loading } = useSelector((state: RootState) => ({
+    movieDetail: state.movieDetail.data || {},
+    loading: state.movieDetail?.loading,
+  }));
+
+  // const movieDetail = useSelector(
+  //   (state: RootState) => state.movieDetail.data || {},
+  // );
 
   const casts = useSelector(
     (state: RootState) => state.movieDetail.data.credits?.cast || [],
@@ -109,7 +114,7 @@ export default function Detail() {
   return (
     <div>
       <MenuComponent />
-      <HeaderComponent type="movie" id={id} data={movieDetail} />
+      <HeaderComponent type="movie" id={id} data={movieDetail} loading={loading}/>
       <MediaComponent
         key={id}
         type="movie"

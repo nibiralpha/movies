@@ -1,28 +1,30 @@
-// import { useDispatch, useSelector } from "react-redux";
 import { MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Header.module.css";
 import { formatBirthday, formatRuntime } from "@Helper/function";
 import { TvShowDetailsResponse } from "@app-types/TvSeries";
-import { CelebrityDetailResponse } from "../../types/Celebrity";
-// import { AppDispatch, RootState } from "@/src/redux/store";
-// import { useEffect } from "react";
-// import { fetchMovieDetails } from "@Services/Movies";
+import { CelebrityDetailResponse } from "@app-types/Celebrity";
+
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 interface MovieHeaderProps {
   id: number;
   type: "movie";
   data: MovieDetails;
+  loading: boolean;
 }
 
 interface TvHeaderProps {
   id: number;
   type: "tvShow";
   data: TvShowDetailsResponse;
+  loading: boolean;
 }
 
 interface CelebrityProps {
   id: number;
   type: "celebrity";
   data: CelebrityDetailResponse;
+  loading: boolean;
 }
 
 type HeaderComponentProps = MovieHeaderProps | TvHeaderProps | CelebrityProps;
@@ -31,6 +33,7 @@ export default function HeaderComponent({
   id,
   type,
   data,
+  loading,
 }: Readonly<HeaderComponentProps>) {
   const year =
     type === "movie"
@@ -46,43 +49,57 @@ export default function HeaderComponent({
         ? (data?.last_air_date?.split("-")[0] ?? "N/A")
         : data.known_for_department;
 
+  //LOAD SKELETON
+  if (loading) {
+    return (
+      <div className={styles.header}>
+        <div className={`container top ${styles.head}`}>
+          <div>
+            <Skeleton width={250} height={30} />
+
+            <div
+              style={{
+                gap: 12,
+                marginTop: 6,
+              }}
+            >
+              <Skeleton width={90} height={18} />
+            </div>
+          </div>
+
+          <div className={styles.rating_area_skeleton}>
+            <Skeleton circle width={32} height={32} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className={styles.header}>
         <div className={`container top ${styles.head}`}>
-          <div>
-            <div className={styles.movie_title}>
-              {type == "movie" ? data.title : data.name}
-            </div>
-            <div className={styles.year_time}>
-              <div className={styles.year}>{year}</div>
-              {/* <div className={styles.year}>{type === "movie"
-                  ? (data?.release_date?.split("-")[0] ?? "N/A")
-                  : (data?.first_air_date?.split("-")[0] ?? "N/A")}</div>
-              <div className={styles.dot}></div> */}
-              <div className={styles.dot}></div>
-              <div className={styles.year}>
-                {/* {type == "movie"
-                  ? formatRuntime(data.runtime)
-                  : (data?.last_air_date?.split("-")[0] ?? "N/A")} */}
-                {airData}
+          {loading ? (
+            <></>
+          ) : (
+            <div>
+              <div className={styles.movie_title}>
+                {type == "movie" ? data.title : data.name}
+              </div>
+              <div className={styles.year_time}>
+                <div className={styles.year}>{year}</div>
+
+                <div className={styles.dot}></div>
+                <div className={styles.year}>{airData}</div>
               </div>
             </div>
-          </div>
+          )}
+
           <div className={styles.rating_area}>
             <div className={styles.star}>
               <img src={"/star.svg"} />
             </div>
             <div className={styles.rating}>
-              {/* {data.vote_average
-                ? data.vote_average.toString().slice(0, 3)
-                : "0"}{" "}
-              / 10 */}
-              {/* {type !== "celebrity" && (
-                <div className={styles.rating}>
-                  {data.vote_average ? data.vote_average.toFixed(1) : "0"} / 10
-                </div>
-              )} */}
               {type === "celebrity"
                 ? data.popularity
                   ? data.popularity.toFixed(1)
@@ -90,7 +107,6 @@ export default function HeaderComponent({
                 : data.vote_average
                   ? data.vote_average.toFixed(1)
                   : "0"}{" "}
-              {/* {type === "celebrity" ? "Popularity" : "/ 10"} */}
             </div>
           </div>
         </div>
