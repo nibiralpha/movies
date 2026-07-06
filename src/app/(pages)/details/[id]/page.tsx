@@ -40,22 +40,16 @@ export default function Detail() {
     loading: state.movieDetail?.loading,
   }));
 
-  // const movieDetail = useSelector(
-  //   (state: RootState) => state.movieDetail.data || {},
-  // );
-
   const casts = useSelector(
     (state: RootState) => state.movieDetail.data.credits?.cast || [],
   );
 
-  // const videos = useSelector((state: RootState) => state.videos.data || {});
   const { videos, loading: videosLoading } = useSelector(
     (state: RootState) => ({
       videos: state.videos.data || {},
       loading: state.videos.loading,
     }),
   );
-  // const photos = useSelector((state: RootState) => state.photos.data || {});
   const { photos, loading: photoLoading } = useSelector((state: RootState) => ({
     photos: state.photos.data || {},
     loading: state.videos.loading,
@@ -139,8 +133,8 @@ export default function Detail() {
       />
       <VideosComponent loading={videosLoading} videos={videos?.results} />
       <PhotosComponent photos={photos?.backdrops} loading={photoLoading} />
-      {/* <PhotosComponent photos={photos?.backdrops} /> */}
-      <CastComponent type="movies" casts={casts} />
+
+      <CastComponent type="movies" casts={casts} loading={loading}/>
 
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>
