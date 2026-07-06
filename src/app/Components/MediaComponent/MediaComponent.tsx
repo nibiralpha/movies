@@ -11,17 +11,22 @@ import {
 import { VideoInterface } from "@app-types/Videos";
 import { TvShowDetailsResponse } from "@app-types/TvSeries";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 interface MovieHeaderProps {
   id: number;
   type: "movie";
   data: MovieDetails;
   videos: VideoInterface[];
+  loading: boolean;
 }
 interface TvShowHeaderProps {
   id: number;
   type: "tvShow";
   data: TvShowDetailsResponse;
   videos: VideoInterface[];
+  loading: boolean;
 }
 
 type HeaderComponentProps = MovieHeaderProps | TvShowHeaderProps;
@@ -30,11 +35,8 @@ export default function MediaComponent({
   type,
   data,
   videos,
+  loading,
 }: Readonly<HeaderComponentProps>) {
-  // const [directorsData, setDirectorsData] = useState<string[]>([]);
-  // const [producerData, setProducerData] = useState<string[]>([]);
-  // const [writerData, setWriterData] = useState<string[]>([]);
-
   const officialVideo = getOfficialVideo(videos);
 
   const directorsData =
@@ -52,34 +54,28 @@ export default function MediaComponent({
       ? getMembers("Writer", data)
       : getTvSeriesMembers("Producer", data);
 
-  // const [OfficialVideo, setOfficialVideo] = useState<VideoInterface | null>();
-
-  // useEffect(() => {
-  //   const director = type == "movie" ? getMembers("Director", data) : getTvSeriesMembers("Director", data);
-  //   const producer =type == "movie" ?  getMembers("Producer", data) : getTvSeriesMembers("Producer", data);
-  //   const writer = type == "movie" ?  getMembers("Writer", data) : getTvSeriesMembers("Producer", data);
-  //   // eslint-disable-next-line react-hooks/set-state-in-effect
-  //   setDirectorsData(director);
-  //   setProducerData(producer);
-  //   setWriterData(writer);
-
-  //   const video = getOfficialVideo(videos);
-  //   setOfficialVideo(video);
-  // }, [data, videos]);
-
   return (
     <div className="container">
       <div className={styles.media}>
         <div className={styles.left_img}>
-          <img
-            className={styles.img}
-            width={"270px"}
-            src={`${TMDB_IMAGE_BASE}/${data.poster_path}`}
-          />
+          {loading ? (
+            <Skeleton width={270} height={350} />
+          ) : (
+            <img
+              className={styles.img}
+              width={"270px"}
+              src={`${TMDB_IMAGE_BASE}/${data.poster_path}`}
+            />
+          )}
         </div>
         <div className={styles.right_video}>
-          {officialVideo?.key ? (
-            <iframe 
+          {loading ? (
+            <Skeleton
+              height={350}
+              containerClassName={styles.skeleton_wrapper}
+            />
+          ) : officialVideo?.key ? (
+            <iframe
               width="560"
               height="315"
               src={generateVideoEmbedUrl(officialVideo?.key)}
@@ -94,23 +90,25 @@ export default function MediaComponent({
           )}
         </div>
       </div>
-      <div className={styles.detail_area}>
-        <div className={styles.details}>{data.overview}</div>
-        <div className={styles.writers}>
-          <div className={styles.writers_name}>
-            <div className={styles.position}>Director</div>
-            <div className={styles.name}>{directorsData.join(", ")}</div>
-          </div>
-          <div className={styles.writers_name}>
-            <div className={styles.position}>Producers</div>
-            <div className={styles.name}>{producerData.join(", ")}</div>
-          </div>
-          <div className={styles.writers_name}>
-            <div className={styles.position}>Writers</div>
-            <div className={styles.name}>{writerData.join(", ")}</div>
+      {!loading && (
+        <div className={styles.detail_area}>
+          <div className={styles.details}>{data.overview}</div>
+          <div className={styles.writers}>
+            <div className={styles.writers_name}>
+              <div className={styles.position}>Director</div>
+              <div className={styles.name}>{directorsData.join(", ")}</div>
+            </div>
+            <div className={styles.writers_name}>
+              <div className={styles.position}>Producers</div>
+              <div className={styles.name}>{producerData.join(", ")}</div>
+            </div>
+            <div className={styles.writers_name}>
+              <div className={styles.position}>Writers</div>
+              <div className={styles.name}>{writerData.join(", ")}</div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

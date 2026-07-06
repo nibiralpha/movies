@@ -121,6 +121,7 @@ export default function Detail() {
         id={id}
         data={movieDetail}
         videos={videos?.results}
+        loading={loading}
       />
       <VideosComponent videos={videos?.results} />
       <PhotosComponent photos={photos?.backdrops} />
