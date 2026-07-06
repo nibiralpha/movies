@@ -48,8 +48,13 @@ export default function Detail() {
     (state: RootState) => state.movieDetail.data.credits?.cast || [],
   );
 
-  const videos = useSelector((state: RootState) => state.videos.data || {});
-
+  // const videos = useSelector((state: RootState) => state.videos.data || {});
+  const { videos, loading: videosLoading } = useSelector(
+    (state: RootState) => ({
+      videos: state.videos.data || {},
+      loading: state.videos.loading,
+    }),
+  );
   const photos = useSelector((state: RootState) => state.photos.data || {});
 
   const getInitData = async (): Promise<void> => {
@@ -114,7 +119,12 @@ export default function Detail() {
   return (
     <div>
       <MenuComponent />
-      <HeaderComponent type="movie" id={id} data={movieDetail} loading={loading}/>
+      <HeaderComponent
+        type="movie"
+        id={id}
+        data={movieDetail}
+        loading={loading}
+      />
       <MediaComponent
         key={id}
         type="movie"
@@ -123,7 +133,7 @@ export default function Detail() {
         videos={videos?.results}
         loading={loading}
       />
-      <VideosComponent videos={videos?.results} />
+      <VideosComponent loading={videosLoading} videos={videos?.results} />
       <PhotosComponent photos={photos?.backdrops} />
       <CastComponent type="movies" casts={casts} />
 

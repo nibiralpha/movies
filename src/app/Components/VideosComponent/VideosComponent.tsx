@@ -10,11 +10,18 @@ import styles from "./Videos.module.css";
 import { VideoInterface } from "@app-types/Videos";
 import { generateVideoEmbedUrl, generateImageUrl } from "@Helper/function";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 interface VideosComponentProps {
   videos: VideoInterface[];
+  loading: boolean;
 }
 
-export default function VideosComponent({ videos }: VideosComponentProps) {
+export default function VideosComponent({
+  videos,
+  loading,
+}: VideosComponentProps) {
   // const displayVideos = videos.slice(0, 8);
   const numberOfVideosToShow: number = 8;
   const [showAllButton, setShowAllButton] = useState<boolean>(false);
@@ -57,35 +64,34 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
         </div>
 
         <div className="row">
-          {displayVideos.slice(0, showigVideos).map((video, i) => (
-            <div key={i} className="col-12 col-md-3">
-              <div key={video.id} className={styles.video_item}>
-                <img
-                  src={generateImageUrl(video.key, "medium")}
-                  alt=""
-                  onClick={() => setIndex(i)}
-                />
-                {/* <iframe
-                  width="560"
-                  height="315"
-                  src={generateVideoEmbedUrl(video.key)}
-                  title="YouTube video player"
-                  // frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  // referrerpolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe> */}
-                <div className={styles.play_button_area}>
-                  <img
-                    className={styles.play_button}
-                    src="/play_button.svg"
-                    alt=""
-                    onClick={() => setIndex(i)}
-                  />
+          {loading
+            ? Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="col-12 col-md-3">
+                  <div className={styles.video_item}>
+                    <Skeleton height={180} containerClassName="w-full flex-1" />
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              ))
+            : displayVideos.slice(0, showigVideos).map((video, i) => (
+                <div key={i} className="col-12 col-md-3">
+                  <div key={video.id} className={styles.video_item}>
+                    <img
+                      src={generateImageUrl(video.key, "medium")}
+                      alt=""
+                      onClick={() => setIndex(i)}
+                    />
+
+                    <div className={styles.play_button_area}>
+                      <img
+                        className={styles.play_button}
+                        src="/play_button.svg"
+                        alt=""
+                        onClick={() => setIndex(i)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
         </div>
 
         <Lightbox
@@ -98,7 +104,6 @@ export default function VideosComponent({ videos }: VideosComponentProps) {
             // @ts-expect-error unknown type
             slide: ({ slide, index: slideIndex, carousel }) => {
               const currentIndex = carousel?.index;
-
               const isActive = slideIndex === currentIndex;
 
               return (
