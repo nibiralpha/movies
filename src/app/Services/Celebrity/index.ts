@@ -12,28 +12,43 @@ import {
   getPopulerCelebrities,
   getTrendingCelebrities,
 } from "@Api/Celebrity";
-import { setPhotoData } from "@/src/redux/photoSlice";
+import { setPhotoData, setPhotoLoading } from "@/src/redux/photoSlice";
 import { PhotoResponse } from "@app-types/Photos";
-import { CelebrityWorkInterface, CelebrityWorks } from "../../types/Celebrity";
+import {
+  CelebrityDetailResponse,
+  CelebrityWorkInterface,
+  CelebrityWorks,
+} from "@app-types/Celebrity";
 
 const fetchCelebrityDetails = (id: number) => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(
+        setCelebrityDetailData({
+          celebrityDetail: {
+            details: {} as CelebrityDetailResponse,
+            loading: true,
+          },
+        }),
+      );
 
       const celebrityDetails = await getCelebrityDetail(id);
       const celebrityDetailsData = celebrityDetails.data;
       dispatch(
         setCelebrityDetailData({
-          celebrityDetail: { details: celebrityDetailsData },
+          celebrityDetail: { details: celebrityDetailsData, loading: false },
         }),
       );
-
-      // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      // dispatch(startLoading(false));
-      // dispatch(getAllHeroesFailed(error))
+      dispatch(
+        setCelebrityDetailData({
+          celebrityDetail: {
+            details: {} as CelebrityDetailResponse,
+            loading: true,
+          },
+        }),
+      );
       // return Promise.reject(error?.response?.data);
       throw error;
     }
@@ -102,7 +117,7 @@ const fetchPopulerCelebrities = () => {
 const fetchCelebrityPhotos = (id: number) => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(setPhotoLoading(true));
 
       const celebritityPhotos = await getCelebrityPhotos(id);
       const CelebrityPhotossData = celebritityPhotos.data;
@@ -116,11 +131,12 @@ const fetchCelebrityPhotos = (id: number) => {
       };
 
       dispatch(setPhotoData(data));
+      dispatch(setPhotoLoading(false));
 
       // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      // dispatch(startLoading(false));
+      dispatch(setPhotoLoading(false));
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;

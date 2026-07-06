@@ -3,7 +3,7 @@ import { Celebrity, CelebrityDetailResponse, CelebrityWorkInterface } from "./Ce
 export interface CelebritiesInterface {
   treandingCelebrities?: CelebrityStateInterface
   populerCelebrities?: CelebrityStateInterface
-  celebrityDetail: CelebrityDetailInterface
+  celebrityDetail?: CelebrityDetailInterface
   works?: CelebrityWorkInterface 
 }
 

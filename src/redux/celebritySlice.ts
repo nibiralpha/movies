@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CelebritiesInterface } from "@app-types/CelebrityState";
-import { CelebrityWorkInterface } from "../app/types/Celebrity";
+import { CelebrityWorkInterface } from "@app-types/Celebrity";
 
 const initialState: CelebritiesInterface = {
   treandingCelebrities: {

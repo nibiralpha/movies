@@ -14,7 +14,7 @@ const initialState: PhotoState = {
     posters: [],
     profiles: []
   },
-  loading: false,
+  loading: true,
 };
 
 export const photoSlice = createSlice({

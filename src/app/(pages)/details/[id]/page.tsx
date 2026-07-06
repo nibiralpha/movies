@@ -50,6 +50,7 @@ export default function Detail() {
       loading: state.videos.loading,
     }),
   );
+  
   const { photos, loading: photoLoading } = useSelector((state: RootState) => ({
     photos: state.photos.data || {},
     loading: state.videos.loading,

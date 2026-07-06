@@ -33,10 +33,17 @@ export default function Celebrity() {
     celebrityDetail:
       state.celebrity.celebrityDetail?.details ||
       ({} as CelebrityDetailResponse),
-    celebLoading: state.celebrity.celebrityDetail.loading,
+    celebLoading:
+      state.celebrity.celebrityDetail === undefined
+        ? true
+        : state.celebrity.celebrityDetail.loading,
   }));
 
-  const photos = useSelector((state: RootState) => state.photos.data || []);
+  // const photos = useSelector((state: RootState) => state.photos.data || []);
+  const { photos, loading: photoLoading } = useSelector((state: RootState) => ({
+    photos: state.photos.data || {},
+    loading: state.photos.loading,
+  }));
 
   const celebrityWorks = useSelector(
     (state: RootState) =>
@@ -57,9 +64,14 @@ export default function Celebrity() {
   return (
     <div>
       <MenuComponent />
-      <HeaderComponent type="celebrity" id={id} loading={celebLoading} data={celebrityDetail} />
+      <HeaderComponent
+        type="celebrity"
+        id={id}
+        loading={celebLoading}
+        data={celebrityDetail}
+      />
       <CelebrityMediaComponent id={id} data={celebrityDetail} />
-      <PhotosComponent photos={photos?.profiles} />
+      <PhotosComponent loading={photoLoading} photos={photos?.profiles} />
 
       <MovieTableComponent
         title="Worked on as Cast"
