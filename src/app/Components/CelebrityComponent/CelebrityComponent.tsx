@@ -42,7 +42,6 @@ export default function CelebrityComponent({
             <div key={index} className={styles.skeleton_content}>
               <Skeleton circle width={180} height={180} />
               <Skeleton width={100} />
-              <Skeleton width={70} />
             </div>
           ))}
         </div>

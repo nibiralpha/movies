@@ -4,31 +4,31 @@ import { MoviesInterface } from "@app-types/MovieState";
 const initialState: MoviesInterface = {
   treandingThisWeek: {
     list: [],
-    loading: false,
+    loading: true,
     // error: false,
     // errorResponse: {},
   },
   nowPlaying: {
     list: [],
-    loading: false,
+    loading: true,
     // error: false,
     // errorResponse: {},
   },
   populerMovies: {
     list: [],
-    loading: false,
+    loading: true,
     // error: false,
     // errorResponse: {},
   },
   populerTvShows: {
     list: [],
-    loading: false,
+    loading: true,
     // error: false,
     // errorResponse: {},
   },
   topRatedTvShows: {
     list: [],
-    loading: false,
+    loading: true,
     // error: false,
     // errorResponse: {},
   },
