@@ -4,18 +4,11 @@ import styles from "./Celebrity.module.css";
 
 import HeaderComponent from "@/src/app/Components/HeaderComponent/HeaderComponent";
 import MenuComponent from "@/src/app/Components/MenuComponent/MenuComponent";
-import MediaComponent from "@/src/app/Components/MediaComponent/MediaComponent";
-import VideosComponent from "@/src/app/Components/VideosComponent/VideosComponent";
 import PhotosComponent from "@/src/app/Components/PhotosComponent/PhotosComponent";
-import CastComponent from "@/src/app/Components/CastComponent/CastComponent";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/src/redux/store";
-import {
-  fetchMovieDetails,
-  fetchMoviePhotos,
-  fetchMovieVideos,
-} from "@/src/app/Services/Movies";
+
 import {
   fetchCelebrityDetails,
   fetchCelebrityPhotos,
@@ -31,11 +24,17 @@ export default function Celebrity() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const celebrityDetail = useSelector(
-    (state: RootState) =>
+  // const celebrityDetail = useSelector(
+  //   (state: RootState) =>
+  //     state.celebrity.celebrityDetail?.details ||
+  //     ({} as CelebrityDetailResponse),
+  // );
+  const { celebrityDetail, celebLoading } = useSelector((state: RootState) => ({
+    celebrityDetail:
       state.celebrity.celebrityDetail?.details ||
       ({} as CelebrityDetailResponse),
-  );
+    celebLoading: state.celebrity.celebrityDetail.loading,
+  }));
 
   const photos = useSelector((state: RootState) => state.photos.data || []);
 
@@ -48,9 +47,6 @@ export default function Celebrity() {
     dispatch(fetchCelebrityDetails(id));
     dispatch(fetchCelebrityPhotos(id));
     dispatch(fetchCelebrityWorks(id));
-    // dispatch(fetchMovieDetails(id));
-    // dispatch(fetchMovieVideos(id));
-    // dispatch(fetchMoviePhotos(id));
   };
 
   useEffect(() => {
@@ -61,12 +57,22 @@ export default function Celebrity() {
   return (
     <div>
       <MenuComponent />
-      <HeaderComponent type="celebrity" id={id} data={celebrityDetail} />
+      <HeaderComponent type="celebrity" id={id} loading={celebLoading} data={celebrityDetail} />
       <CelebrityMediaComponent id={id} data={celebrityDetail} />
       <PhotosComponent photos={photos?.profiles} />
 
-      <MovieTableComponent title="Worked on as Cast" type="cast" id={id} data={celebrityWorks.cast} />
-      <MovieTableComponent title="Worked on as Crew" type="crew" id={id} data={celebrityWorks.crew} />
+      <MovieTableComponent
+        title="Worked on as Cast"
+        type="cast"
+        id={id}
+        data={celebrityWorks.cast}
+      />
+      <MovieTableComponent
+        title="Worked on as Crew"
+        type="crew"
+        id={id}
+        data={celebrityWorks.crew}
+      />
 
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>

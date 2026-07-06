@@ -46,7 +46,7 @@ export default function CastComponent({ casts, loading }: CastComponentProps) {
                     </div>
                   </div>
                 ))
-              : // 2. Success State (Shows actual cast data)
+              :
                 casts.slice(0, 30).map((cast) => {
                   return (
                     <div key={cast.id} className="col-12 col-md-2">

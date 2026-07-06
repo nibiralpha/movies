@@ -17,7 +17,7 @@ const initialState: CelebritiesInterface = {
   },
   celebrityDetail: {
     details: null,
-    // loading: false,
+    loading: true,
     // error: false,
     // errorResponse: {},
   },
