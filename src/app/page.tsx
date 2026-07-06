@@ -27,15 +27,29 @@ export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
 
   const sliderMovies = useSelector((state: RootState) => state.slider.list);
-  const trendingThisWeekMovies = useSelector(
-    (state: RootState) => state.movie.treandingThisWeek?.list || [],
+  // const trendingThisWeekMovies = useSelector(
+  //   (state: RootState) => state.movie.treandingThisWeek?.list || [],
+  // );
+  const { trendingMovies: trendingThisWeekMovies, isLoadingTrendingMovies } =
+    useSelector((state: RootState) => ({
+      trendingMovies: state.movie.treandingThisWeek?.list || [],
+      isLoadingTrendingMovies: state.movie.treandingThisWeek?.loading ?? false,
+    }));
+
+  const { nowPlayingMovies, isLoadingNowPlaying } = useSelector(
+    (state: RootState) => ({
+      nowPlayingMovies: state.movie.nowPlaying?.list || [],
+      isLoadingNowPlaying: state.movie.nowPlaying?.loading ?? false,
+    }),
   );
-  const nowPlayingMovies = useSelector(
-    (state: RootState) => state.movie.nowPlaying?.list || [],
+
+  const { populerMovies, isLoadingPopularMovies } = useSelector(
+    (state: RootState) => ({
+      populerMovies: state.movie.populerMovies?.list || [],
+      isLoadingPopularMovies: state.movie.populerMovies?.loading ?? false,
+    }),
   );
-  const populerMovies = useSelector(
-    (state: RootState) => state.movie.populerMovies?.list || [],
-  );
+
   const populerTvShows = useSelector(
     (state: RootState) => state.movie.populerTvShows?.list || [],
   );
@@ -77,6 +91,7 @@ export default function Page() {
           data={trendingThisWeekMovies}
           slidesPerView={5}
           spaceBetween={15}
+          loading={isLoadingTrendingMovies}
         />
       </div>
       <div className={`container ${styles.swiper}`}>
@@ -86,6 +101,7 @@ export default function Page() {
           data={nowPlayingMovies}
           slidesPerView={5}
           spaceBetween={15}
+          loading={isLoadingNowPlaying}
         />
       </div>
       <div className={`container ${styles.swiper}`}>
@@ -95,6 +111,7 @@ export default function Page() {
           data={populerMovies}
           slidesPerView={5}
           spaceBetween={15}
+          loading={isLoadingPopularMovies}
         />
       </div>
       <div className={`container ${styles.swiper}`}>

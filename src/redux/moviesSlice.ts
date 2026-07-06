@@ -4,31 +4,31 @@ import { MoviesInterface } from "@app-types/MovieState";
 const initialState: MoviesInterface = {
   treandingThisWeek: {
     list: [],
-    // loading: false,
+    loading: false,
     // error: false,
     // errorResponse: {},
   },
   nowPlaying: {
     list: [],
-    // loading: false,
+    loading: false,
     // error: false,
     // errorResponse: {},
   },
   populerMovies: {
     list: [],
-    // loading: false,
+    loading: false,
     // error: false,
     // errorResponse: {},
   },
   populerTvShows: {
     list: [],
-    // loading: false,
+    loading: false,
     // error: false,
     // errorResponse: {},
   },
   topRatedTvShows: {
     list: [],
-    // loading: false,
+    loading: false,
     // error: false,
     // errorResponse: {},
   },
@@ -44,6 +44,9 @@ export const movieSlice = createSlice({
     ) => {
       return { ...state, treandingThisWeek: action.payload.treandingThisWeek };
     },
+    startLoadingTreandingThisWeek: (state, action: PayloadAction<boolean>) => {
+      return { ...state, loading: action.payload };
+    },
     setNowPlayingData: (state, action: PayloadAction<MoviesInterface>) => {
       return { ...state, nowPlaying: action.payload.nowPlaying };
     },
@@ -56,9 +59,6 @@ export const movieSlice = createSlice({
     setTopRatedTvShowsData: (state, action: PayloadAction<MoviesInterface>) => {
       return { ...state, topRatedTvShows: action.payload.topRatedTvShows };
     },
-    // startLoading: (state, action: PayloadAction<boolean>) => {
-    //   return { ...state, loading: action.payload };
-    // },
   },
 });
 
@@ -67,6 +67,6 @@ export const {
   setNowPlayingData,
   setPopulerMoviesData,
   setPopulerTvShowsData,
-  setTopRatedTvShowsData
+  setTopRatedTvShowsData,
 } = movieSlice.actions;
 export default movieSlice.reducer;

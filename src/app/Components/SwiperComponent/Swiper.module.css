@@ -104,3 +104,21 @@
   width: 12px !important;
   color: #fff !important;
 } */
+
+.Skeleton_div {
+  width: 180px;
+}
+
+/* MOBILE */
+@media screen and (max-width: 430px) {
+  .Skeleton_div {
+    width: 100%;
+  }
+}
+
+/* TAB */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .Skeleton_div {
+    width: 23%;
+  }
+}

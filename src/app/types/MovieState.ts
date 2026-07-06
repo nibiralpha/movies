@@ -10,7 +10,7 @@ export interface MoviesInterface {
 
 export interface MovieStateInterface {
   list: MovieResult[];
-  // loading: boolean;
+  loading: boolean;
   // error: boolean;
   // errorResponse: object;
 }

@@ -17,11 +17,7 @@ import {
   getTrendingThisWeek,
 } from "@/src/app/Api/Movies";
 
-import {
-  getPopulerTvShows,
-  getTopRatedTvShows,
-
-} from "@/src/app/Api/TVShows";
+import { getPopulerTvShows, getTopRatedTvShows } from "@/src/app/Api/TVShows";
 
 import { Dispatch } from "@reduxjs/toolkit";
 import {
@@ -53,20 +49,28 @@ const fetchSliderMovies = () => {
 const fetchTrendingThisWeekMovies = () => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(
+        setTreandingThisWeekData({
+          treandingThisWeek: { list: [], loading: true },
+        }),
+      );
 
       const movieResponse = await getTrendingThisWeek();
       const treandingThisWeekData = movieResponse.data.results;
       dispatch(
         setTreandingThisWeekData({
-          treandingThisWeek: { list: treandingThisWeekData },
+          treandingThisWeek: { list: treandingThisWeekData, loading: false },
         }),
       );
 
       // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      dispatch(startLoading(false));
+      dispatch(
+        setTreandingThisWeekData({
+          treandingThisWeek: { list: [], loading: false },
+        }),
+      );
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;
@@ -77,20 +81,28 @@ const fetchTrendingThisWeekMovies = () => {
 const fetchNowPlaying = () => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
-
-      const movieResponse = await getNowPlaying();
-      const nowPlayingData = movieResponse.data.results;
       dispatch(
         setNowPlayingData({
-          nowPlaying: { list: nowPlayingData },
+          nowPlaying: { list: [], loading: true },
         }),
       );
 
-      // dispatch(startLoading(false));
+      const movieResponse = await getNowPlaying();
+      const nowPlayingData = movieResponse.data.results;
+
+      dispatch(
+        setNowPlayingData({
+          nowPlaying: { list: nowPlayingData, loading: false },
+        }),
+      );
+
     } catch (error: unknown) {
       console.log(error);
-      dispatch(startLoading(false));
+      dispatch(
+        setNowPlayingData({
+          nowPlaying: { list: [], loading: false },
+        }),
+      );
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;
@@ -101,21 +113,29 @@ const fetchNowPlaying = () => {
 const fetchPopulerMovies = () => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(
+        setPopulerMoviesData({
+          populerMovies: { list: [], loading: true },
+        }),
+      );
 
       const movieResponse = await getPopulerMovies();
       const populerMoviesData = movieResponse.data.results;
+
       dispatch(
         setPopulerMoviesData({
-          populerMovies: { list: populerMoviesData },
+          populerMovies: { list: populerMoviesData, loading: false },
         }),
       );
 
       // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      dispatch(startLoading(false));
-      // dispatch(getAllHeroesFailed(error))
+      dispatch(
+        setPopulerMoviesData({
+          populerMovies: { list: [], loading: false },
+        }),
+      ); // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;
     }
@@ -124,20 +144,29 @@ const fetchPopulerMovies = () => {
 const fetchPopulerTvShows = () => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(
+        setPopulerTvShowsData({
+          populerTvShows: { list: [], loading: true },
+        }),
+      );
 
       const tvShowsResponse = await getPopulerTvShows();
       const populerTvShowsData = tvShowsResponse.data.results;
       dispatch(
         setPopulerTvShowsData({
-          populerTvShows: { list: populerTvShowsData },
+          populerTvShows: { list: populerTvShowsData, loading: false },
         }),
       );
 
       // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      dispatch(startLoading(false));
+      dispatch(
+        setPopulerTvShowsData({
+          populerTvShows: { list: [], loading: false },
+        }),
+      );
+
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;
@@ -148,20 +177,27 @@ const fetchPopulerTvShows = () => {
 const fetchTopRatedTvShows = () => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
-
-      const topRatedTvShowsResponse = await getTopRatedTvShows();
-      const topRatedTvShowsData = topRatedTvShowsResponse.data.results;
       dispatch(
         setTopRatedTvShowsData({
-          topRatedTvShows: { list: topRatedTvShowsData },
+          topRatedTvShows: { list: [], loading: true },
         }),
       );
 
-      // dispatch(startLoading(false));
+      const topRatedTvShowsResponse = await getTopRatedTvShows();
+      const topRatedTvShowsData = topRatedTvShowsResponse.data.results;
+
+      dispatch(
+        setTopRatedTvShowsData({
+          topRatedTvShows: { list: topRatedTvShowsData, loading: false },
+        }),
+      );
     } catch (error: unknown) {
       console.log(error);
-      dispatch(startLoading(false));
+      dispatch(
+        setTopRatedTvShowsData({
+          topRatedTvShows: { list: [], loading: false },
+        }),
+      );
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;
