@@ -64,11 +64,27 @@ export default function Page() {
     }),
   );
 
-  const trendingCelebrities = useSelector(
-    (state: RootState) => state.celebrity.treandingCelebrities?.list || [],
+  // const trendingCelebrities = useSelector(
+  //   (state: RootState) => state.celebrity.treandingCelebrities?.list || [],
+  // );
+  // const populerCelebrities = useSelector(
+  //   (state: RootState) => state.celebrity.populerCelebrities?.list || [],
+  // );
+
+  const { trendingCelebrities, isLoadingTrendingCelebrities } = useSelector(
+    (state: RootState) => ({
+      trendingCelebrities: state.celebrity.treandingCelebrities?.list || [],
+      isLoadingTrendingCelebrities:
+        state.celebrity.treandingCelebrities?.loading ?? false,
+    }),
   );
-  const populerCelebrities = useSelector(
-    (state: RootState) => state.celebrity.populerCelebrities?.list || [],
+
+  const { populerCelebrities, isLoadingPopularCelebrities } = useSelector(
+    (state: RootState) => ({
+      populerCelebrities: state.celebrity.populerCelebrities?.list || [],
+      isLoadingPopularCelebrities:
+        state.celebrity.populerCelebrities?.loading ?? false,
+    }),
   );
 
   const getInitData = async (): Promise<void> => {
@@ -128,6 +144,7 @@ export default function Page() {
           data={populerCelebrities}
           slidesPerView={6}
           spaceBetween={15}
+          loading={isLoadingPopularCelebrities}
         />
       </div>
 
@@ -158,6 +175,7 @@ export default function Page() {
           data={trendingCelebrities}
           slidesPerView={6}
           spaceBetween={15}
+          loading={isLoadingTrendingCelebrities}
         />
       </div>
       <div className={`container ${styles.swiper}`}>

@@ -40,10 +40,7 @@ export default function SwiperComponent({
 
   const changePageToTvShow = (id: number) => {
     router.push("/series/details/" + id);
-  };
-
-  console.log(loading);
-  
+  };  
 
   return (
     <div>
