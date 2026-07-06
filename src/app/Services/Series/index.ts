@@ -19,21 +19,28 @@ import { setPhotoData, setPhotoLoading } from "@/src/redux/photoSlice";
 const fetchPopulerTvShows = () => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
-
-      const tvShowsResponse = await getPopulerTvShows();
-      const populerTvShowsData = tvShowsResponse.data.results;
       dispatch(
         setPopulerTvShowsData({
-          populerTvShows: { list: populerTvShowsData },
+          populerTvShows: { list: [], loading: true },
         }),
       );
 
+      const tvShowsResponse = await getPopulerTvShows();
+      const populerTvShowsData = tvShowsResponse.data.results;
+
+      dispatch(
+        setPopulerTvShowsData({
+          populerTvShows: { list: populerTvShowsData, loading: false },
+        }),
+      );
       // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      dispatch(startLoading(false));
-      // dispatch(getAllHeroesFailed(error))
+      dispatch(
+        setPopulerTvShowsData({
+          populerTvShows: { list: [], loading: false },
+        }),
+      ); // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;
     }
@@ -43,20 +50,29 @@ const fetchPopulerTvShows = () => {
 const fetchTopRatedTvShows = () => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(
+        setTopRatedTvShowsData({
+          topRatedTvShows: { list: [], loading: true },
+        }),
+      );
 
       const topRatedTvShowsResponse = await getTopRatedTvShows();
       const topRatedTvShowsData = topRatedTvShowsResponse.data.results;
+
       dispatch(
         setTopRatedTvShowsData({
-          topRatedTvShows: { list: topRatedTvShowsData },
+          topRatedTvShows: { list: topRatedTvShowsData, loading: false },
         }),
       );
 
       // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
-      dispatch(startLoading(false));
+      dispatch(
+        setTopRatedTvShowsData({
+          topRatedTvShows: { list: [], loading: false },
+        }),
+      );
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);
       throw error;

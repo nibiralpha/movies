@@ -12,16 +12,15 @@ import { AppDispatch, RootState } from "@redux/store";
 import {
   fetchNowPlaying,
   fetchPopulerMovies,
-  fetchPopulerTvShows,
   fetchSliderMovies,
-  fetchTopRatedTvShows,
   fetchTrendingThisWeekMovies,
 } from "@/src/app/Services/Movies";
 import {
   fetchPopulerCelebrities,
   fetchTrendingCelebrities,
 } from "@Services/Celebrity";
-import RecentViewComponent from "./Components/RecentView/RecentViewComponent";
+import RecentViewComponent from "@Components/RecentView/RecentViewComponent";
+import { fetchPopulerTvShows, fetchTopRatedTvShows } from "@Services/Series";
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();

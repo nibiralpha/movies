@@ -141,69 +141,6 @@ const fetchPopulerMovies = () => {
     }
   };
 };
-const fetchPopulerTvShows = () => {
-  return async (dispatch: Dispatch) => {
-    try {
-      dispatch(
-        setPopulerTvShowsData({
-          populerTvShows: { list: [], loading: true },
-        }),
-      );
-
-      const tvShowsResponse = await getPopulerTvShows();
-      const populerTvShowsData = tvShowsResponse.data.results;
-      dispatch(
-        setPopulerTvShowsData({
-          populerTvShows: { list: populerTvShowsData, loading: false },
-        }),
-      );
-
-      // dispatch(startLoading(false));
-    } catch (error: unknown) {
-      console.log(error);
-      dispatch(
-        setPopulerTvShowsData({
-          populerTvShows: { list: [], loading: false },
-        }),
-      );
-
-      // dispatch(getAllHeroesFailed(error))
-      // return Promise.reject(error?.response?.data);
-      throw error;
-    }
-  };
-};
-
-const fetchTopRatedTvShows = () => {
-  return async (dispatch: Dispatch) => {
-    try {
-      dispatch(
-        setTopRatedTvShowsData({
-          topRatedTvShows: { list: [], loading: true },
-        }),
-      );
-
-      const topRatedTvShowsResponse = await getTopRatedTvShows();
-      const topRatedTvShowsData = topRatedTvShowsResponse.data.results;
-
-      dispatch(
-        setTopRatedTvShowsData({
-          topRatedTvShows: { list: topRatedTvShowsData, loading: false },
-        }),
-      );
-    } catch (error: unknown) {
-      console.log(error);
-      dispatch(
-        setTopRatedTvShowsData({
-          topRatedTvShows: { list: [], loading: false },
-        }),
-      );
-      // dispatch(getAllHeroesFailed(error))
-      // return Promise.reject(error?.response?.data);
-      throw error;
-    }
-  };
-};
 
 const fetchMovieDetails = (id: number) => {
   return async (dispatch: Dispatch) => {
@@ -272,8 +209,6 @@ export {
   fetchTrendingThisWeekMovies,
   fetchNowPlaying,
   fetchPopulerMovies,
-  fetchPopulerTvShows,
-  fetchTopRatedTvShows,
   fetchMovieDetails,
   fetchMovieVideos,
   fetchMoviePhotos,

@@ -6,7 +6,7 @@ import SwiperComponent from "@Components/SwiperComponent/SwiperComponent";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@redux/store";
-import { fetchTopRatedTvShows } from "@/src/app/Services/Movies";
+import { fetchTopRatedTvShows } from "@/src/app/Services/Series";
 
 export default function RecentViewComponent() {
   const dispatch = useDispatch<AppDispatch>();
