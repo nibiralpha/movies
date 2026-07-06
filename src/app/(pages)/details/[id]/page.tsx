@@ -55,7 +55,11 @@ export default function Detail() {
       loading: state.videos.loading,
     }),
   );
-  const photos = useSelector((state: RootState) => state.photos.data || {});
+  // const photos = useSelector((state: RootState) => state.photos.data || {});
+  const { photos, loading: photoLoading } = useSelector((state: RootState) => ({
+    photos: state.photos.data || {},
+    loading: state.videos.loading,
+  }));
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchMovieDetails(id));
@@ -134,7 +138,8 @@ export default function Detail() {
         loading={loading}
       />
       <VideosComponent loading={videosLoading} videos={videos?.results} />
-      <PhotosComponent photos={photos?.backdrops} />
+      <PhotosComponent photos={photos?.backdrops} loading={photoLoading} />
+      {/* <PhotosComponent photos={photos?.backdrops} /> */}
       <CastComponent type="movies" casts={casts} />
 
       <div className={`container`}>

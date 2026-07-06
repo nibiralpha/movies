@@ -18,7 +18,8 @@
   grid-template-columns: repeat(12, 1fr);
 }
 
-.previewGrid img {
+.previewGrid img,
+.previewGrid > div {
   width: 100%;
   height: 220px;
   object-fit: cover;
@@ -29,7 +30,10 @@
 
 .previewGrid img:nth-child(1),
 .previewGrid img:nth-child(2),
-.previewGrid img:nth-child(3) {
+.previewGrid img:nth-child(3),
+.previewGrid :nth-child(1),
+.previewGrid :nth-child(2),
+.previewGrid :nth-child(3) {
   grid-column: span 4;
 }
 
