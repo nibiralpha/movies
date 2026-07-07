@@ -116,7 +116,7 @@ export default function SwiperComponent({
                     <Button
                       onClick={() => changePage(movie.id)}
                       className="full_width"
-                      text="Trailer 1"
+                      text="View Now"
                       icon={true}
                     />
                   </div>

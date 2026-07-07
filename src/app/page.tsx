@@ -174,9 +174,9 @@ export default function Page() {
           loading={isLoadingTrendingCelebrities}
         />
       </div>
-      <div className={`container ${styles.swiper}`}>
+      {/* <div className={`container ${styles.swiper}`}>
         <RecentViewComponent />
-      </div>
+      </div> */}
       {/* <div className={`container ${styles.swiper}`}>
         <div className={styles.title}>Viewed</div>
         You have no recently viewed pages
