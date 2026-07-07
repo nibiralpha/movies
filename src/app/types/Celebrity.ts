@@ -51,4 +51,5 @@ export interface CelebrityWorkInterface {
   id: number;
   cast: CelebrityWorks[];
   crew: CelebrityWorks[];
+  loading: boolean
 }

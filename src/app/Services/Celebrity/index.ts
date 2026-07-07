@@ -3,6 +3,7 @@ import {
   setCelebrityWorkData,
   setPopulerCelebritiesData,
   setTreandingCelebritiesData,
+  startLoading,
 } from "@redux/celebritySlice";
 import { Dispatch } from "@reduxjs/toolkit";
 import {
@@ -147,7 +148,7 @@ const fetchCelebrityPhotos = (id: number) => {
 const fetchCelebrityWorks = (id: number) => {
   return async (dispatch: Dispatch) => {
     try {
-      // dispatch(startLoading(true));
+      dispatch(startLoading(true));
 
       const celebritityWorks = await getCelebrityMovies(id);
       const CelebrityWorksData = celebritityWorks.data;
@@ -194,13 +195,17 @@ const fetchCelebrityWorks = (id: number) => {
           poster_path: item.poster_path ?? "",
           vote_average: item.vote_average ?? 0,
         })),
+        loading: false,
       };
 
       dispatch(setCelebrityWorkData(data));
+      dispatch(startLoading(false));
 
       // dispatch(startLoading(false));
     } catch (error: unknown) {
       console.log(error);
+      dispatch(startLoading(true));
+
       // dispatch(startLoading(false));
       // dispatch(getAllHeroesFailed(error))
       // return Promise.reject(error?.response?.data);

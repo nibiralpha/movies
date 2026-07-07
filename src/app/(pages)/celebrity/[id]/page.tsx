@@ -45,9 +45,16 @@ export default function Celebrity() {
     loading: state.photos.loading,
   }));
 
-  const celebrityWorks = useSelector(
-    (state: RootState) =>
-      state.celebrity.works || { id: 0, crew: [], cast: [] },
+  // const celebrityWorks = useSelector(
+  //   (state: RootState) =>
+  //     state.celebrity.works || { id: 0, crew: [], cast: [] },
+  // );
+
+  const { celebrityWorks, loading: celebrityWorksLoading } = useSelector(
+    (state: RootState) => ({
+      celebrityWorks: state.celebrity.works || { id: 0, crew: [], cast: [] },
+      loading: state.celebrity.works?.loading,
+    }),
   );
 
   const getInitData = async (): Promise<void> => {
@@ -78,12 +85,14 @@ export default function Celebrity() {
         type="cast"
         id={id}
         data={celebrityWorks.cast}
+        loading={celebLoading}
       />
       <MovieTableComponent
         title="Worked on as Crew"
         type="crew"
         id={id}
         data={celebrityWorks.crew}
+        loading={celebLoading}
       />
 
       <div className={`container`}>

@@ -25,6 +25,7 @@ const initialState: CelebritiesInterface = {
     id: 0,
     cast: [],
     crew: [],
+    loading: true
   },
 };
 
@@ -79,5 +80,6 @@ export const {
   setPopulerCelebritiesData,
   setCelebrityDetailData,
   setCelebrityWorkData,
+  startLoading
 } = celebritySlice.actions;
 export default celebritySlice.reducer;
