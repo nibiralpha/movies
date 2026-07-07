@@ -57,7 +57,7 @@ export default function SearchInputComponent({
   };
 
   const changePage = (type: "movie" | "tv" | "person", id: number) => {
-    setSearch("");
+    
     if (type === "movie") {
       router.push("/details/" + id);
     }

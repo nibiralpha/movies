@@ -12,6 +12,7 @@ import { generateVideoEmbedUrl, generateImageUrl } from "@Helper/function";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Button from "../Button/ButtonComponent";
 
 interface VideosComponentProps {
   videos: VideoInterface[];
@@ -32,11 +33,14 @@ export default function VideosComponent({
   const [index, setIndex] = useState(-1);
 
   const showAll = () => {
+    console.log("zzzzzzzzzzzzzzz");
+
     setShowingVideos(videos.length);
     setShowAllButton(true);
   };
 
   const hideAll = () => {
+    console.log("xxxxxxxxxxxx");
     setShowingVideos(numberOfVideosToShow);
     setShowAllButton(false);
   };
@@ -46,6 +50,8 @@ export default function VideosComponent({
     setDisplayVideos(videos);
   }, [videos]);
 
+  console.log(showAllButton);
+
   return (
     <div className="container">
       <div className={styles.videos_section}>
@@ -54,11 +60,12 @@ export default function VideosComponent({
             <h2 className={styles.videos}>Videos</h2>
           </div>
           {videos.length > numberOfVideosToShow && (
-            <div
-              onClick={showAllButton == true ? hideAll : showAll}
-              className={styles.show_all}
-            >
-              {showAllButton ? "Hide All" : "Show All"}
+            <div>
+              {showAllButton === true ? (
+                <Button onClick={() => hideAll()} text="Hide All" />
+              ) : (
+                <Button onClick={() => showAll()} text="Show All" />
+              )}
             </div>
           )}
         </div>
@@ -73,7 +80,9 @@ export default function VideosComponent({
               </div>
             ))
           ) : displayVideos.length === 0 ? (
-            <p className={`${styles.no_data} ps-4`}>No data available to display.</p>
+            <p className={`${styles.no_data} ps-4`}>
+              No data available to display.
+            </p>
           ) : (
             displayVideos.slice(0, showigVideos).map((video, i) => (
               <div key={i} className="col-12 col-md-3">
