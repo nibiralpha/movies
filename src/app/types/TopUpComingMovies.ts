@@ -21,7 +21,10 @@ export interface MovieResult {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  media_type: "movie" | "tv"
 }
+
+
 
 export interface TopUpComingMovies {
   dates: MovieDates;

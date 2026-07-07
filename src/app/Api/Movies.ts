@@ -19,7 +19,7 @@ const getTrendingThisWeek = async (
   page: number = 1,
 ): Promise<AxiosResponse<TopUpComingMovies>> => {
   const response = await apiClient.get<TopUpComingMovies>(
-    `${BASEURL}/trending/all/week?page=${page}`,
+    `${BASEURL}/trending/movie/week?page=${page}`,
   );
   return response;
 };

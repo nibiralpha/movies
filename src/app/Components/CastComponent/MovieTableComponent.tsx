@@ -117,8 +117,8 @@ export default function MovieTableComponent({
                         <img
                           className={styles.avater}
                           src={
-                            castData.poster_path == null
-                              ? "/blank_celebrity.jpg"
+                            (castData.poster_path == null || castData.poster_path == "")
+                              ? "/no_image.jpg"
                               : `${TMDB_IMAGE_BASE}/${castData.poster_path}`
                           }
                           alt={castData.title}

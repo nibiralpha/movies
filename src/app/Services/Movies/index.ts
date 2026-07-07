@@ -57,6 +57,7 @@ const fetchTrendingThisWeekMovies = () => {
 
       const movieResponse = await getTrendingThisWeek();
       const treandingThisWeekData = movieResponse.data.results;
+      
       dispatch(
         setTreandingThisWeekData({
           treandingThisWeek: { list: treandingThisWeekData, loading: false },
