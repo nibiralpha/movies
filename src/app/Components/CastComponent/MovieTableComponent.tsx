@@ -9,6 +9,7 @@ import { useState } from "react";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useRouter } from "next/navigation";
 
 interface MovieTableComponentProps {
   id: number;
@@ -26,6 +27,8 @@ export default function MovieTableComponent({
   type,
   loading,
 }: Readonly<MovieTableComponentProps>) {
+  const router = useRouter();
+
   const defaultValue = 10;
   const [showDefault, setShowDefault] = useState<number>(defaultValue);
   const [showAllButton, setShowAllButton] = useState<boolean>(true);
@@ -38,6 +41,14 @@ export default function MovieTableComponent({
   const hideAll = () => {
     setShowDefault(defaultValue);
     setShowAllButton(true);
+  };
+
+  const changePage = (id: number, type: "movie" | "tv") => {
+    if (type == "movie") {
+      router.push("/details/" + id);
+    } else {
+      router.push("/series/details/" + id);
+    }
   };
 
   return (
@@ -97,9 +108,12 @@ export default function MovieTableComponent({
             ) : (
               data.slice(0, showDefault).map((castData, i) => {
                 return (
-                  <div key={`${castData.id}-${i}`} className="col-12 col-md-2">
+                  <div
+                    key={`${castData.id}-${i}`}
+                    className="col-12 col-md-2"
+                  >
                     <div className={styles.celeb_cast}>
-                      <div className={styles.celeb_cast_img}>
+                      <div onClick={() => changePage(castData.id, castData.media_type)} className={styles.celeb_cast_img}>
                         <img
                           className={styles.avater}
                           src={
@@ -110,7 +124,7 @@ export default function MovieTableComponent({
                           alt={castData.title}
                         />
                       </div>
-                      <div className={styles.cast_content}>
+                      <div onClick={() => changePage(castData.id, castData.media_type)} className={styles.cast_content}>
                         <div className={styles.cast_name}>{castData.title}</div>
                         <div className={styles.detail}>
                           {castData.character}

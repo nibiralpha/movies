@@ -7,6 +7,7 @@ import styles from "./Search.module.css";
 import { useRef, useState } from "react";
 import { SearchPersonResult, TmdbSearchResponse } from "@app-types/Search";
 import { TMDB_IMAGE_BASE_THUMB } from "@Constant/ApiDataHelper";
+import { useRouter } from "next/navigation";
 
 interface SearchOption {
   value: number;
@@ -29,6 +30,8 @@ export default function SearchInputComponent({
   onChange,
   data,
 }: Readonly<SearchComponent>) {
+  const router = useRouter();
+
   const searchTimer: number = 1000;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -53,18 +56,19 @@ export default function SearchInputComponent({
     onChangeKeyword(input);
   };
 
-  // const showData = async (inputValue: string) => {
-  //   // console.log("showData function", data);
+  const changePage = (type: "movie" | "tv" | "person", id: number) => {
+    if (type === "movie") {
+      router.push("/details/" + id);
+    }
 
-  //   return (
-  //     data?.results.map((item: SearchPersonResult) => ({
-  //       value: item.id,
-  //       label: getName(item),
-  //       image: item.profile_path,
-  //       type: item.media_type,
-  //     })) || []
-  //   );
-  // };
+    if (type === "tv") {
+      router.push("/series/details/" + id);
+    }
+
+    if (type === "person") {
+      router.push("/celebrity/" + id);
+    }
+  };
 
   const getName = (searchResult: SearchPersonResult): string => {
     if (
@@ -136,6 +140,7 @@ export default function SearchInputComponent({
                 gap: 10,
                 alignItems: "center",
               }}
+              onClick={() => changePage(option.type, option.value)}
             >
               <img
                 src={

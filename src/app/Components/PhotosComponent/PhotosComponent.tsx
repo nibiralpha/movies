@@ -30,7 +30,7 @@ export default function PhotosComponent({
   const [photosFormat, setPhotosFormat] = useState<PhotoSliderFormat[]>([]);
 
   useEffect(() => {
-    const formattedPhotos = photos.map((photo) => ({
+    const formattedPhotos = photos?.map((photo) => ({
       src: generateImageData(photo.file_path, "w500"),
       width: photo.width,
       height: photo.height,
@@ -52,11 +52,11 @@ export default function PhotosComponent({
                 <Skeleton height={180} containerClassName="w-full flex-1" />
               </div>
             ))
-          ) : photos.length === 0 ? (
+          ) : photos?.length === 0 ? (
             <p className={styles.no_data}>No data available to display.</p>
           ) : (
             photos
-              .slice(0, 7)
+              ?.slice(0, 7)
               .map((photo, i) => (
                 <img
                   key={i}

@@ -4,6 +4,7 @@ import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { CastMember } from "@app-types/MovieDetails";
 import styles from "./Cast.module.css";
 import { CreditsCastMember } from "@app-types/TvSeries";
+import { useRouter } from "next/navigation";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -26,6 +27,11 @@ interface TvShowCastProps {
 type CastComponentProps = MovieCastProps | TvShowCastProps;
 
 export default function CastComponent({ casts, loading }: CastComponentProps) {
+    const router = useRouter();
+  
+  const changePage = (id: number) => {
+    router.push("/celebrity/" + id);
+  };
   return (
     <div className="container">
       <div className={styles.cast_section}>
@@ -55,7 +61,7 @@ export default function CastComponent({ casts, loading }: CastComponentProps) {
                 return (
                   <div key={cast.id} className="col-12 col-md-2">
                     <div className={styles.top_movies}>
-                      <div className={styles.cast_img}>
+                      <div onClick={() => changePage(cast.id)} className={styles.cast_img}>
                         <img
                           className={styles.avater}
                           src={

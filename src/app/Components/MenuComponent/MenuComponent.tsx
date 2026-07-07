@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import SearchInputComponent from "../SearchInputComponent/SearchComponent";
+import SearchInputComponent from "@Components/SearchInputComponent/SearchComponent";
 import styles from "./Menu.module.css";
 import { AppDispatch, RootState } from "@/src/redux/store";
-import { fetchSearchResults } from "../../Services/Search/Search";
+import { fetchSearchResults } from "@Services/Search/Search";
+import { useRouter } from "next/navigation";
 
 export default function MenuComponent() {
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
   const searchResult = useSelector(
     (state: RootState) => state.search.data || {},
@@ -15,12 +17,20 @@ export default function MenuComponent() {
     dispatch(fetchSearchResults(searchedData));
   };
 
+  const changePage = (id: number, type: "movie" | "tv") => {
+    router.push("/details/" + id);
+  };
+
+  const changeHome = () => {
+    router.push("/");
+  };
+
   return (
     <>
       <div className={styles.menu_container}>
         <div className={styles.left}>
           <div className={styles.logo}>
-            <img src={"/logo.png"} />
+            <img src={"/logo.png"} onClick={changeHome} />
           </div>
         </div>
         {/* <div className={styles.middle}>
