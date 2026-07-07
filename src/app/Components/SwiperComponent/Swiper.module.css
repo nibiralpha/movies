@@ -40,14 +40,17 @@
 }
 
 .title {
+  color: #fff;
   margin-top: 10px;
   margin-bottom: 15px;
-  color: #fff;
   font-size: 16px;
-  /* position: absolute; */
-  /* bottom: 15px;
-  left: 15px;
-  z-index: 2; */
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5; 
+  min-height: calc(1.5em * 2); 
+  display: -webkit-box;
 }
 
 .card {
@@ -113,6 +116,16 @@
 @media screen and (max-width: 430px) {
   .Skeleton_div {
     width: 100%;
+  }
+
+  .title {
+    -webkit-line-clamp: none;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* line-height: 1.5; */
+    /* min-height: calc(1.5em * 2); */
+    display: -webkit-box;
   }
 }
 
