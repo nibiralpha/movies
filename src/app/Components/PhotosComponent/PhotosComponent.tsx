@@ -46,22 +46,26 @@ export default function PhotosComponent({
         <h2 className={styles.photos}>Photos</h2>
 
         <div className={styles.previewGrid}>
-          {loading
-            ? Array.from({ length: 3 }).map((_, i) => (
-                <div className="w-full flex-1" key={i}>
-                  <Skeleton height={180} containerClassName="w-full flex-1" />
-                </div>
+          {loading ? (
+            Array.from({ length: 3 }).map((_, i) => (
+              <div className="w-full flex-1" key={i}>
+                <Skeleton height={180} containerClassName="w-full flex-1" />
+              </div>
+            ))
+          ) : photos.length === 0 ? (
+            <p className={styles.no_data}>No data available to display.</p>
+          ) : (
+            photos
+              .slice(0, 7)
+              .map((photo, i) => (
+                <img
+                  key={i}
+                  src={generateImageData(photo.file_path, "w500")}
+                  alt=""
+                  onClick={() => setIndex(i)}
+                />
               ))
-            : photos
-                .slice(0, 7)
-                .map((photo, i) => (
-                  <img
-                    key={i}
-                    src={generateImageData(photo.file_path, "w500")}
-                    alt=""
-                    onClick={() => setIndex(i)}
-                  />
-                ))}
+          )}
         </div>
 
         <Lightbox

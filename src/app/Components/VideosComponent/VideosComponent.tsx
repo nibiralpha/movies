@@ -64,34 +64,38 @@ export default function VideosComponent({
         </div>
 
         <div className="row">
-          {loading
-            ? Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="col-12 col-md-3">
-                  <div className={styles.video_item}>
-                    <Skeleton height={180} containerClassName="w-full flex-1" />
-                  </div>
+          {loading ? (
+            Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="col-12 col-md-3">
+                <div className={styles.video_item}>
+                  <Skeleton height={180} containerClassName="w-full flex-1" />
                 </div>
-              ))
-            : displayVideos.slice(0, showigVideos).map((video, i) => (
-                <div key={i} className="col-12 col-md-3">
-                  <div key={video.id} className={styles.video_item}>
+              </div>
+            ))
+          ) : displayVideos.length === 0 ? (
+            <p className={`${styles.no_data} ps-4`}>No data available to display.</p>
+          ) : (
+            displayVideos.slice(0, showigVideos).map((video, i) => (
+              <div key={i} className="col-12 col-md-3">
+                <div key={video.id} className={styles.video_item}>
+                  <img
+                    src={generateImageUrl(video.key, "medium")}
+                    alt=""
+                    onClick={() => setIndex(i)}
+                  />
+
+                  <div className={styles.play_button_area}>
                     <img
-                      src={generateImageUrl(video.key, "medium")}
+                      className={styles.play_button}
+                      src="/play_button.svg"
                       alt=""
                       onClick={() => setIndex(i)}
                     />
-
-                    <div className={styles.play_button_area}>
-                      <img
-                        className={styles.play_button}
-                        src="/play_button.svg"
-                        alt=""
-                        onClick={() => setIndex(i)}
-                      />
-                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))
+          )}
         </div>
 
         <Lightbox

@@ -68,6 +68,10 @@ body {
   width: 100%;
 }
 
+.no-result{
+  font-size: 16px;
+}
+
 /* TAB */
 @media (min-width: 768px) and (max-width: 1024px) {
   .container {
