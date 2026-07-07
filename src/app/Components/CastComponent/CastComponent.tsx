@@ -32,44 +32,49 @@ export default function CastComponent({ casts, loading }: CastComponentProps) {
         <h2>Casts</h2>
         <div className={styles.table}>
           <div className="row">
-            {loading
-              ? Array.from({ length: 12 }).map((_, i) => (
-                  <div key={i} className="col-12 col-md-2">
+            {loading ? (
+              Array.from({ length: 12 }).map((_, i) => (
+                <div key={i} className="col-12 col-md-2">
+                  <div className={styles.top_movies}>
+                    <div className={styles.cast_img}>
+                      <Skeleton circle height={110} width={110} />
+                    </div>
+                    <div className={styles.cast_content}>
+                      <Skeleton width="80%" height={16} />
+                      <Skeleton width="60%" height={12} />
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : casts.length === 0 ? (
+              <p className={`${styles.no_data} ps-4`}>
+                No data available to show.
+              </p>
+            ) : (
+              casts.slice(0, 30).map((cast) => {
+                return (
+                  <div key={cast.id} className="col-12 col-md-2">
                     <div className={styles.top_movies}>
                       <div className={styles.cast_img}>
-                        <Skeleton circle height={110} width={110} />
+                        <img
+                          className={styles.avater}
+                          src={
+                            cast.profile_path == null
+                              ? "/blank_celebrity.jpg"
+                              : `${TMDB_IMAGE_BASE}/${cast.profile_path}`
+                          }
+                          alt={cast.name}
+                        />
                       </div>
                       <div className={styles.cast_content}>
-                        <Skeleton width="80%" height={16} />
-                        <Skeleton width="60%" height={12} />
+                        <div className={styles.cast_name}>{cast.name}</div>
+                        <div className={styles.detail}>{cast.character}</div>
                       </div>
                     </div>
                   </div>
-                ))
-              :
-                casts.slice(0, 30).map((cast) => {
-                  return (
-                    <div key={cast.id} className="col-12 col-md-2">
-                      <div className={styles.top_movies}>
-                        <div className={styles.cast_img}>
-                          <img
-                            className={styles.avater}
-                            src={
-                              cast.profile_path == null
-                                ? "/blank_celebrity.jpg"
-                                : `${TMDB_IMAGE_BASE}/${cast.profile_path}`
-                            }
-                            alt={cast.name}
-                          />
-                        </div>
-                        <div className={styles.cast_content}>
-                          <div className={styles.cast_name}>{cast.name}</div>
-                          <div className={styles.detail}>{cast.character}</div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                );
+              })
+            )}
           </div>
         </div>
       </div>

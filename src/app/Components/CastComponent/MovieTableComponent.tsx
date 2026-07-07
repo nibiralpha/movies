@@ -47,12 +47,14 @@ export default function MovieTableComponent({
           <div>
             <h2>{title}</h2>
           </div>
-          <div
-            onClick={showDefault > defaultValue ? hideAll : showAll}
-            className={styles.show_all}
-          >
-            {showAllButton ? "Show All" : "Hide All"}
-          </div>
+          {data.length > defaultValue && (
+            <div
+              onClick={showDefault > defaultValue ? hideAll : showAll}
+              className={styles.show_all}
+            >
+              {showAllButton ? "Show All" : "Hide All"}
+            </div>
+          )}
         </div>
         <div className={styles.table}>
           <div className="row">
