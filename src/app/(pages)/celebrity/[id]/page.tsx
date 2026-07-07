@@ -77,7 +77,7 @@ export default function Celebrity() {
         loading={celebLoading}
         data={celebrityDetail}
       />
-      <CelebrityMediaComponent id={id} data={celebrityDetail} />
+      <CelebrityMediaComponent id={id} data={celebrityDetail} loading={celebLoading}/>
       <PhotosComponent loading={photoLoading} photos={photos?.profiles} />
 
       <MovieTableComponent
