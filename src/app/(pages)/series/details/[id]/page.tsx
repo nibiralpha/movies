@@ -11,7 +11,11 @@ import CastComponent from "@/src/app/Components/CastComponent/CastComponent";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/src/redux/store";
-import { fetchTvSeriesDetails, fetchTvSeriesPhotos, fetchTvSeriesVideos } from "@/src/app/Services/Series";
+import {
+  fetchTvSeriesDetails,
+  fetchTvSeriesPhotos,
+  fetchTvSeriesVideos,
+} from "@/src/app/Services/Series";
 
 export default function SeriesDetail() {
   const params = useParams();
@@ -19,22 +23,34 @@ export default function SeriesDetail() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const tvShowDetail = useSelector(
-    (state: RootState) => state.tvShowDetail.data || {},
+  const { tvShowDetail, loading: tvShowDetailLoading } = useSelector(
+    (state: RootState) => ({
+      tvShowDetail: state.tvShowDetail.data || {},
+      loading: state.tvShowDetail?.loading,
+    }),
   );
 
   const casts = useSelector(
     (state: RootState) => state.tvShowDetail.data.credits?.cast || [],
   );
 
-  const videos = useSelector((state: RootState) => state.videos.data || {});
+  const { videos, loading: videosLoading } = useSelector(
+    (state: RootState) => ({
+      videos: state.videos.data || {},
+      loading: state.videos?.loading,
+    }),
+  );
 
-  const photos = useSelector((state: RootState) => state.photos.data || {});
+  const { photos, loading: photosLoading } = useSelector(
+    (state: RootState) => ({
+      photos: state.photos.data || {},
+      loading: state.photos?.loading,
+    }),
+  );
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchTvSeriesDetails(id));
     dispatch(fetchTvSeriesVideos(id));
-    dispatch(fetchTvSeriesPhotos(id));
     dispatch(fetchTvSeriesPhotos(id));
   };
 
@@ -46,17 +62,27 @@ export default function SeriesDetail() {
   return (
     <div>
       <MenuComponent />
-      <HeaderComponent type="tvShow" id={id} data={tvShowDetail} />
+      <HeaderComponent
+        loading={tvShowDetailLoading}
+        type="tvShow"
+        id={id}
+        data={tvShowDetail}
+      />
       <MediaComponent
         type="tvShow"
         id={id}
         data={tvShowDetail}
         videos={videos?.results}
+        loading={tvShowDetailLoading}
       />
-      <VideosComponent videos={videos?.results} />
-      <PhotosComponent photos={photos?.backdrops} />
-      <CastComponent type="tvShow" casts={casts} />
-      
+      <VideosComponent loading={videosLoading} videos={videos?.results} />
+      <PhotosComponent loading={photosLoading} photos={photos?.backdrops} />
+      <CastComponent
+        loading={tvShowDetailLoading}
+        type="tvShow"
+        casts={casts}
+      />
+
       <div className={`container`}>
         <div className={styles.title}>Viewed</div>
         You have no recently viewed pages
