@@ -96,15 +96,27 @@ export default function MediaComponent({
           <div className={styles.writers}>
             <div className={styles.writers_name}>
               <div className={styles.position}>Director</div>
-              <div className={styles.name}>{directorsData.join(", ")}</div>
+              <div className={styles.name}>
+                {directorsData.length !== 0
+                  ? directorsData.join(", ")
+                  : "No data found"}
+              </div>
             </div>
             <div className={styles.writers_name}>
               <div className={styles.position}>Producers</div>
-              <div className={styles.name}>{producerData.join(", ")}</div>
+              <div className={styles.name}>
+                {producerData.length !== 0
+                  ? producerData.join(", ")
+                  : "No data found"}
+              </div>
             </div>
             <div className={styles.writers_name}>
               <div className={styles.position}>Writers</div>
-              <div className={styles.name}>{writerData.join(", ")}</div>
+              <div className={styles.name}>
+                {writerData.length !== 0
+                  ? writerData.join(", ")
+                  : "No data found"}
+              </div>
             </div>
           </div>
         </div>

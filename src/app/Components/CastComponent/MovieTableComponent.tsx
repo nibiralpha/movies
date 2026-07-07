@@ -105,7 +105,7 @@ export default function MovieTableComponent({
                         </div>
                         <div className={styles.cast_content}>
                           <div className={styles.cast_name}>
-                            {castData.original_title}
+                            {castData.title}
                           </div>
                           <div className={styles.detail}>
                             {castData.character}

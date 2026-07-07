@@ -24,11 +24,6 @@ export default function Celebrity() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  // const celebrityDetail = useSelector(
-  //   (state: RootState) =>
-  //     state.celebrity.celebrityDetail?.details ||
-  //     ({} as CelebrityDetailResponse),
-  // );
   const { celebrityDetail, celebLoading } = useSelector((state: RootState) => ({
     celebrityDetail:
       state.celebrity.celebrityDetail?.details ||
@@ -39,16 +34,10 @@ export default function Celebrity() {
         : state.celebrity.celebrityDetail.loading,
   }));
 
-  // const photos = useSelector((state: RootState) => state.photos.data || []);
   const { photos, loading: photoLoading } = useSelector((state: RootState) => ({
     photos: state.photos.data || {},
     loading: state.photos.loading,
   }));
-
-  // const celebrityWorks = useSelector(
-  //   (state: RootState) =>
-  //     state.celebrity.works || { id: 0, crew: [], cast: [] },
-  // );
 
   const { celebrityWorks, loading: celebrityWorksLoading } = useSelector(
     (state: RootState) => ({

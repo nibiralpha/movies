@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SliderState } from "@app-types/SliderState";
-import { MovieResult } from "../app/types/TopUpComingMovies";
+import { MovieResult } from "@app-types/TopUpComingMovies";
 
 const initialState: SliderState = {
   list: [],

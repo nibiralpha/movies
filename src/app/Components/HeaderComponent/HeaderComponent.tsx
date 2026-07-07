@@ -96,14 +96,14 @@ export default function HeaderComponent({
           )}
 
           <div className={styles.rating_area}>
-            <div className={styles.star}>
-              <img src={"/star.svg"} />
-            </div>
+            {type !== "celebrity" && (
+              <div className={styles.star}>
+                <img src={"/star.svg"} />
+              </div>
+            )}
             <div className={styles.rating}>
               {type === "celebrity"
-                ? data.popularity
-                  ? data.popularity.toFixed(1)
-                  : "0"
+                ? ""
                 : data.vote_average
                   ? data.vote_average.toFixed(1)
                   : "0"}{" "}
