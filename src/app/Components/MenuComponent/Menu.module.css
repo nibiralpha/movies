@@ -1,11 +1,13 @@
 .menu_container {
-  align-items: center;
   display: flex;
-  padding: 15px 40px 15px 40px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
   background-color: #000000ab;
   position: fixed;
   width: 100%;
   z-index: 1000;
+  box-sizing: border-box;
 }
 
 .left,
@@ -23,18 +25,18 @@
   justify-content: flex-end;
 }
 
-.middle .menus {
+.logo img {
+  width: 150px;
+  display: block;
+}
+
+.menus {
   display: flex;
   font-weight: 600;
 }
 
-.logo img {
-  width: 150px;
-}
-
-.menus .menu {
-  margin-right: 20px;
-  margin-left: 20px;
+.menu {
+  margin: 0 20px;
 }
 
 .menu_name {
@@ -42,14 +44,81 @@
   font-size: 16px;
 }
 
-.menu :hover {
+.logo img,
+.menu,
+.icon {
   cursor: pointer;
 }
 
-.icon :hover {
-  cursor: pointer;
+/* ---------- Large Tablets ---------- */
+@media (max-width: 1024px) {
+  .menu_container {
+    padding: 15px 24px;
+  }
+
+  .logo img {
+    width: 130px;
+  }
 }
 
-.logo :hover {
-  cursor: pointer;
+/* ---------- Tablets ---------- */
+@media (max-width: 768px) {
+  .menu_container {
+    padding: 12px 20px;
+    gap: 16px;
+  }
+
+  .logo img {
+    width: 120px;
+  }
+
+  .left,
+  .right {
+    flex: 1;
+  }
+
+  .right {
+    min-width: 0;
+  }
+
+  .search {
+    width: 100%;
+    max-width: 260px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 576px) {
+  .menu_container {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    position: absolute;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .left {
+    display: flex;
+    justify-content: center;
+  }
+
+  .right {
+    justify-content: center;
+  }
+
+  .logo img {
+    width: 110px;
+  }
+
+  .search {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
