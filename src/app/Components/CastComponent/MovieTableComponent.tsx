@@ -10,6 +10,7 @@ import { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
+import Button from "@Components/Button/ButtonComponent";
 
 interface MovieTableComponentProps {
   id: number;
@@ -59,11 +60,12 @@ export default function MovieTableComponent({
             <h2>{title}</h2>
           </div>
           {data.length > defaultValue && (
-            <div
-              onClick={showDefault > defaultValue ? hideAll : showAll}
-              className={styles.show_all}
-            >
-              {showAllButton ? "Show All" : "Hide All"}
+            <div className={styles.button_size}>
+              {showAllButton ? (
+                <Button onClick={() => showAll()} text="Show All" />
+              ) : (
+                <Button onClick={() => hideAll()} text="Hide All" />
+              )}
             </div>
           )}
         </div>
@@ -108,23 +110,31 @@ export default function MovieTableComponent({
             ) : (
               data.slice(0, showDefault).map((castData, i) => {
                 return (
-                  <div
-                    key={`${castData.id}-${i}`}
-                    className="col-12 col-md-2"
-                  >
+                  <div key={`${castData.id}-${i}`} className="col-12 col-md-2">
                     <div className={styles.celeb_cast}>
-                      <div onClick={() => changePage(castData.id, castData.media_type)} className={styles.celeb_cast_img}>
+                      <div
+                        onClick={() =>
+                          changePage(castData.id, castData.media_type)
+                        }
+                        className={styles.celeb_cast_img}
+                      >
                         <img
                           className={styles.avater}
                           src={
-                            (castData.poster_path == null || castData.poster_path == "")
+                            castData.poster_path == null ||
+                            castData.poster_path == ""
                               ? "/no_image.jpg"
                               : `${TMDB_IMAGE_BASE}/${castData.poster_path}`
                           }
                           alt={castData.title}
                         />
                       </div>
-                      <div onClick={() => changePage(castData.id, castData.media_type)} className={styles.cast_content}>
+                      <div
+                        onClick={() =>
+                          changePage(castData.id, castData.media_type)
+                        }
+                        className={styles.cast_content}
+                      >
                         <div className={styles.cast_name}>{castData.title}</div>
                         <div className={styles.detail}>
                           {castData.character}

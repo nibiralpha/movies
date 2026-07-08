@@ -33,14 +33,11 @@ export default function VideosComponent({
   const [index, setIndex] = useState(-1);
 
   const showAll = () => {
-    console.log("zzzzzzzzzzzzzzz");
-
     setShowingVideos(videos.length);
     setShowAllButton(true);
   };
 
   const hideAll = () => {
-    console.log("xxxxxxxxxxxx");
     setShowingVideos(numberOfVideosToShow);
     setShowAllButton(false);
   };
@@ -49,8 +46,6 @@ export default function VideosComponent({
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setDisplayVideos(videos);
   }, [videos]);
-
-  console.log(showAllButton);
 
   return (
     <div className="container">
