@@ -86,7 +86,7 @@ export default function MediaComponent({
               allowFullScreen
             ></iframe>
           ) : (
-            <p>Loading trailer...</p>
+            <p>No video found</p>
           )}
         </div>
       </div>

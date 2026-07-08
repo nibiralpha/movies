@@ -83,10 +83,10 @@ export default function SeriesDetail() {
         casts={casts}
       />
 
-      <div className={`container`}>
+      {/* <div className={`container`}>
         <div className={styles.title}>Viewed</div>
         You have no recently viewed pages
-      </div>
+      </div> */}
     </div>
   );
 }
