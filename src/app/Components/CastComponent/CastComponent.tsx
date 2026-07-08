@@ -57,9 +57,9 @@ export default function CastComponent({ casts, loading }: CastComponentProps) {
                 No data available to show.
               </p>
             ) : (
-              casts.slice(0, 30).map((cast) => {
+              casts.slice(0, 30).map((cast, i) => {
                 return (
-                  <div key={cast.id} className="col-12 col-md-2">
+                  <div key={`${cast.id}-${cast.character}-${i}`} className="col-12 col-md-2">
                     <div className={styles.top_movies}>
                       <div onClick={() => changePage(cast.id)} className={styles.cast_img}>
                         <img
