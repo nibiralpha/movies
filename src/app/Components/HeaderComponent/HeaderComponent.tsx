@@ -23,7 +23,7 @@ interface TvHeaderProps {
 interface CelebrityProps {
   id: number;
   type: "celebrity";
-  data: CelebrityDetailResponse;
+  data: CelebrityDetailResponse | null;
   loading: boolean;
 }
 
@@ -40,14 +40,14 @@ export default function HeaderComponent({
       ? (data.release_date?.split("-")[0] ?? "N/A")
       : type === "tvShow"
         ? (data.first_air_date?.split("-")[0] ?? "N/A")
-        : (formatBirthday(data.birthday) ?? "N/A");
+        : (formatBirthday((data !== null && data !== undefined) ? data.birthday : "") ?? "N/A");
 
   const airData =
     type === "movie"
       ? formatRuntime(data.runtime)
       : type === "tvShow"
         ? (data?.last_air_date?.split("-")[0] ?? "N/A")
-        : data.known_for_department;
+        : (data !== null && data !== undefined) ? data.known_for_department : "";
 
   //LOAD SKELETON
   if (loading) {
@@ -84,7 +84,7 @@ export default function HeaderComponent({
           ) : (
             <div>
               <div className={styles.movie_title}>
-                {type == "movie" ? data.title : data.name}
+                {type == "movie" ? data.title : (data !== null && data !== undefined) ? data.name : ""}
               </div>
               <div className={styles.year_time}>
                 <div className={styles.year}>{year}</div>

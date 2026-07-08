@@ -15,7 +15,7 @@ import Link from "next/link";
 
 interface CelebrityHeaderProps {
   id: number;
-  data: CelebrityDetailResponse;
+  data: CelebrityDetailResponse | null;
   loading: boolean;
 }
 
@@ -39,7 +39,11 @@ export default function CelebrityMediaComponent({
           ) : (
             <img
               className={styles.img}
-              src={`${TMDB_IMAGE_BASE}/${data.profile_path}`}
+              src={
+                data?.profile_path === undefined || data?.profile_path === null
+                  ? "/blank_celebrity.jpg"
+                  : `${TMDB_IMAGE_BASE}/${data?.profile_path}`
+              }
               alt=""
             />
           )}
@@ -62,31 +66,32 @@ export default function CelebrityMediaComponent({
                 <div className={styles.right_side_content}>
                   <div className={styles.point}>Born</div>
                   <div className={styles.right_side_detail}>
-                    {formatBirthday(data.birthday)}
+                    {data?.birthday ? formatBirthday(data.birthday) : "N/A"}
                   </div>
                 </div>
                 <div className={styles.right_side_content}>
                   <div className={styles.point}>Age</div>
                   <div className={styles.right_side_detail}>
-                    {calculateAge(data.birthday)}
+                    {data?.birthday ? calculateAge(data.birthday) : "N/A"}
                   </div>
                 </div>
                 <div className={styles.right_side_content}>
                   <div className={styles.point}>Gender</div>
                   <div className={styles.right_side_detail}>
-                    {getGender(data.gender)}
+                    {data?.gender ? getGender(data.gender) : "N/A"}
                   </div>
                 </div>
                 <div className={styles.right_side_content}>
                   <div className={styles.point}>Birthplace</div>
                   <div className={styles.right_side_detail}>
-                    {data.place_of_birth ?? "N/A"}
+                    {data?.place_of_birth ? data.place_of_birth : "N/A"}
                   </div>
                 </div>
                 <div className={styles.right_side_content}>
                   <div className={styles.point}>Also Known As</div>
                   <div className={styles.right_side_detail}>
-                    {data.also_known_as && data.also_known_as.length > 0
+                    {data !== null &&
+                    (data.also_known_as && data.also_known_as.length) > 0
                       ? data.also_known_as.join(", ")
                       : "None"}
                   </div>
@@ -95,7 +100,7 @@ export default function CelebrityMediaComponent({
                   <div className={styles.point}>IMDB</div>
                   <div className={styles.right_side_detail}>
                     <Link
-                      href={`https://www.imdb.com/name/${data.imdb_id}`}
+                      href={`https://www.imdb.com/name/${data?.imdb_id}`}
                       target="_blank"
                       className={styles.link}
                     >
@@ -113,7 +118,7 @@ export default function CelebrityMediaComponent({
           {loading ? (
             <Skeleton count={4} height={14} style={{ marginBottom: "6px" }} />
           ) : (
-            truncateDetails(data.biography, 300)
+            truncateDetails(data?.biography, 300)
           )}
         </div>
       </div>

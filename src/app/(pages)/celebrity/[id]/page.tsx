@@ -26,8 +26,7 @@ export default function Celebrity() {
 
   const { celebrityDetail, celebLoading } = useSelector((state: RootState) => ({
     celebrityDetail:
-      state.celebrity.celebrityDetail?.details ||
-      ({} as CelebrityDetailResponse),
+      state.celebrity.celebrityDetail?.details,
     celebLoading:
       state.celebrity.celebrityDetail === undefined
         ? true
@@ -64,9 +63,9 @@ export default function Celebrity() {
         type="celebrity"
         id={id}
         loading={celebLoading}
-        data={celebrityDetail}
+        data={celebrityDetail || null}
       />
-      <CelebrityMediaComponent id={id} data={celebrityDetail} loading={celebLoading}/>
+      <CelebrityMediaComponent id={id} data={celebrityDetail || null} loading={celebLoading}/>
       <PhotosComponent loading={photoLoading} photos={photos?.profiles} />
 
       <MovieTableComponent
