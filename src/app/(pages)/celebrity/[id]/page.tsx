@@ -6,7 +6,7 @@ import HeaderComponent from "@/src/app/Components/HeaderComponent/HeaderComponen
 import MenuComponent from "@/src/app/Components/MenuComponent/MenuComponent";
 import PhotosComponent from "@/src/app/Components/PhotosComponent/PhotosComponent";
 import { useParams } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { AppDispatch, RootState } from "@/src/redux/store";
 
 import {
@@ -24,25 +24,31 @@ export default function Celebrity() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const { celebrityDetail, celebLoading } = useSelector((state: RootState) => ({
-    celebrityDetail:
-      state.celebrity.celebrityDetail?.details,
-    celebLoading:
-      state.celebrity.celebrityDetail === undefined
-        ? true
-        : state.celebrity.celebrityDetail.loading,
-  }));
+  const { celebrityDetail, celebLoading } = useSelector(
+    (state: RootState) => ({
+      celebrityDetail: state.celebrity.celebrityDetail?.details,
+      celebLoading:
+        state.celebrity.celebrityDetail === undefined
+          ? true
+          : state.celebrity.celebrityDetail.loading,
+    }),
+    shallowEqual,
+  );
 
-  const { photos, loading: photoLoading } = useSelector((state: RootState) => ({
-    photos: state.photos.data || {},
-    loading: state.photos.loading,
-  }));
+  const { photos, loading: photoLoading } = useSelector(
+    (state: RootState) => ({
+      photos: state.photos.data || {},
+      loading: state.photos.loading,
+    }),
+    shallowEqual,
+  );
 
   const { celebrityWorks, loading: celebrityWorksLoading } = useSelector(
     (state: RootState) => ({
       celebrityWorks: state.celebrity.works || { id: 0, crew: [], cast: [] },
       loading: state.celebrity.works?.loading,
     }),
+    shallowEqual,
   );
 
   const getInitData = async (): Promise<void> => {
@@ -65,7 +71,11 @@ export default function Celebrity() {
         loading={celebLoading}
         data={celebrityDetail || null}
       />
-      <CelebrityMediaComponent id={id} data={celebrityDetail || null} loading={celebLoading}/>
+      <CelebrityMediaComponent
+        id={id}
+        data={celebrityDetail || null}
+        loading={celebLoading}
+      />
       <PhotosComponent loading={photoLoading} photos={photos?.profiles} />
 
       <MovieTableComponent

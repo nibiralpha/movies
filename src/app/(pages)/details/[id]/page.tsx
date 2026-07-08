@@ -9,7 +9,7 @@ import VideosComponent from "@/src/app/Components/VideosComponent/VideosComponen
 import PhotosComponent from "@/src/app/Components/PhotosComponent/PhotosComponent";
 import CastComponent from "@/src/app/Components/CastComponent/CastComponent";
 import { useParams } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { AppDispatch, RootState } from "@/src/redux/store";
 import {
   fetchMovieDetails,
@@ -33,28 +33,35 @@ export default function Detail() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const { getValue, setValue, removeValue } = useLocalStorage();
+  // const { getValue, setValue, removeValue } = useLocalStorage();
 
-  const { movieDetail, loading } = useSelector((state: RootState) => ({
-    movieDetail: state.movieDetail.data || {},
-    loading: state.movieDetail?.loading,
-  }));
+  const { movieDetail, loading } = useSelector(
+    (state: RootState) => ({
+      movieDetail: state.movieDetail.data || {},
+      loading: state.movieDetail?.loading,
+    }),
+    shallowEqual,
+  );
 
   const casts = useSelector(
     (state: RootState) => state.movieDetail.data.credits?.cast || [],
+    shallowEqual,
   );
-
   const { videos, loading: videosLoading } = useSelector(
     (state: RootState) => ({
       videos: state.videos.data || {},
       loading: state.videos.loading,
     }),
+    shallowEqual,
   );
-  
-  const { photos, loading: photoLoading } = useSelector((state: RootState) => ({
-    photos: state.photos.data || {},
-    loading: state.videos.loading,
-  }));
+
+  const { photos, loading: photoLoading } = useSelector(
+    (state: RootState) => ({
+      photos: state.photos.data || {},
+      loading: state.videos.loading,
+    }),
+    shallowEqual,
+  );
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchMovieDetails(id));
@@ -135,7 +142,7 @@ export default function Detail() {
       <VideosComponent loading={videosLoading} videos={videos?.results} />
       <PhotosComponent photos={photos?.backdrops} loading={photoLoading} />
 
-      <CastComponent type="movies" casts={casts} loading={loading}/>
+      <CastComponent type="movies" casts={casts} loading={loading} />
 
       {/* <div className={`container`}>
         <div className={styles.title}>Viewed</div>
