@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import Button from "../Button/ButtonComponent";
+import Button from "@Components/Button/ButtonComponent";
 import { MovieResult } from "@app-types/TopUpComingMovies";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 
