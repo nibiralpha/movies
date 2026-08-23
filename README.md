@@ -1,5 +1,5 @@
 
-Live link [superhero](https://imovie-stream.vercel.app)
+Live link [imovies](https://imovie-stream.vercel.app)
 This is a [Next.js](https://nextjs.org) project
 
 ## Getting Started
