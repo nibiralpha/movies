@@ -40,7 +40,7 @@ export default function SwiperComponent({
 
   const changePageToTvShow = (id: number) => {
     router.push("/series/details/" + id);
-  };  
+  };
 
   return (
     <div>
@@ -114,7 +114,11 @@ export default function SwiperComponent({
                     </div>
 
                     <Button
-                      onClick={() => changePage(movie.id)}
+                      onClick={() =>
+                        type == "movie"
+                          ? changePage(movie.id)
+                          : changePageToTvShow(movie.id)
+                      }
                       className="full_width"
                       text="View Now"
                       icon={true}
