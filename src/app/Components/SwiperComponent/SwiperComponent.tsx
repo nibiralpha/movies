@@ -63,7 +63,7 @@ export default function SwiperComponent({
             key={loading ? `skeleton-${index}` : (movie as MovieResult).id}
           >
             <div className={styles.card}>
-              {!loading ? (
+              {loading ? (
                 <>
                   <div className={styles.slide_image_wrapper}>
                     <CustomSkeleton height="100%" borderRadius="8px 8px 0 0" />
