@@ -30,6 +30,7 @@
       "@Constant/*": ["./src/app/Constant/*"],
       "@Helper/*": ["./src/app/Helper/*"],
       "@search/*": ["./src/app/search/*"],
+      "@Skeleton/*": ["./src/app/Skeleton/*"],
     }
   },
   "include": [
