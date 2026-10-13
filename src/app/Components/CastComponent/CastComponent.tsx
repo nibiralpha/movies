@@ -44,11 +44,12 @@ export default function CastComponent({ casts, loading }: CastComponentProps) {
                 <div key={i} className="col-12 col-md-2">
                   <div className={styles.top_movies}>
                     <div className={styles.cast_img}>
-                      <Skeleton circle height={110} width={110} />
+                      <Skeleton circle height={80} width={80} />
                     </div>
+
                     <div className={styles.cast_content}>
-                      <Skeleton width="80%" height={16} />
-                      <Skeleton width="60%" height={12} />
+                      <Skeleton width="100px" height={14} />
+                      <Skeleton width="70px" height={12} />
                     </div>
                   </div>
                 </div>

@@ -124,3 +124,7 @@
 .button_size{
   font-size: .7em;
 }
+
+.cast_img :global(.react-loading-skeleton) {
+  border-radius: 50%;
+}
