@@ -54,6 +54,7 @@ export default function HeaderComponent({
           ? data.known_for_department
           : "";
 
+  //LOAD SKELETON
   if (loading) {
     return (
       <div className={styles.header}>
