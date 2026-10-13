@@ -9,8 +9,9 @@ import VideosComponent from "@/src/app/Components/VideosComponent/VideosComponen
 import PhotosComponent from "@/src/app/Components/PhotosComponent/PhotosComponent";
 import CastComponent from "@/src/app/Components/CastComponent/CastComponent";
 import { useParams } from "next/navigation";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { AppDispatch, RootState } from "@/src/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/src/redux/store";
+import { selectTvShowDetailPageData } from "@Selectors/tvShowDetailSelectors";
 import {
   fetchTvSeriesDetails,
   fetchTvSeriesPhotos,
@@ -23,33 +24,15 @@ export default function SeriesDetail() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const { tvShowDetail, loading: tvShowDetailLoading } = useSelector(
-    (state: RootState) => ({
-      tvShowDetail: state.tvShowDetail.data || {},
-      loading: state.tvShowDetail?.loading,
-    }),
-    shallowEqual,
-  );
-
-  const casts = useSelector(
-    (state: RootState) => state.tvShowDetail.data.credits?.cast || [],
-  );
-
-  const { videos, loading: videosLoading } = useSelector(
-    (state: RootState) => ({
-      videos: state.videos.data || {},
-      loading: state.videos?.loading,
-    }),
-    shallowEqual,
-  );
-
-  const { photos, loading: photosLoading } = useSelector(
-    (state: RootState) => ({
-      photos: state.photos.data || {},
-      loading: state.photos?.loading,
-    }),
-    shallowEqual,
-  );
+  const {
+    tvShowDetail,
+    tvShowDetailLoading,
+    casts,
+    videos,
+    videosLoading,
+    photos,
+    photosLoading,
+  } = useSelector(selectTvShowDetailPageData);
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchTvSeriesDetails(id));

@@ -9,8 +9,9 @@ import VideosComponent from "@/src/app/Components/VideosComponent/VideosComponen
 import PhotosComponent from "@/src/app/Components/PhotosComponent/PhotosComponent";
 import CastComponent from "@/src/app/Components/CastComponent/CastComponent";
 import { useParams } from "next/navigation";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { AppDispatch, RootState } from "@/src/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/src/redux/store";
+import { selectMovieDetailPageData } from "@Selectors/movieDetailSelectors";
 import {
   fetchMovieDetails,
   fetchMoviePhotos,
@@ -25,75 +26,21 @@ export default function Detail() {
 
   // const { getValue, setValue, removeValue } = useLocalStorage();
 
-  const { movieDetail, loading } = useSelector(
-    (state: RootState) => ({
-      movieDetail: state.movieDetail.data || {},
-      loading: state.movieDetail?.loading,
-    }),
-    shallowEqual,
-  );
-
-  const casts = useSelector(
-    (state: RootState) => state.movieDetail.data.credits?.cast || [],
-    shallowEqual,
-  );
-  const { videos, loading: videosLoading } = useSelector(
-    (state: RootState) => ({
-      videos: state.videos.data || {},
-      loading: state.videos.loading,
-    }),
-    shallowEqual,
-  );
-
-  const { photos, loading: photoLoading } = useSelector(
-    (state: RootState) => ({
-      photos: state.photos.data || {},
-      loading: state.videos.loading,
-    }),
-    shallowEqual,
-  );
+  const {
+    movieDetail,
+    movieDetailLoading,
+    casts,
+    videos,
+    videosLoading,
+    photos,
+    photosLoading,
+  } = useSelector(selectMovieDetailPageData);
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchMovieDetails(id));
     dispatch(fetchMovieVideos(id));
     dispatch(fetchMoviePhotos(id));
   };
-
-  // const saveDataToLocalStorage = () => {
-  //   let data: LocalStrorageData[] = getValue(localStorageName);
-
-  //   if (data == null) {
-  //     data = [];
-  //   }
-  //   console.log("test", data);
-
-  //   const alreadyExists = data.some((item) => item.id === id);
-
-  //   console.log("alreadyExists", alreadyExists);
-
-  //   if (alreadyExists) {
-  //     const index = data.findIndex((item) => item.id === id);
-  //     const [spliceData] = data.splice(index, 1);
-  //     const insertData = data.splice(0, 0, spliceData);
-  //     console.log("if condition", insertData);
-
-  //     setValue(localStorageName, data);
-  //   } else {
-  //     const newData = [
-  //       {
-  //         id: movieDetail.id,
-  //         title: movieDetail.title,
-  //         image: `${TMDB_IMAGE_BASE_URL}${movieDetail.poster_path}`,
-  //         type: "movie",
-  //       },
-  //       ...data,
-  //     ];
-  //     if (movieDetail.id !== 0) {
-  //       console.log("else condition", movieDetail.id);
-  //       setValue(localStorageName, newData);
-  //     }
-  //   }
-  // };
 
   useEffect(() => {
     // console.log("movieDetail changed", movieDetail.id);
@@ -119,7 +66,7 @@ export default function Detail() {
         type="movie"
         id={id}
         data={movieDetail}
-        loading={loading}
+        loading={movieDetailLoading}
       />
       <MediaComponent
         key={id}
@@ -127,12 +74,15 @@ export default function Detail() {
         id={id}
         data={movieDetail}
         videos={videos?.results}
-        loading={loading}
+        loading={movieDetailLoading}
       />
       <VideosComponent loading={videosLoading} videos={videos?.results} />
-      <PhotosComponent photos={photos?.backdrops} loading={photoLoading} />
+      <PhotosComponent
+        photos={photos?.backdrops}
+        loading={movieDetailLoading}
+      />
 
-      <CastComponent type="movies" casts={casts} loading={loading} />
+      <CastComponent type="movies" casts={casts} loading={movieDetailLoading} />
 
       {/* <div className={`container`}>
         <div className={styles.title}>Viewed</div>
