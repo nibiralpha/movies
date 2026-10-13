@@ -4,11 +4,11 @@ import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { CastMember } from "@app-types/MovieDetails";
 import styles from "./Cast.module.css";
 import { CreditsCastMember } from "@app-types/TvSeries";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Link from "next/link";
 
 // interface CastProps {
 //   casts: CastMember[];
@@ -28,11 +28,6 @@ interface TvShowCastProps {
 type CastComponentProps = MovieCastProps | TvShowCastProps;
 
 export default function CastComponent({ casts, loading }: CastComponentProps) {
-  const router = useRouter();
-
-  const changePage = (id: number) => {
-    router.push("/celebrity/" + id);
-  };
   return (
     <div className="container">
       <div className={styles.cast_section}>
@@ -66,25 +61,32 @@ export default function CastComponent({ casts, loading }: CastComponentProps) {
                     className="col-12 col-md-2"
                   >
                     <div className={styles.top_movies}>
-                      <div
-                        onClick={() => changePage(cast.id)}
-                        className={styles.cast_img}
-                      >
-                        <Image
-                          className={styles.avater}
-                          src={
-                            cast.profile_path == null
-                              ? "/blank_celebrity.jpg"
-                              : `${TMDB_IMAGE_BASE}/${cast.profile_path}`
-                          }
-                          alt={cast.name}
-                          fill
-                          sizes="80px"
-                        />
-                      </div>
+                      <Link href={"/celebrity/" + cast.id}>
+                        <div className={styles.cast_img}>
+                          <Image
+                            className={styles.avater}
+                            src={
+                              cast.profile_path == null
+                                ? "/blank_celebrity.jpg"
+                                : `${TMDB_IMAGE_BASE}/${cast.profile_path}`
+                            }
+                            alt={cast.name}
+                            fill
+                            sizes="80px"
+                          />
+                        </div>
+                      </Link>
                       <div className={styles.cast_content}>
-                        <div className={styles.cast_name}>{cast.name}</div>
-                        <div className={styles.detail}>{cast.character}</div>
+                        <div className={styles.cast_name}>
+                          <Link href={"/celebrity/" + cast.id}>
+                            {cast.name}
+                          </Link>
+                        </div>
+                        <div className={styles.detail}>
+                          <Link href={"/celebrity/" + cast.id}>
+                            {cast.character}
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>

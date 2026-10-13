@@ -3,7 +3,6 @@
 import styles from "./Celebrity.module.css";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,9 +12,8 @@ import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-
+import Link from "next/link";
 
 interface CelebrityComponentProps {
   slidesPerView: number;
@@ -30,11 +28,6 @@ export default function CelebrityComponent({
   data,
   loading,
 }: Readonly<CelebrityComponentProps>) {
-  const router = useRouter();
-
-  const changePage = (id: number) => {
-    router.push("/celebrity/" + id);
-  };
 
   return (
     <div>
@@ -73,30 +66,34 @@ export default function CelebrityComponent({
             <SwiperSlide key={celebrity.id}>
               <div className={styles.card}>
                 <div
-                  onClick={() => changePage(celebrity.id)}
+                  // onClick={() => changePage(celebrity.id)}
                   className={styles.slide_image_wrapper}
                 >
-                  <Image
-                    src={
-                      celebrity.profile_path !== null
-                        ? `${TMDB_IMAGE_BASE}${celebrity.profile_path}`
-                        : "/blank_celebrity.jpg"
-                    }
-                    className={styles.slide_image}
-                    alt={celebrity.name}
-                    fill
-                    sizes="185px"
-                  />
+                  <Link href={"/celebrity/" + celebrity.id}>
+                    <Image
+                      src={
+                        celebrity.profile_path !== null
+                          ? `${TMDB_IMAGE_BASE}${celebrity.profile_path}`
+                          : "/blank_celebrity.jpg"
+                      }
+                      className={styles.slide_image}
+                      alt={celebrity.name}
+                      fill
+                      sizes="185px"
+                    />
+                  </Link>
 
                   <div className={styles.overlay}></div>
                 </div>
 
-                <div
-                  onClick={() => changePage(celebrity.id)}
-                  className={styles.name}
-                >
-                  {celebrity.name}
-                </div>
+                <Link href={"/celebrity/" + celebrity.id}>
+                  <div
+                    // onClick={() => changePage(celebrity.id)}
+                    className={styles.name}
+                  >
+                    {celebrity.name}
+                  </div>
+                </Link>
               </div>
             </SwiperSlide>
           ))}

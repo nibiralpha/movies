@@ -11,8 +11,8 @@ import { MovieResult } from "@app-types/TopUpComingMovies";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import MoviesSkeleton from "@/src/app/Skeleton/MovieSkeleton/MoviesSkeleton";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 interface SwiperComponentProps {
   slidesPerView: number;
   spaceBetween: number;
@@ -30,15 +30,6 @@ export default function SwiperComponent({
   type,
   loading,
 }: Readonly<SwiperComponentProps>) {
-  const router = useRouter();
-
-  const changePage = (id: number) => {
-    router.push("/details/" + id);
-  };
-
-  const changePageToTvShow = (id: number) => {
-    router.push("/series/details/" + id);
-  };
 
   const renderItems = loading
     ? Array.from({ length: 6 }).map((_, i) => ({ id: i }))
@@ -77,28 +68,21 @@ export default function SwiperComponent({
               ) : (
                 <>
                   <div className={styles.slide_image_wrapper}>
-                    {/* <img
-                      src={`${TMDB_IMAGE_BASE}/${(movie as MovieResult).backdrop_path}`}
-                      className={styles.slide_image}
-                      alt={(movie as MovieResult).title}
-                      onClick={() =>
-                        type == "movie"
-                          ? changePage((movie as MovieResult).id)
-                          : changePageToTvShow((movie as MovieResult).id)
-                      }
-                    /> */}
-                    <Image
-                      src={`${TMDB_IMAGE_BASE}/${(movie as MovieResult).backdrop_path}`}
-                      className={styles.slide_image}
-                      alt={`${movie.id}`}
-                      fill
-                      sizes="(max-width: 430px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 300px"
-                      onClick={() =>
+                    <Link
+                      href={
                         type === "movie"
-                          ? changePage(movie.id)
-                          : changePageToTvShow(movie.id)
+                          ? `/details/${movie.id}`
+                          : `/series/details/${movie.id}`
                       }
-                    />
+                    >
+                      <Image
+                        src={`${TMDB_IMAGE_BASE}/${(movie as MovieResult).backdrop_path}`}
+                        className={styles.slide_image}
+                        alt={`${movie.id}`}
+                        fill
+                        sizes="(max-width: 430px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 300px"
+                      />
+                    </Link>
                   </div>
                   {shoeDetail && (
                     <div className={styles.bottom_aria}>
@@ -124,16 +108,19 @@ export default function SwiperComponent({
                         {(movie as MovieResult).title ||
                           (movie as MovieResult).name}
                       </div>
-                      <Button
-                        onClick={() =>
-                          type == "movie"
-                            ? changePage((movie as MovieResult).id)
-                            : changePageToTvShow((movie as MovieResult).id)
+                      <Link
+                        href={
+                          type === "movie"
+                            ? `/details/${movie.id}`
+                            : `/series/details/${movie.id}`
                         }
-                        className="full_width"
-                        text="View Now"
-                        icon={true}
-                      />
+                      >
+                        <Button
+                          className="full_width"
+                          text="View Now"
+                          icon={true}
+                        />
+                      </Link>
                     </div>
                   )}
                 </>

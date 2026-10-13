@@ -5,18 +5,13 @@ import Slider from "react-slick";
 import Button from "@Components/Button/ButtonComponent";
 import { SliderComponentProps } from "@app-types/SliderComponentProps";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SliderComponent({
   movies,
   loading,
 }: Readonly<SliderComponentProps>) {
-  const router = useRouter();
-
-  const handleNavigation = (url: string | number) => {
-    router.push(`/details/${url}`);
-  };
 
   const settings = {
     speed: 500,
@@ -57,13 +52,12 @@ export default function SliderComponent({
               <div className={styles.title}>{movie.title}</div>
               <div className={styles.desc}>{movie.overview}</div>
               <div className={styles.footer}>
-                <Button
-                  onClick={() => {
-                    handleNavigation(movie.id);
-                  }}
-                  text={"View Now"}
-                  icon={true}
-                />
+                <Link href={`/details/${movie.id}`}>
+                  <Button
+                    text={"View Now"}
+                    icon={true}
+                  />
+                </Link>
               </div>
             </div>
           </div>

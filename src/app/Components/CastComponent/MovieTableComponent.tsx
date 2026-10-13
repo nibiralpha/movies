@@ -1,10 +1,8 @@
 "use client";
 
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
-import { CastMember } from "@app-types/MovieDetails";
 import styles from "./Cast.module.css";
-import { CreditsCastMember } from "@app-types/TvSeries";
-import { CelebrityWorkInterface, CelebrityWorks } from "@app-types//Celebrity";
+import { CelebrityWorks } from "@app-types//Celebrity";
 import { useState } from "react";
 
 import Skeleton from "react-loading-skeleton";
@@ -12,6 +10,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
 import Button from "@Components/Button/ButtonComponent";
 import Image from "next/image";
+import Link from "next/link";
 
 interface MovieTableComponentProps {
   id: number;
@@ -43,14 +42,6 @@ export default function MovieTableComponent({
   const hideAll = () => {
     setShowDefault(defaultValue);
     setShowAllButton(true);
-  };
-
-  const changePage = (id: number, type: "movie" | "tv") => {
-    if (type == "movie") {
-      router.push("/details/" + id);
-    } else {
-      router.push("/series/details/" + id);
-    }
   };
 
   return (
@@ -113,39 +104,49 @@ export default function MovieTableComponent({
                 return (
                   <div key={`${castData.id}-${i}`} className="col-12 col-md-2">
                     <div className={styles.celeb_cast}>
-                      <div
-                        onClick={() =>
-                          changePage(castData.id, castData.media_type)
+                      <Link
+                        href={
+                          castData?.media_type == "movie"
+                            ? "/details/" + castData?.id
+                            : "/series/details/" + castData?.id
                         }
-                        className={styles.celeb_cast_img}
                       >
-                        <Image
-                          className={styles.avater}
-                          src={
-                            castData.poster_path == null ||
-                            castData.poster_path === ""
-                              ? "/no_image.jpg"
-                              : `${TMDB_IMAGE_BASE}/${castData.poster_path}`
-                          }
-                          alt={castData.title}
-                          fill
-                          sizes="80px"
-                        />
-                      </div>
-                      <div
-                        onClick={() =>
-                          changePage(castData.id, castData.media_type)
+                        <div className={styles.celeb_cast_img}>
+                          <Image
+                            className={styles.avater}
+                            src={
+                              castData.poster_path == null ||
+                              castData.poster_path === ""
+                                ? "/no_image.jpg"
+                                : `${TMDB_IMAGE_BASE}/${castData.poster_path}`
+                            }
+                            alt={castData.title}
+                            fill
+                            sizes="80px"
+                          />
+                        </div>
+                      </Link>
+                      <Link
+                        href={
+                          castData?.media_type == "movie"
+                            ? "/details/" + castData?.id
+                            : "/series/details/" + castData?.id
                         }
-                        className={styles.cast_content}
                       >
-                        <div className={styles.cast_name}>{castData.title}</div>
-                        <div className={styles.detail}>
-                          {castData.character}
+                        <div className={styles.cast_content}>
+                          <div className={styles.cast_name}>
+                            {castData.title}
+                          </div>
+                          <div className={styles.detail}>
+                            {castData.character}
+                          </div>
+                          <div className={styles.detail}>
+                            {castData.media_type == "movie"
+                              ? "Movie"
+                              : "TV show"}
+                          </div>
                         </div>
-                        <div className={styles.detail}>
-                          {castData.media_type == "movie" ? "Movie" : "TV show"}
-                        </div>
-                      </div>
+                      </Link>
                     </div>
                   </div>
                 );
