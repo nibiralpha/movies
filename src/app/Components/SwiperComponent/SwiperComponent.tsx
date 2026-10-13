@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 import Button from "@Components/Button/ButtonComponent";
 import { MovieResult } from "@app-types/TopUpComingMovies";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
-import CustomSkeleton from "@Skeleton/MoviesSkeleton";
+import MoviesSkeleton from "@/src/app/Skeleton/MovieSkeleton/MoviesSkeleton";
 
 import { useRouter } from "next/navigation";
 
@@ -66,11 +66,11 @@ export default function SwiperComponent({
               {loading ? (
                 <>
                   <div className={styles.slide_image_wrapper}>
-                    <CustomSkeleton height="100%" borderRadius="8px 8px 0 0" />
+                    <MoviesSkeleton height="100%" borderRadius="8px 8px 0 0" />
                   </div>
                   {shoeDetail && (
                     <div className={styles.bottom_aria}>
-                      <CustomSkeleton height="40px" borderRadius="4px" />
+                      <MoviesSkeleton height="40px" borderRadius="4px" />
                     </div>
                   )}
                 </>
