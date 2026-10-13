@@ -92,12 +92,14 @@ export default function HeaderComponent({
                   ? data.name
                   : ""}
             </div>
-            <div className={styles.year_time}>
-              <div className={styles.year}>{year}</div>
+            {type !== "celebrity" && (
+              <div className={styles.year_time}>
+                <div className={styles.year}>{year}</div>
 
-              <div className={styles.dot}></div>
-              <div className={styles.year}>{airData}</div>
-            </div>
+                <div className={styles.dot}></div>
+                <div className={styles.year}>{airData}</div>
+              </div>
+            )}
           </div>
 
           <div className={styles.rating_area}>
