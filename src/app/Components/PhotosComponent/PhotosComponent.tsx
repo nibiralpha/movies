@@ -56,16 +56,17 @@ export default function PhotosComponent({
           ) : photos?.length === 0 ? (
             <p className={styles.no_data}>No data available to display.</p>
           ) : (
-            photos
-              ?.slice(0, 7)
-              .map((photo, i) => (
-                <img
-                  key={i}
+            photos?.slice(0, 7).map((photo, i) => (
+              <div className={styles.photo_wrapper} key={photo.file_path}>
+                <Image
                   src={generateImageData(photo.file_path, "w500")}
-                  alt=""
+                  alt={`Photo ${i + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
                   onClick={() => setIndex(i)}
                 />
-              ))
+              </div>
+            ))
           )}
         </div>
 
