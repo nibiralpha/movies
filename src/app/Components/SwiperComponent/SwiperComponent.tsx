@@ -12,7 +12,7 @@ import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import MoviesSkeleton from "@/src/app/Skeleton/MovieSkeleton/MoviesSkeleton";
 
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
 interface SwiperComponentProps {
   slidesPerView: number;
   spaceBetween: number;
@@ -77,7 +77,7 @@ export default function SwiperComponent({
               ) : (
                 <>
                   <div className={styles.slide_image_wrapper}>
-                    <img
+                    {/* <img
                       src={`${TMDB_IMAGE_BASE}/${(movie as MovieResult).backdrop_path}`}
                       className={styles.slide_image}
                       alt={(movie as MovieResult).title}
@@ -86,13 +86,31 @@ export default function SwiperComponent({
                           ? changePage((movie as MovieResult).id)
                           : changePageToTvShow((movie as MovieResult).id)
                       }
+                    /> */}
+                    <Image
+                      src={`${TMDB_IMAGE_BASE}/${(movie as MovieResult).backdrop_path}`}
+                      className={styles.slide_image}
+                      alt={`${movie.id}`}
+                      fill
+                      // sizes="(max-width: 430px) 100vw, (max-width: 1024px) 23vw, 180px"
+                      onClick={() =>
+                        type === "movie"
+                          ? changePage(movie.id)
+                          : changePageToTvShow(movie.id)
+                      }
                     />
                   </div>
                   {shoeDetail && (
                     <div className={styles.bottom_aria}>
                       <div className={styles.content}>
                         <div className={styles.start_icon}>
-                          <img width="14px" src={"./star.svg"} alt="star" />
+                          {/* <img width="14px" src={"./star.svg"} alt="star" /> */}
+                          <Image
+                            width={14}
+                            height={14}
+                            src="/star.svg"
+                            alt="Star"
+                          />
                         </div>
                         <div className={styles.rating}>
                           {(movie as MovieResult).vote_average
