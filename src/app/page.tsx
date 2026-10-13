@@ -7,8 +7,8 @@ import SliderComponent from "@Components/SliderComponent/SliderComponent";
 import SwiperComponent from "@Components/SwiperComponent/SwiperComponent";
 import CelebrityComponent from "@Components/CelebrityComponent/CelebrityComponent";
 import { useEffect } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { AppDispatch, RootState } from "@redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@redux/store";
 import {
   fetchNowPlaying,
   fetchPopulerMovies,
@@ -21,77 +21,29 @@ import {
 } from "@Services/Celebrity";
 import RecentViewComponent from "@Components/RecentView/RecentViewComponent";
 import { fetchPopulerTvShows, fetchTopRatedTvShows } from "@Services/Series";
+import { MovieSelectors } from "@Selectors/MovieSelectors";
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
 
-  // const sliderMovies = useSelector((state: RootState) => state.slider.list);
-
-  const { sliderMovies, isLoadingSlider } = useSelector(
-    (state: RootState) => ({
-      sliderMovies: state.slider?.list || [],
-      isLoadingSlider: state.slider?.loading,
-    }),
-    shallowEqual,
-  );
-
-  const { trendingThisWeekMovies, isLoadingTrendingMovies } = useSelector(
-    (state: RootState) => ({
-      trendingThisWeekMovies: state.movie.treandingThisWeek?.list || [],
-      isLoadingTrendingMovies: state.movie.treandingThisWeek?.loading ?? false,
-    }),
-    shallowEqual,
-  );
-
-  const { nowPlayingMovies, isLoadingNowPlaying } = useSelector(
-    (state: RootState) => ({
-      nowPlayingMovies: state.movie.nowPlaying?.list || [],
-      isLoadingNowPlaying: state.movie.nowPlaying?.loading ?? false,
-    }),
-    shallowEqual,
-  );
-
-  const { populerMovies, isLoadingPopularMovies } = useSelector(
-    (state: RootState) => ({
-      populerMovies: state.movie.populerMovies?.list || [],
-      isLoadingPopularMovies: state.movie.populerMovies?.loading ?? false,
-    }),
-    shallowEqual,
-  );
-
-  const { populerTvShows, isLoadingPopularTvShows } = useSelector(
-    (state: RootState) => ({
-      populerTvShows: state.movie.populerTvShows?.list || [],
-      isLoadingPopularTvShows: state.movie.populerTvShows?.loading ?? false,
-    }),
-    shallowEqual,
-  );
-
-  const { topRatedTvShows, isLoadingTopRatedTvShows } = useSelector(
-    (state: RootState) => ({
-      topRatedTvShows: state.movie.topRatedTvShows?.list || [],
-      isLoadingTopRatedTvShows: state.movie.topRatedTvShows?.loading ?? false,
-    }),
-    shallowEqual,
-  );
-
-  const { trendingCelebrities, isLoadingTrendingCelebrities } = useSelector(
-    (state: RootState) => ({
-      trendingCelebrities: state.celebrity.treandingCelebrities?.list || [],
-      isLoadingTrendingCelebrities:
-        state.celebrity.treandingCelebrities?.loading ?? false,
-    }),
-    shallowEqual,
-  );
-
-  const { populerCelebrities, isLoadingPopularCelebrities } = useSelector(
-    (state: RootState) => ({
-      populerCelebrities: state.celebrity.populerCelebrities?.list || [],
-      isLoadingPopularCelebrities:
-        state.celebrity.populerCelebrities?.loading ?? false,
-    }),
-    shallowEqual,
-  );
+  const {
+    sliderMovies,
+    isLoadingSlider,
+    trendingThisWeekMovies,
+    isLoadingTrendingMovies,
+    nowPlayingMovies,
+    isLoadingNowPlaying,
+    populerMovies,
+    isLoadingPopularMovies,
+    populerTvShows,
+    isLoadingPopularTvShows,
+    topRatedTvShows,
+    isLoadingTopRatedTvShows,
+    trendingCelebrities,
+    isLoadingTrendingCelebrities,
+    populerCelebrities,
+    isLoadingPopularCelebrities,
+  } = useSelector(MovieSelectors);
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchSliderMovies());

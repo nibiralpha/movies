@@ -31,6 +31,7 @@
       "@Helper/*": ["./src/app/Helper/*"],
       "@search/*": ["./src/app/search/*"],
       "@Skeleton/*": ["./src/app/Skeleton/*"],
+      "@Selectors/*": ["./src/app/Selectors/*"],
     }
   },
   "include": [
