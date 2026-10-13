@@ -9,6 +9,7 @@ import "yet-another-react-lightbox/styles.css";
 import styles from "./Photos.module.css";
 import { PhotoInterface } from "@app-types/Photos";
 import { generateImageData } from "@Helper/function";
+import Image from "next/image";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";

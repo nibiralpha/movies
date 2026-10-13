@@ -12,7 +12,8 @@ import { generateVideoEmbedUrl, generateImageUrl } from "@Helper/function";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import Button from "../Button/ButtonComponent";
+import Button from "@Components/Button/ButtonComponent";
+import Image from "next/image";
 
 interface VideosComponentProps {
   videos: VideoInterface[];
@@ -82,18 +83,22 @@ export default function VideosComponent({
             displayVideos.slice(0, showigVideos).map((video, i) => (
               <div key={i} className="col-12 col-md-3">
                 <div key={video.id} className={styles.video_item}>
-                  <img
+                  <Image
                     src={generateImageUrl(video.key, "medium")}
-                    alt=""
+                    alt="Video thumbnail"
+                    fill
+                    // sizes="(max-width: 430px) 100vw, (max-width: 767px) 50vw, 33vw"
+                    className={styles.thumbnail}
                     onClick={() => setIndex(i)}
                   />
 
                   <div className={styles.play_button_area}>
-                    <img
+                    <Image
                       className={styles.play_button}
                       src="/play_button.svg"
-                      alt=""
-                      onClick={() => setIndex(i)}
+                      alt="Play video"
+                      width={30}
+                      height={30}
                     />
                   </div>
                 </div>

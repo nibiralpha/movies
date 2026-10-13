@@ -16,16 +16,6 @@ import {
   fetchMoviePhotos,
   fetchMovieVideos,
 } from "@/src/app/Services/Movies";
-import { keyExists, loadData, saveData } from "@/src/app/Helper/localstorage";
-import {
-  localStorageName,
-  TMDB_IMAGE_BASE,
-  TMDB_IMAGE_BASE_URL,
-} from "@/src/app/Constant/ApiDataHelper";
-import { LocalStrorageData } from "@/src/app/types/Saved";
-import { useLocalStorage } from "@/src/app/Hooks/useLocalStorage";
-import { title } from "process";
-import { resetState } from "@/src/redux/movieDetailSlice";
 
 export default function Detail() {
   const params = useParams();
@@ -75,7 +65,7 @@ export default function Detail() {
   //   if (data == null) {
   //     data = [];
   //   }
-  //   console.log("baaal", data);
+  //   console.log("test", data);
 
   //   const alreadyExists = data.some((item) => item.id === id);
 

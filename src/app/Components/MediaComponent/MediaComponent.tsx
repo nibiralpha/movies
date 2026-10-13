@@ -1,7 +1,6 @@
 import { MovieDetails } from "@app-types/MovieDetails";
 import styles from "./Media.module.css";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
-import { useEffect, useState } from "react";
 import {
   generateVideoEmbedUrl,
   getMembers,
@@ -13,6 +12,7 @@ import { TvShowDetailsResponse } from "@app-types/TvSeries";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Image from "next/image";
 
 interface MovieHeaderProps {
   id: number;
@@ -61,10 +61,13 @@ export default function MediaComponent({
           {loading ? (
             <Skeleton width={270} height={350} />
           ) : (
-            <img
+            <Image
               className={styles.img}
-              width={"270px"}
-              src={`${TMDB_IMAGE_BASE}/${data.poster_path}`}
+              src={`${TMDB_IMAGE_BASE}${data.poster_path}`}
+              alt={`${data.id} || "Movie poster"}`}
+              width={270}
+              height={405}
+              sizes="270px"
             />
           )}
         </div>
