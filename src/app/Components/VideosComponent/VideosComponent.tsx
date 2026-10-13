@@ -148,6 +148,10 @@ export default function VideosComponent({
               );
             },
           }}
+          styles={{
+            navigationPrev: { display: "none" },
+            navigationNext: { display: "none" },
+          }}
         />
       </div>
     </div>
