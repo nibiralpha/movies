@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { SearchPersonResult, TmdbSearchResponse } from "@app-types/Search";
 import { TMDB_IMAGE_BASE_THUMB } from "@Constant/ApiDataHelper";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface SearchOption {
   value: number;
@@ -57,7 +58,6 @@ export default function SearchInputComponent({
   };
 
   const changePage = (type: "movie" | "tv" | "person", id: number) => {
-    
     if (type === "movie") {
       router.push("/details/" + id);
     }
@@ -143,7 +143,7 @@ export default function SearchInputComponent({
               }}
               onClick={() => changePage(option.type, option.value)}
             >
-              <img
+              <Image
                 src={
                   option.image
                     ? `${TMDB_IMAGE_BASE_THUMB}/${option.image}`
@@ -157,7 +157,6 @@ export default function SearchInputComponent({
                 }}
                 alt=""
               />
-
               <div className={styles.options}>
                 <div className={styles.text_background}>{option.label}</div>
                 <small className={styles.text_background}>{option.type}</small>

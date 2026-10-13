@@ -11,6 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
 import Button from "@Components/Button/ButtonComponent";
+import Image from "next/image";
 
 interface MovieTableComponentProps {
   id: number;
@@ -118,15 +119,17 @@ export default function MovieTableComponent({
                         }
                         className={styles.celeb_cast_img}
                       >
-                        <img
+                        <Image
                           className={styles.avater}
                           src={
                             castData.poster_path == null ||
-                            castData.poster_path == ""
+                            castData.poster_path === ""
                               ? "/no_image.jpg"
                               : `${TMDB_IMAGE_BASE}/${castData.poster_path}`
                           }
                           alt={castData.title}
+                          fill
+                          sizes="80px"
                         />
                       </div>
                       <div

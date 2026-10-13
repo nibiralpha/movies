@@ -1,4 +1,5 @@
 import styles from "./Button.module.css";
+import Image from "next/image";
 
 interface ButtonProps {
   text?: string;
@@ -19,7 +20,7 @@ export default function Button({
     >
       {icon && (
         <div className={styles.icon}>
-          <img src={"./play-xxl.png"} width="15px" />
+          <Image src="/play-xxl.png" width={15} height={15} alt="Play" />
         </div>
       )}
       <div className={styles.text}>{text}</div>

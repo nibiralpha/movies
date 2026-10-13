@@ -76,15 +76,6 @@ export default function CelebrityComponent({
                   onClick={() => changePage(celebrity.id)}
                   className={styles.slide_image_wrapper}
                 >
-                  {/* <img
-                    src={
-                      celebrity.profile_path !== null
-                        ? `${TMDB_IMAGE_BASE}/${celebrity.profile_path}`
-                        : `/blank_celebrity.jpg`
-                    }
-                    className={styles.slide_image}
-                    alt={celebrity.name}
-                  /> */}
                   <Image
                     src={
                       celebrity.profile_path !== null

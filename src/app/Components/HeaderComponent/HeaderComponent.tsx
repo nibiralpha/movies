@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import { formatBirthday, formatRuntime } from "@Helper/function";
 import { TvShowDetailsResponse } from "@app-types/TvSeries";
 import { CelebrityDetailResponse } from "@app-types/Celebrity";
+import Image from "next/image";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -102,7 +103,7 @@ export default function HeaderComponent({
           <div className={styles.rating_area}>
             {type !== "celebrity" && (
               <div className={styles.star}>
-                <img src={"/star.svg"} />
+                <Image src="/star.svg" alt="Star" width={20} height={20} />
               </div>
             )}
             <div className={styles.rating}>

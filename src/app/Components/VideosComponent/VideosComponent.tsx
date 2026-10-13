@@ -87,7 +87,7 @@ export default function VideosComponent({
                     src={generateImageUrl(video.key, "medium")}
                     alt="Video thumbnail"
                     fill
-                    // sizes="(max-width: 430px) 100vw, (max-width: 767px) 50vw, 33vw"
+                    sizes="(max-width: 430px) 100vw, (max-width: 767px) 50vw, 33vw"
                     className={styles.thumbnail}
                     onClick={() => setIndex(i)}
                   />

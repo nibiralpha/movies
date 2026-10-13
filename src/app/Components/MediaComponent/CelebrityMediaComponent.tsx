@@ -48,7 +48,7 @@ export default function CelebrityMediaComponent({
               }
               alt=""
               fill
-              // sizes="(max-width: 430px) 100vw, (max-width: 1024px) 195px, 270px"
+              sizes="(max-width: 430px) 100vw, (max-width: 1024px) 195px, 270px"
             />
           )}
         </div>

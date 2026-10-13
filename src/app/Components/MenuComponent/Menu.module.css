@@ -26,8 +26,12 @@
 }
 
 .logo img {
-  width: 150px;
-  display: block;
+  .logo img {
+    width: 150px;
+    height: auto;
+    display: block;
+    cursor: pointer;
+  }
 }
 
 .menus {

@@ -6,6 +6,7 @@ import Button from "@Components/Button/ButtonComponent";
 import { SliderComponentProps } from "@app-types/SliderComponentProps";
 import { TMDB_IMAGE_BASE } from "@Constant/ApiDataHelper";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function SliderComponent({
   movies,
@@ -33,7 +34,7 @@ export default function SliderComponent({
     return (
       <div className={styles.skeleton_container}>
         <div className={styles.skeleton_content}>
-          <img src="/loading.gif" width={"40px"} />
+          <Image src="/loading.gif" alt="Loading" width={40} height={40} />
         </div>
       </div>
     );
@@ -44,15 +45,25 @@ export default function SliderComponent({
       <Slider {...settings}>
         {finalMovies.map((movie) => (
           <div key={movie.id} className={styles.container}>
-            <img
+            <Image
               className={styles.slider_img}
               src={`${TMDB_IMAGE_BASE}/${movie.backdrop_path}`}
+              alt={movie.title || "Movie backdrop"}
+              fill
+              priority={movie.id === finalMovies[0]?.id}
+              sizes="100vw"
             />
             <div className={styles.content}>
               <div className={styles.title}>{movie.title}</div>
               <div className={styles.desc}>{movie.overview}</div>
               <div className={styles.footer}>
-                <Button onClick={() => {handleNavigation(movie.id)}} text={"View Now"} icon={true} />
+                <Button
+                  onClick={() => {
+                    handleNavigation(movie.id);
+                  }}
+                  text={"View Now"}
+                  icon={true}
+                />
               </div>
             </div>
           </div>

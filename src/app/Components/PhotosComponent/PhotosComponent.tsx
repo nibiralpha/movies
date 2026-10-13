@@ -62,7 +62,7 @@ export default function PhotosComponent({
                   src={generateImageData(photo.file_path, "w500")}
                   alt={`Photo ${i + 1}`}
                   fill
-                  // sizes="(max-width: 768px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 50vw, 33vw"
                   onClick={() => setIndex(i)}
                 />
               </div>

@@ -78,7 +78,7 @@ export default function CastComponent({ casts, loading }: CastComponentProps) {
                           }
                           alt={cast.name}
                           fill
-                          // sizes="80px"
+                          sizes="80px"
                         />
                       </div>
                       <div className={styles.cast_content}>

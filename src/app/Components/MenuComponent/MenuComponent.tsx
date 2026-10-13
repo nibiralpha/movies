@@ -4,6 +4,7 @@ import styles from "./Menu.module.css";
 import { AppDispatch, RootState } from "@/src/redux/store";
 import { fetchSearchResults } from "@Services/Search/Search";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function MenuComponent() {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,7 +31,14 @@ export default function MenuComponent() {
       <div className={styles.menu_container}>
         <div className={styles.left}>
           <div className={styles.logo}>
-            <img src={"/logo.png"} onClick={changeHome} />
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={150}
+              height={50}
+              onClick={changeHome}
+              priority
+            />
           </div>
         </div>
         {/* <div className={styles.middle}>
@@ -43,7 +51,6 @@ export default function MenuComponent() {
         <div className={styles.right}>
           <div className={styles.search}>
             <div className={styles.icon}>
-              {/* <img src={"/search_icon.svg"} /> */}
               <SearchInputComponent data={searchResult} onChange={onSearch} />
             </div>
           </div>

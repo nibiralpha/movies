@@ -92,7 +92,7 @@ export default function SwiperComponent({
                       className={styles.slide_image}
                       alt={`${movie.id}`}
                       fill
-                      // sizes="(max-width: 430px) 100vw, (max-width: 1024px) 23vw, 180px"
+                      sizes="(max-width: 430px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 300px"
                       onClick={() =>
                         type === "movie"
                           ? changePage(movie.id)
