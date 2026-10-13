@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@redux/store";
 
-export const MovieSelectors = createSelector(
+export const movieSelectors = createSelector(
   [
     (state: RootState) => state.slider,
     (state: RootState) => state.movie,

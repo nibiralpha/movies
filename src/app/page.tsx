@@ -21,7 +21,7 @@ import {
 } from "@Services/Celebrity";
 import RecentViewComponent from "@Components/RecentView/RecentViewComponent";
 import { fetchPopulerTvShows, fetchTopRatedTvShows } from "@Services/Series";
-import { MovieSelectors } from "@Selectors/MovieSelectors";
+import { movieSelectors } from "@Selectors/movieSelectors";
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
@@ -43,7 +43,7 @@ export default function Page() {
     isLoadingTrendingCelebrities,
     populerCelebrities,
     isLoadingPopularCelebrities,
-  } = useSelector(MovieSelectors);
+  } = useSelector(movieSelectors);
 
   const getInitData = async (): Promise<void> => {
     dispatch(fetchSliderMovies());
