@@ -14,6 +14,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+
 
 interface CelebrityComponentProps {
   slidesPerView: number;
@@ -74,7 +76,7 @@ export default function CelebrityComponent({
                   onClick={() => changePage(celebrity.id)}
                   className={styles.slide_image_wrapper}
                 >
-                  <img
+                  {/* <img
                     src={
                       celebrity.profile_path !== null
                         ? `${TMDB_IMAGE_BASE}/${celebrity.profile_path}`
@@ -82,6 +84,17 @@ export default function CelebrityComponent({
                     }
                     className={styles.slide_image}
                     alt={celebrity.name}
+                  /> */}
+                  <Image
+                    src={
+                      celebrity.profile_path !== null
+                        ? `${TMDB_IMAGE_BASE}${celebrity.profile_path}`
+                        : "/blank_celebrity.jpg"
+                    }
+                    className={styles.slide_image}
+                    alt={celebrity.name}
+                    fill
+                    sizes="185px"
                   />
 
                   <div className={styles.overlay}></div>
