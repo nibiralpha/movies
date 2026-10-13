@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CelebrityDetailResponse } from "@app-types/Celebrity";
+import Image from "next/image";
+
 import {
   calculateAge,
   formatBirthday,
@@ -37,14 +39,16 @@ export default function CelebrityMediaComponent({
               containerClassName="block"
             />
           ) : (
-            <img
+            <Image
               className={styles.img}
               src={
-                data?.profile_path === undefined || data?.profile_path === null
+                data?.profile_path == null
                   ? "/blank_celebrity.jpg"
-                  : `${TMDB_IMAGE_BASE}/${data?.profile_path}`
+                  : `${TMDB_IMAGE_BASE}/${data.profile_path}`
               }
               alt=""
+              fill
+              // sizes="(max-width: 430px) 100vw, (max-width: 1024px) 195px, 270px"
             />
           )}
         </div>
